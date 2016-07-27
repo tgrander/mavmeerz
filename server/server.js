@@ -7,9 +7,10 @@ const port = process.env.PORT || 8000;
 const morgan = require('morgan');
 
 app.use(morgan('dev'));
-///                ///
+///      ////      ///
 
 
+/// looks for 'index.html' in '/../build' by default ///
 app.use(express.static(__dirname + '/../build'));
 
 app.listen(port);
