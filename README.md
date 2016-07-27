@@ -1,11 +1,9 @@
-<<<<<<< 91eac90ea1d9647f0a15ffca048472fb288278ed
 # Budgeting by MavMeerz
 
 Stay in Budget, and have fun in the mean-time! A Mavmeerz production: [Ridwan](https://github.com/ridwankazi), [Jear](https://github.com/Jearxj),
 [Trey](https://github.com/tgrander), and [Deniz](https://github.com/deniztetik).
 
 ## Installation
-
 
 ##Heroku:
 
@@ -355,4 +353,3 @@ We will consider integrating more tightly with Flow in the future so that you do
 ### Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/template/README.md)
->>>>>>> [doc] Create React environment setup, add .gitignore file
