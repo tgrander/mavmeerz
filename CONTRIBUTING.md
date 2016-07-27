@@ -38,7 +38,6 @@ git remote add upstream https://github.com/makersquare/<NAME_OF_REPO>.git
 ### Cut a name-spaced feature branch from development
 
 Your branch should follow this naming convention:
-  - bug/...
   - feat/...
   - test/...
   - doc/...
@@ -55,12 +54,12 @@ git checkout -b `your-branch-name`
 ### Make commits to your feature branch.
 
 Prefix each commit like so
-  - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests [Fixes #0]
-  - (refactor) ...
-  - (cleanup) ...
-  - (test) ...
-  - (doc) ...
+  - [feat] Added a new feature
+  - [fix] Fixed inconsistent tests [Fixes #0]
+  - [refactor] ...
+  - [cleanup] ...
+  - [test] ...
+  - [doc] ...
 
 Make changes and commits on your branch, and make sure that you
 only make changes that are relevant to this branch. If you find
@@ -82,11 +81,11 @@ changes.
 
 Once you are done making changes, you can begin the process of getting
 your code merged into the main repo. Step 1 is to rebase upstream
-changes to the master branch into yours by running this command
+changes to the development branch into yours by running this command
 from your branch:
 
 ```bash
-git pull --rebase upstream master
+git pull --rebase upstream development
 ```
 
 This will start the rebase process. You must commit all of your changes
@@ -121,7 +120,7 @@ you get here again and nothing is broken and all the tests pass.
 
 ### Make a pull request
 
-Make a clear pull request from your fork and branch to the upstream master
+Make a clear pull request from your fork and branch to the upstream development
 branch, detailing exactly what changes you made and what feature this
 should add. The clearer your pull request is the faster you can get
 your changes incorporated into this repo.
