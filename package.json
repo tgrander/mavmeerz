@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "morgan": "^1.7.0",
+    "nodemon": "^1.10.0",
     "react-scripts": "0.1.0"
   },
   "dependencies": {
+    "express": "^4.14.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1"
   },
