@@ -7,16 +7,17 @@ let ExpenseList = ({expenses}) => {
   var expenseList = expenses.map(exp =>
     <Expense
       key={exp.id}
-      expense={exp}
+      exp={exp}
+      handleCategorySubmit={handleCategorySubmit}
     />
   )
 
   return (
-    <div>
-      <ul>
+    <table className="transactions" cellpadding="0" cellspacing="0">
+      <tbody>
         {expenseList}
-      </ul>
-    </div>
+      </tbody>
+    </table>
   )
 }
 
