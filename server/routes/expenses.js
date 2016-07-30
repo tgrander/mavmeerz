@@ -7,9 +7,24 @@ router.use((req, res, next) => {
   next();
 });
 
+// get expenses
+router.get('/', (req, res) => {
+  res.send('get expenses');
+});
+
 // send expenses
 router.post('/', (req, res) => {
   res.send('post expenses');
+});
+
+// bulk update expenses
+router.put('/', (req, res) => {
+  res.send('bulk update expenses');
+});
+
+// update specific expense
+router.put('/:id', (req, res) => {
+  res.send('update specific expenses');
 });
 
 module.exports = router;
