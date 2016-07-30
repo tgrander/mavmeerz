@@ -3,12 +3,28 @@
 import React, { Component, PropTypes } from 'react';
 import ExpenseList from './ExpenseList';
 
-const Total = ({ total }) => (
-  {{ total }}
-)
+export default class Total extends Component {
+  render() {
+    const {expenses, total} = this.props
 
-Todo.propTypes = {
-  total: PropTypes.string.isRequired
+    const hasExpenses = expenses.length > 0
+    const nodes = !hasExpenses ?
+      <em> You have no expenses! Cray. </em> :
+      expenses.map(expense =>
+        <expense
+          amount={expense.amount} />
+      )
+
+    return (
+      <div>
+        <h3>Total Expenditure:</h3>
+        <div>{nodes}</div>
+        <p>Total: &#36;{total}</p>
+      </div>
+    )
+  }
 }
 
-export default Total
+Total.propTypes = {
+  total: PropTypes.string.isRequired
+}
