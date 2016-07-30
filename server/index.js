@@ -1,6 +1,7 @@
-const express = require('express')
-    , app     = express()
-    , port    = process.env.PORT || 8080;
+const express    = require('express')
+    , app        = express()
+    , port       = process.env.PORT || 8080
+    , bodyParser = require('body-parser');
 
 /// for development ///
 const morgan = require('morgan');
@@ -8,6 +9,11 @@ const morgan = require('morgan');
 app.use(morgan('dev'));
 ///      ////      ///
 
+/// to make parsing requests easier ///
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 /// looks for 'index.html' in '/../build' by default ///
 app.use(express.static(__dirname + '/../build'));
