@@ -1,13 +1,14 @@
 'esversion: 6';
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import ExpenseList from './ExpenseList';
 
-const Total = ({ integer }) => (
-  <div> Total: { integer } </div>
+const Total = ({ total }) => (
+  {{ total }}
 )
 
 Todo.propTypes = {
-  integer:
+  total: PropTypes.string.isRequired
 }
 
-export default TotalDisplay;
+export default Total
