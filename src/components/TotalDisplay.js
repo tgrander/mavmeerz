@@ -26,5 +26,5 @@ export default class Total extends Component {
 }
 
 Total.propTypes = {
-  total: PropTypes.string.isRequired
+  total: PropTypes.string
 }
