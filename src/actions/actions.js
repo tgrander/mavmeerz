@@ -15,4 +15,34 @@ import fetch from 'isomorphic-fetch'
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECIEVE_EXPENSES = 'RECIEVE_EXPENSES';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
-export const SEND_FILE = 'SEND_FILE';
+export const UPLOAD_FILE = 'UPLOAD_FILE';
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+
+export function addCategory(id, category){
+  return {
+    type: ADD_CATEGORY,
+    id,
+    category
+  }
+}
+
+function requestExpenses(){
+  return {
+    type: REQUEST_EXPENSES
+  }
+}
+
+function receiveExpenses(json){
+  return {
+    type: RECIEVE_EXPENSES,
+    expenses: json.data.children.map(child => child.data),
+    receivedAt: Date.now()
+  }
+}
+
+export function fetchExpenses(){
+  return function(dispatch){
+    dispatch(requestExpenses())
+    return fetch()
+  }
+}
