@@ -19,3 +19,14 @@ TotalContainer.propTypes = {
   })).isRequired,
   total: propTypes.string
 };
+
+const mapStateToProps = (state) => {
+  return {
+    total: getTotal(state)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  { total }
+)(TotalContainer)
