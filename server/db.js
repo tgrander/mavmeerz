@@ -1,7 +1,7 @@
 "use strict"
 /**
  *   Creates our schema for storing our app's data. We create two tables,
- *   one to store users and one to store their messages.
+ *   one to store csv file names and one to store the expense data.
  */
 
  const knex = require('knex')({
