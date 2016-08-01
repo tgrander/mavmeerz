@@ -9,10 +9,9 @@ AsyncApp. All state changes are both dispatched and received by AsyncApp and
 then passed down to all children presentational components.
 */
 
-
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {fetchExpenses} from '../actions/actions.js'
+import {fetchExpenses, uploadClick} from '../actions/actions.js'
 
 export default class AsyncApp extends Component {
   constructor(props){
@@ -34,12 +33,19 @@ export default class AsyncApp extends Component {
     dispatch(fetchExpenses())
   }
 
+  //function to handle when a user click on the 'upload' button
+  handleUploadClick(e){
+    e.preventDefault()
+    //launches modal to upload file
+    dispatch(uploadClick())
+  }
+
   /*
   function to calculate total from expenses object
   @param = expenses object from state
   @return = integer
   */
-  const getTotal = (expensesObj) => {
+  getTotal(expensesObj){
     let total = 0
     for (var id in expensesObj){
       let expense = expensesObj[id]
@@ -55,6 +61,13 @@ AsyncApp.propTypes = {
   expenses: PropTypes.object.isRequired
 }
 
+/*
+function that tells how to transform the current Redux store state into the
+props you want to pass to a presentational component you are wrapping
+
+@param = state object
+@return = object of transformed store state
+*/
 function mapStateToProps(state){
   const {expenses} = state
   return {
