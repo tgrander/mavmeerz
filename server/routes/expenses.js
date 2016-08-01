@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+const util    = require('../util/util.js');
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -14,7 +15,16 @@ router.get('/', (req, res) => {
 
 // send expenses
 router.post('/', (req, res) => {
-  res.send('post expenses');
+  // replace with make-do fn for now using express-csv middleware
+  util.parseCSVArr(req.body, (results) => {
+    console.log(
+      'results from "text/csv" request! (uncomment on line 23 of server/routes/expenses.js)',
+      results
+    );
+    // add results to dB
+    // then send 201 response if successful
+    res.sendStatus(201);
+  });
 });
 
 // bulk update expenses

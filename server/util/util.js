@@ -31,6 +31,20 @@ function parseCSV(FILE) {
   });
 };
 
+function parseCSVArr(arr, cb) {
+  let headers = arr[0];
+  let results = [];
+  for (let i = 1; i < arr.length; i++) {
+    let expense       = arr[i];
+    let expenseResult = {};
+    for (let j = 0; j < expense.length; j++) {
+      expenseResult[headers[j]] = expense[j];
+    }
+    results.push(expenseResult);
+  }
+  cb(results);
+};
+
 /// TO TEST FN (since have not implemented promises in test suite yet)
 // parseCSV(testCSV)
 //   .then(function(results) {
@@ -38,4 +52,5 @@ function parseCSV(FILE) {
 //     console.log(results);
 //   });
 
-module.exports = {parseCSV: parseCSV};
+module.exports = { parseCSV: parseCSV,
+                   parseCSVArr: parseCSVArr };
