@@ -2,12 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import reducer from './reducers'
+import store from './store'
 import App from './App';
 import './index.css';
 import 'babel-polyfill'
-
-let store = createStore(reducer)
 
 ReactDOM.render(
   <Provider store={store}>
