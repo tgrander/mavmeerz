@@ -18,7 +18,7 @@ User Interactions
 
 import fetch from 'isomorphic-fetch'
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
-export const RECIEVE_EXPENSES = 'RECEIVE_EXPENSES';
+export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
 export const UPLOAD_FILE = 'UPLOAD_FILE';
 /*
@@ -84,15 +84,15 @@ UX for uploading a CSV file
     -reponse from state: hide loading feature, display updated expenses
 */
 
-export const uploadActions = {
-  UPLOAD_CLICK,
-  UPLOAD_SENT
+
+export const UPLOAD_CLICK = 'UPLOAD_CLICK'
+export const UPLOAD_SENT = 'UPLOAD_SENT'
   // RECEIVE_EXPENSES --> use same action as 'creating and receiving expenses'
-}
+
 //action creator function to notify state that CSV file has been sent to server
 export function uploadClick(){
   return {
-    type: uploadActions.UPLOAD_CLICK
+    type: UPLOAD_CLICK
   }
 }
 /*
@@ -101,7 +101,7 @@ and newly expenses have been received
 */
 function uploadSent(){
   return {
-    type: uploadActions.UPLOAD_SENT
+    type: UPLOAD_SENT
   }
 }
 export function uploadCSV(){
