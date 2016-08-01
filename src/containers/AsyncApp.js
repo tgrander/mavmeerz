@@ -13,6 +13,10 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {fetchExpenses, uploadClick} from '../actions/actions.js'
 
+import ExpenseList from '../components/ExpenseList.js'
+import Expense from '../components/Expense.js'
+import Total from '../components/Total.js'
+
 export default class AsyncApp extends Component {
   constructor(props){
     super(props)
@@ -22,12 +26,12 @@ export default class AsyncApp extends Component {
 
   componentDidMount(){
     // dispatch function to fetch all expenses from server
-    // @param thunk action creator from ./actions/actions.js
+    // @param thunk action creator fucntion from ./actions/actions.js
     dispatch(fetchExpenses())
   }
   componentWillReceiveProps(nextProps){
     /*
-    when component receives new props from store as a result of an updated,
+    when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
     */
     dispatch(fetchExpenses())
@@ -54,6 +58,14 @@ export default class AsyncApp extends Component {
     return total
   }
 
+  //function that renders all child components
+  render(){
+    return (
+      <div>
+        <p>Hello World!!!</p>
+      <div>
+    )
+  }
 
 }
 

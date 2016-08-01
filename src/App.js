@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {Provider} from 'react-redux';
-import configureStore from 'store/configureStore.js'
+import configureStore from './store/configureStore.js'
 
 const store = configureStore()
 
