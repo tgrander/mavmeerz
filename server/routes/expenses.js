@@ -22,6 +22,8 @@ router.post('/', (req, res) => {
       results
     );
     // add results to dB
+    // then send 201 response if successful
+    res.sendStatus(201);
   });
 });
 

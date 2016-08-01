@@ -31,7 +31,7 @@ function parseCSV(FILE) {
   });
 };
 
-function parseCSVArr(arr) {
+function parseCSVArr(arr, cb) {
   let headers = arr[0];
   let results = [];
   for (let i = 1; i < arr.length; i++) {
@@ -42,7 +42,7 @@ function parseCSVArr(arr) {
     }
     results.push(expenseResult);
   }
-  return results;
+  cb(results);
 };
 
 /// TO TEST FN (since have not implemented promises in test suite yet)
