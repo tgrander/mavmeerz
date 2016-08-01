@@ -3,9 +3,9 @@ import {
   REQUEST_EXPENSES,
   RECEIVE_EXPENSES,
   REQUEST_FAIL
-} from './actions/actions.js'
+} from '../actions/actions.js'
 
-export function expenses(state={
+function expenses(state={
   expenses: {},
   isFetching: false
 }, action){
@@ -27,3 +27,9 @@ export function expenses(state={
       return state
   }
 }
+
+const rootReducer = combineReducers({
+  expenses
+})
+
+export default rootReducer
