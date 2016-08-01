@@ -91,7 +91,7 @@ export const uploadActions = {
   // RECEIVE_EXPENSES --> use same action as 'creating and receiving expenses'
 }
 //action creator function to notify state that CSV file has been sent to server
-function uploadClick(){
+export function uploadClick(){
   return {
     type: uploadActions.UPLOAD_CLICK
   }
@@ -108,6 +108,6 @@ function uploadSent(){
 export function uploadCSV(){
   return function(dispatch){
     dispatch(uploadSent())
-    
+
   }
 }

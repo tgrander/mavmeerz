@@ -9,7 +9,7 @@ const store = configureStore()
 class App extends Component {
   render() {
     return (
-      <Provider>
+      <Provider stoer={store}>
         <div className="App">
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
