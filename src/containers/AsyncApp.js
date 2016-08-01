@@ -6,7 +6,7 @@ rendered from AsycnApp.
 This component is what connects React to Redux; therefore, the only passage that
 the presentational components have to the state tree and to Redux is through
 AsyncApp. All state changes are both dispatched and received by AsyncApp and
-then passed down to all children presentational components. 
+then passed down to all children presentational components.
 */
 
 
@@ -26,6 +26,39 @@ export default class AsyncApp extends Component {
     // @param thunk action creator from ./actions/actions.js
     dispatch(fetchExpenses())
   }
+  componentWillReceiveProps(nextProps){
+    /*
+    when component receives new props from store as a result of an updated,
+    the component should dispatch fetchExpenses() again
+    */
+    dispatch(fetchExpenses())
+  }
+
+  /*
+  function to calculate total from expenses object
+  @param = expenses object from state
+  @return = integer
+  */
+  const getTotal = (expensesObj) => {
+    let total = 0
+    for (var id in expensesObj){
+      let expense = expensesObj[id]
+      total += expense.amount
+    }
+    return total
+  }
 
 
+}
+
+AsyncApp.propTypes = {
+  expenses: PropTypes.object.isRequired
+}
+
+function mapStateToProps(state){
+  const {expenses} = state
+  return {
+    expenses: expenses,
+    total: getTotal(expenses)
+  }
 }
