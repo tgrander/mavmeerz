@@ -17,7 +17,6 @@ User Interactions
 */
 
 import fetch from 'isomorphic-fetch'
-
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECIEVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
