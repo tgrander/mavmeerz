@@ -25,7 +25,7 @@ UX for uploading a CSV file
 export function uploadClick(){
   console.log('upload clicked in uploadActions')
   return {
-    type: UPLOAD_CLICK
+    type: UPLOAD_CLICK,
     payload: request
   };
 }

@@ -85,15 +85,17 @@ props you want to pass to a child presentational component you are wrapping
   @param = state object
   @return = object of transformed store state
 */
-function mapStateToProps(state){
-  console.log('STATE: ', state);
-  return {
-    expenses: state.expenses,
-    total: this._getTotal(state.expenses)
-  }
-}
+//todo
+// function mapStateToProps(state){
+//   console.log('STATE: ', state);
+//   return {
+//     expenses: state.expenses,
+//     total: this._getTotal(state.expenses)
+//   }
+// }
 
 //function that connects React component to Redux store
-export default connect(
-  mapStateToProps
-)(ExpensesApp)
+//todo
+// export default connect(
+//   mapStateToProps
+// )(ExpensesApp)
