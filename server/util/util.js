@@ -69,6 +69,12 @@ function getExpensesFromDB(callback) {
   });
 }
 
+function updateExpenseCategoryinDB(expenseId, category, callback) {
+  expenseController.updateExpenseCategory(expenseId, category, (success) => {
+    if (success) callback(success);
+  });
+}
+
 /// TO TEST FN (since have not implemented promises in test suite yet)
 // parseCSV(testCSV)
 //   .then(function(results) {
@@ -79,4 +85,5 @@ function getExpensesFromDB(callback) {
 module.exports = { parseCSV:    parseCSV,
                    parseCSVArr: parseCSVArr,
                    addExpensesToDB: addExpensesToDB,
-                   getExpensesFromDB: getExpensesFromDB };
+                   getExpensesFromDB: getExpensesFromDB,
+                   updateExpenseCategoryinDB: updateExpenseCategoryinDB };

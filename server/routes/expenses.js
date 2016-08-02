@@ -45,10 +45,13 @@ router.put('/', (req, res) => {
 
 // update specific expense
 router.put('/:id', (req, res) => {
-  // utility function to update category for specific
-  // id in expenses DB
-
-  res.send('update specific expenses');
+  let expenseId = req.url.slice(1);
+  let category  = req.body.category;
+  util.updateExpenseCategoryinDB(expenseId, category, (success) => {
+    if (success) {
+      util.getExpensesFromDB(expenses => res.send(expenses));
+    }
+  });
 });
 
 module.exports = router;
