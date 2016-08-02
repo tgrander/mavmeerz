@@ -16,10 +16,12 @@ import {fetchExpenses, uploadClick} from '../actions/expensesActions.js'
 import ExpenseList from '../components/ExpenseList.js'
 import Expense from '../components/Expense.js'
 import Total from '../components/Total.js'
+import Upload from '../components/Upload.js'
 
 export default class AsyncApp extends Component {
   constructor(props){
     super(props)
+    console.log('AsyncApp props', props);
     //function to handle submitting new category for expense
     //function to handle clicking 'uplod CSV' button
   }
@@ -27,9 +29,10 @@ export default class AsyncApp extends Component {
   componentDidMount(){
     // dispatch function to fetch all expenses from server
     // @param thunk action creator fucntion from ./actions/actions.js
-    dispatch(fetchExpenses());
+    // dispatch(fetchExpenses());
   }
   componentWillReceiveProps(nextProps){
+    console.log('AsyncApp nextProps', nextProps);
     /*
     when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
@@ -41,7 +44,9 @@ export default class AsyncApp extends Component {
   handleUploadClick(e){
     e.preventDefault()
     //launches modal to upload file
+    console.log('upload clicked', e);
     dispatch(uploadClick())
+    console.log('upload clicked', e);
   }
 
   /*
