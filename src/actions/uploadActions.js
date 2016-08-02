@@ -47,12 +47,12 @@ export function uploadSent(csv){
 export function uploadCSV(csv){
   // return function(dispatch){
   //   dispatch(uploadClick());
-  console.log('uploadCSV');
+
     return axios({
       method: 'POST',
       url: '/v1/api/expenses',
-      data: 'text/csv',
-      csv: csv
+      data: csv
+      // headers: {'Content-Type': 'text/csv'}
     })
       .then(function(response) {
         console.log(response);
