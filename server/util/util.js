@@ -6,6 +6,7 @@ const CSVController     = require('../controllers/csvFileController.js');
 
 // parsing the CSV //
 
+// not being used at the moment //
 function parseCSV(FILE) {
   return new Promise(function(resolve, reject) {
     const file   = fs.createReadStream(FILE);
@@ -33,6 +34,8 @@ function parseCSV(FILE) {
   });
 }
 
+// this function refactors the parsedCSV from express-csv-middleware
+// into an array of objects and then sends into a callback
 function parseCSVArr(arr, callback) {
   let headers = arr[0];
   let results = [];
@@ -48,17 +51,19 @@ function parseCSVArr(arr, callback) {
 }
 
 function addExpensesToDB(expenses, callback) {
+    // CSVController.addFile is here because it is required to
+    // link a foreign id to the expense table. The CSV table will
+    // eventually be replaced by a user table
     CSVController.addFile('expenses', () => {
-      console.log('got to CSVController.addFile callback!');
       //insert CSV ID and other thing here
       expenseController.addAllExpenses(expenses, (success) => {
-        console.log('got to expenseController.addAllExpenses callback!');
-        // yay success
         callback(success);
       });
     });
 }
 
+// takes expenses from MySQL db, puts them into an array of objects,
+// and then sends it into a callback
 function getExpensesFromDB(callback) {
   let results = [];
   expenseController.getAllExpenses((expenses) => {
@@ -69,6 +74,9 @@ function getExpensesFromDB(callback) {
   });
 }
 
+// takes an expenseId and a category,
+// updates the database entry with the category,
+// and sends it into a callback if successful
 function updateExpenseCategoryinDB(expenseId, category, callback) {
   expenseController.updateExpenseCategory(expenseId, category, (success) => {
     if (success) callback(success);
