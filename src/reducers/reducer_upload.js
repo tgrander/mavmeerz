@@ -21,9 +21,10 @@ export default function(state= INITIAL_STATE, action){
     case UPLOAD_CLICK:
       console.log("ding ding ding ", action);
       break;
-
+    case UPLOAD_CSV:
+      return state;
+      break;
     default:
       return state;
-    //unfinished reducer function for CSV file uploads :)
   }
 }

@@ -12,16 +12,12 @@ let Expense = ({exp, handleCategorySubmit}) => {
   return (
     <tr>
       <td className="date">{exp.date}</td>
-      <td className="description">{exp.text}</td>
+      <td className="description">{exp.description}</td>
       <td className="category">
         <input
           className="category-entry"
-          type="text" 
+          type="text"
           placeholder="Enter Category"
-          onSubmit={e => {
-            e.preventDefault()
-            handleCategorySubmit(e)
-          }}
         >
         </input>
       </td>
@@ -29,3 +25,5 @@ let Expense = ({exp, handleCategorySubmit}) => {
     </tr>
   )
 }
+
+export default Expense

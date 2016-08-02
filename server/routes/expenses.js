@@ -18,19 +18,14 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // replace with make-do fn for now using express-csv middleware
   util.parseCSVArr(req.body, (results) => {
-    console.log(
-      'results from "text/csv" request! (uncomment on line 23 of server/routes/expenses.js)',
-      results
-    );
     // add results to dB
     util.addExpensesToDB(results, (success) => {
       console.log('got to addExpensesToDB callback');
-      // yay success, send 201
-      // res.sendStatus(201);
-      // or reroute to '/' get
-      res.redirect('/v1/api/expenses/');
-      // if not success send fail message
-      // res.sendStatus(FAIL);
+      if (success) {
+        util.getExpensesFromDB(expenses => res.status(201).send(expenses));
+      } else {
+        // res.sendStatus(FAIL);
+      }
     });
   });
 });

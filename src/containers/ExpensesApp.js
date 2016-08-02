@@ -11,29 +11,30 @@ then passed down to all children presentational components.
 
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {fetchExpenses, uploadClick} from '../actions/expensesActions.js'
+import {fetchExpenses} from '../actions/expensesActions.js'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 import Upload from '../components/Upload.js'
+console.log(fetchExpenses);
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    console.log('AsyncApp props', props);
+    console.log('ExpensesApp props', this.props);
     //function to handle submitting new category for expense
     //function to handle clicking 'uplod CSV' button
+    console.log(this.props.fetchExpenses);
   }
 
   componentWillMount(){
-
+    console.log(this.props);
+    // this.props.fetchExpenses()
   }
   componentDidMount(){
     // dispatch function to fetch all expenses from server
-    // @param thunk action creator fucntion from ./actions/expensesActions.js
-    // dispatch(fetchExpenses());
+    this.props.fetchExpenses()
   }
   componentWillReceiveProps(nextProps){
-    console.log('AsyncApp nextProps', nextProps);
     /*
     when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
@@ -52,23 +53,26 @@ export default class ExpensesApp extends Component {
   }
 
   /*
-  function to calculate total from expenses object
-  @param = expenses object from state
+  function to calculate total from expenses array
+  @param = expenses array from state
   @return = integer
   */
-  _getTotal(expensesObj){
-    let total = 0
-    for (var id in expensesObj){
-      let expense = expensesObj[id]
-      total += expense.amount
-    }
-    return total
-  }
+  // _getTotal(expensesArr){
+  //   total = 0
+  //   for (var i = 0; i < expensesArr.length; i++) {
+  //     let expense = expensesArr[i]
+  //     total += expense.amount
+  //   }
+  //   return total
+  // }
   //function that renders all child components
   render(){
     return (
       <div>
         <p>Hello World!!!</p>
+        <ExpenseList
+          expenses={this.props.expenses}
+        />
       </div>
     )
   }
@@ -76,7 +80,8 @@ export default class ExpensesApp extends Component {
 
 ExpensesApp.PropTypes = {
   // Injected by Redux
-  expenses: PropTypes.array.isRequired
+  expenses: PropTypes.array.isRequired,
+  fetchExpenses: PropTypes.func.isRequired
 }
 
 /*
@@ -85,17 +90,21 @@ props you want to pass to a child presentational component you are wrapping
   @param = state object
   @return = object of transformed store state
 */
-//todo
-// function mapStateToProps(state){
-//   console.log('STATE: ', state);
-//   return {
-//     expenses: state.expenses,
-//     total: this._getTotal(state.expenses)
-//   }
-// }
+
+function mapStateToProps(state){
+  console.log('STATE: ', state);
+  const { expenses, isFetching } = state.expensesReducer
+  console.log('EXPENSES: ', expenses);
+  return {
+    expenses: expenses,
+    isFetching: isFetching
+  }
+}
 
 //function that connects React component to Redux store
-//todo
-// export default connect(
-//   mapStateToProps
-// )(ExpensesApp)
+export default connect(
+  mapStateToProps,
+  {
+    fetchExpenses: fetchExpenses
+  }
+)(ExpensesApp)
