@@ -13,8 +13,8 @@ import rootReducer from './reducers/index.js'
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>,
+  // <Provider store={createStoreWithMiddleware(reducers)}>
+    <App />,
+  // </Provider>,
   document.getElementById('root')
 );
