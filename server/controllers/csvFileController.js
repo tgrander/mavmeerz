@@ -6,6 +6,6 @@ exports.addFile = (csvTitle, callback) => {
   new File({csvTitle: csvTitle}).save().then(callback);
 };
 
-exports.getFileId = (csvTitle,callback) => {
-  new File().query('where','csvTitle','=','fileName').fetch().then((data) => data.attributes.id)
+exports.getFileId = (fileName,callback) => {
+  new File().query('where','csvTitle','=',fileName).fetch().then((data) => callback(data.attributes))
 };
