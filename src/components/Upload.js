@@ -10,10 +10,9 @@ class DropzoneContainer extends Component {
 
   onDrop(files){
       //  var req = request.post('/upload');
-      console.log('1 Received files: ', files);
        files.forEach((file)=> {
-         console.log('2 Received files: ', files);
          uploadCSV(file);
+         console.log(file);
         // req.attach(file.name, file);
        });
 
