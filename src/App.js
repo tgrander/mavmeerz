@@ -19,8 +19,12 @@ class App extends Component {
             <DropzoneContainer />
           </div>
         </div>
+<<<<<<< 773e2f54062ba61d1a1798ca47a5a5541340d6b7
         <AsyncApp></AsyncApp>
       </Provider>
+=======
+      // </Provider>
+>>>>>>> fixing merge conflict
     );
   }
 }
