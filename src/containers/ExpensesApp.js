@@ -15,13 +15,15 @@ import {fetchExpenses} from '../actions/expensesActions.js'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 import Upload from '../components/Upload.js'
+console.log(fetchExpenses);
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    console.log('AsyncApp props', props);
+    console.log('ExpensesApp props', this.props);
     //function to handle submitting new category for expense
     //function to handle clicking 'uplod CSV' button
+    console.log(this.props.fetchExpenses);
   }
 
   componentWillMount(){
@@ -30,9 +32,9 @@ export default class ExpensesApp extends Component {
   }
   componentDidMount(){
     // dispatch function to fetch all expenses from server
+    this.props.fetchExpenses()
   }
   componentWillReceiveProps(nextProps){
-    console.log('AsyncApp nextProps', nextProps);
     /*
     when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
@@ -68,6 +70,9 @@ export default class ExpensesApp extends Component {
     return (
       <div>
         <p>Hello World!!!</p>
+        <ExpenseList
+          expenses={this.props.expenses}
+        />
       </div>
     )
   }
@@ -88,15 +93,18 @@ props you want to pass to a child presentational component you are wrapping
 
 function mapStateToProps(state){
   console.log('STATE: ', state);
-  const { expenses } = state
+  const { expenses, isFetching } = state.expensesReducer
+  console.log('EXPENSES: ', expenses);
   return {
-    expenses: expenses
+    expenses: expenses,
+    isFetching: isFetching
   }
 }
 
 //function that connects React component to Redux store
 export default connect(
-  mapStateToProps, {
-    fetchExpenses
+  mapStateToProps,
+  {
+    fetchExpenses: fetchExpenses
   }
 )(ExpensesApp)

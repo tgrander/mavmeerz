@@ -38,17 +38,15 @@ const exampleData = [
     amount: 5.50,
     category: "other"
   }
-
 ]
 
 
-function fetchExpenses(){
-  // const request = Axios.get("/")
-  const request = exampleData
+export function fetchExpenses(){
+  const request = Axios.get("/v1/api/expenses/")
+  console.log(request);
+  // const request = exampleData
   return {
     type: REQUEST_EXPENSES,
     payload: request
   }
 }
-
-export default fetchExpenses
