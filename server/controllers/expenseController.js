@@ -29,3 +29,9 @@ exports.addAllExpenses = (expenseDataArr, callback) => {
 exports.getAllExpenses = (callback) => {
   new Expense().fetchAll().then((data) => callback(data.models));
 };
+
+exports.updateExpenseCategory = (expenseId, category, callback) => {
+  new Expense({id: expenseId}).save({category: category}).then(() => {
+    callback('success');
+  });
+}
