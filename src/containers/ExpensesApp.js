@@ -11,37 +11,44 @@ then passed down to all children presentational components.
 
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {fetchExpenses, uploadClick} from '../actions/actions.js'
-
+import {fetchExpenses, uploadClick} from '../actions/expensesActions.js'
 import ExpenseList from '../components/ExpenseList.js'
-import Expense from '../components/Expense.js'
 import Total from '../components/Total.js'
+import Upload from '../components/Upload.js'
 
-export default class AsyncApp extends Component {
+export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
+    console.log('AsyncApp props', props);
     //function to handle submitting new category for expense
     //function to handle clicking 'uplod CSV' button
   }
 
+  componentWillMount(){
+
+  }
   componentDidMount(){
     // dispatch function to fetch all expenses from server
-    // @param thunk action creator fucntion from ./actions/actions.js
-    dispatch(fetchExpenses())
+    // @param thunk action creator fucntion from ./actions/expensesActions.js
+    // dispatch(fetchExpenses());
   }
   componentWillReceiveProps(nextProps){
+    console.log('AsyncApp nextProps', nextProps);
     /*
     when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
     */
-    dispatch(fetchExpenses())
+
+    // dispatch(fetchExpenses())
   }
 
   //function to handle when a user click on the 'upload' button
   handleUploadClick(e){
     e.preventDefault()
     //launches modal to upload file
+    console.log('upload clicked', e);
     dispatch(uploadClick())
+    console.log('upload clicked', e);
   }
 
   /*
@@ -49,7 +56,7 @@ export default class AsyncApp extends Component {
   @param = expenses object from state
   @return = integer
   */
-  getTotal(expensesObj){
+  _getTotal(expensesObj){
     let total = 0
     for (var id in expensesObj){
       let expense = expensesObj[id]
@@ -57,33 +64,38 @@ export default class AsyncApp extends Component {
     }
     return total
   }
-
   //function that renders all child components
   render(){
     return (
       <div>
         <p>Hello World!!!</p>
-      <div>
+      </div>
     )
   }
-
 }
 
-AsyncApp.propTypes = {
-  expenses: PropTypes.object.isRequired
+ExpensesApp.PropTypes = {
+  // Injected by Redux
+  expenses: PropTypes.array.isRequired
 }
 
 /*
-function that tells how to transform the current Redux store state into the
-props you want to pass to a presentational component you are wrapping
-
-@param = state object
-@return = object of transformed store state
+function that describes how to transform the current Redux store state into the
+props you want to pass to a child presentational component you are wrapping
+  @param = state object
+  @return = object of transformed store state
 */
-function mapStateToProps(state){
-  const {expenses} = state
-  return {
-    expenses: expenses,
-    total: getTotal(expenses)
-  }
-}
+//todo
+// function mapStateToProps(state){
+//   console.log('STATE: ', state);
+//   return {
+//     expenses: state.expenses,
+//     total: this._getTotal(state.expenses)
+//   }
+// }
+
+//function that connects React component to Redux store
+//todo
+// export default connect(
+//   mapStateToProps
+// )(ExpensesApp)

@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Provider} from 'react-redux';
-import configureStore from './store/configureStore.js'
-
-const store = configureStore()
+import DropzoneContainer from './components/Upload.js'
+import ExpensesApp from './containers/ExpensesApp'
 
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-          </div>
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <DropzoneContainer />
         </div>
-      </Provider>
+        <ExpensesApp></ExpensesApp>
+      </div>
     );
   }
 }

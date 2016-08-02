@@ -1,6 +1,8 @@
 const fs  = require('fs');
 const csv = require('csv');
 const testCSV = __dirname + '/../test.csv';
+const expenseController = require('../controllers/expenseController.js');
+const CSVController     = require('../controllers/csvFileController.js');
 
 // parsing the CSV //
 
@@ -29,9 +31,9 @@ function parseCSV(FILE) {
       else resolve(results);
     });
   });
-};
+}
 
-function parseCSVArr(arr, cb) {
+function parseCSVArr(arr, callback) {
   let headers = arr[0];
   let results = [];
   for (let i = 1; i < arr.length; i++) {
@@ -42,8 +44,30 @@ function parseCSVArr(arr, cb) {
     }
     results.push(expenseResult);
   }
-  cb(results);
-};
+  callback(results);
+}
+
+function addExpensesToDB(expenses, callback) {
+    CSVController.addFile('expenses', () => {
+      console.log('got to CSVController.addFile callback!');
+      //insert CSV ID and other thing here
+      expenseController.addAllExpenses(expenses, (success) => {
+        console.log('got to expenseController.addAllExpenses callback!');
+        // yay success
+        callback(success);
+      });
+    });
+}
+
+function getExpensesFromDB(callback) {
+  let results = [];
+  expenseController.getAllExpenses((expenses) => {
+    expenses.forEach((expense) => {
+      results.push(expense.attributes);
+    });
+  callback(results)
+  });
+}
 
 /// TO TEST FN (since have not implemented promises in test suite yet)
 // parseCSV(testCSV)
@@ -52,5 +76,7 @@ function parseCSVArr(arr, cb) {
 //     console.log(results);
 //   });
 
-module.exports = { parseCSV: parseCSV,
-                   parseCSVArr: parseCSVArr };
+module.exports = { parseCSV:    parseCSV,
+                   parseCSVArr: parseCSVArr,
+                   addExpensesToDB: addExpensesToDB,
+                   getExpensesFromDB: getExpensesFromDB };
