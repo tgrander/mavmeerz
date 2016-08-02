@@ -30,10 +30,11 @@ knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
       table.increments('id').primary();
-      table.string('csvId');
+      table.integer('csvId').unsigned().references('id').inTable('csv');
       table.string('description');
-      table.string('cost');
+      table.float('amount',6,2);
       table.string('category');
+      table.date
       table.timestamps();
     });
   }
