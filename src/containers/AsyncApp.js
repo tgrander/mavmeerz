@@ -11,7 +11,7 @@ then passed down to all children presentational components.
 
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {fetchExpenses, uploadClick} from '../actions/actions.js'
+import {fetchExpenses, uploadClick} from '../actions/expensesActions.js'
 
 import ExpenseList from '../components/ExpenseList.js'
 import Expense from '../components/Expense.js'
@@ -27,14 +27,14 @@ export default class AsyncApp extends Component {
   componentDidMount(){
     // dispatch function to fetch all expenses from server
     // @param thunk action creator fucntion from ./actions/actions.js
-    dispatch(fetchExpenses())
+    dispatch(fetchExpenses());
   }
   componentWillReceiveProps(nextProps){
     /*
     when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
     */
-    dispatch(fetchExpenses())
+    dispatch(fetchExpenses());
   }
 
   //function to handle when a user click on the 'upload' button
@@ -57,16 +57,14 @@ export default class AsyncApp extends Component {
     }
     return total
   }
-
   //function that renders all child components
   render(){
     return (
       <div>
         <p>Hello World!!!</p>
-      <div>
+      </div>
     )
   }
-
 }
 
 /*
@@ -76,7 +74,8 @@ props you want to pass to a presentational component you are wrapping
 @param = state object
 @return = object of transformed store state
 */
-function mapStateToProps(state){
+
+const mapStateToProps = (state) => {
   const {expenses} = state
   return {
     expenses: expenses,

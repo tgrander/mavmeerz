@@ -1,9 +1,10 @@
+'esversion: 6';
 
 import {
   REQUEST_EXPENSES,
   RECEIVE_EXPENSES,
   REQUEST_FAIL
-} from '../actions/actions.js'
+} from '../actions/expensesActions.js';
 
 export default function expenses(state={
   expenses: {},
@@ -24,6 +25,6 @@ export default function expenses(state={
       break;
 
     default:
-      return state
+      return state;
   }
 }

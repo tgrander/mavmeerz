@@ -6,6 +6,7 @@ import rootReducer from '../reducers/reducers.js'
 const loggerMiddleware = createLogger()
 
 export default function configureStore(initialState) {
+
   return createStore(
     rootReducer,
     initialState,

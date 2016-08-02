@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import TotalDisplay from '../components/TotalDisplay'
+import Total from '../components/Total'
 
 class TotalContainer extends Component {
   render() {
-    const { expenses, total} = this.props
+    const { expenses, total } = this.props
 
     return (
-      <TotalDisplay
+      <Total
         total = {total} />
     )
   }

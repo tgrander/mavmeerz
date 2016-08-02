@@ -1,4 +1,4 @@
-import { UPLOAD_FILE, UPLOAD_CLICK, UPLOAD_SENT } from '../actions/uploadActions'
+import { UPLOAD_FILE, UPLOAD_CLICK, UPLOAD_SENT } from '../actions/uploadActions.js'
 
 //initial state for the 'upload' chunk of state
 const INITIAL_STATE = {
