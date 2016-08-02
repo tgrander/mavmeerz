@@ -34,7 +34,7 @@ knex.schema.hasTable('expenses').then(function(exists) {
       table.string('description');
       table.float('amount',6,2);
       table.string('category');
-      table.date
+      table.date('date')
       table.timestamps();
     });
   }
