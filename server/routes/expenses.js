@@ -29,12 +29,13 @@ router.post('/', (req, res) => {
     );
     // add results to dB
     util.addExpensesToDB(results, (success) => {
+      console.log('got to addExpensesToDB callback');
       // yay success, send 201
       res.sendStatus(201);
       // or reroute to '/' get
       // res.redirect('/');
       // if not success send fail message
-      res.sendStatus();
+      // res.sendStatus(FAIL);
     });
   });
 });

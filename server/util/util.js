@@ -49,8 +49,10 @@ function parseCSVArr(arr, callback) {
 
 function addExpensesToDB(expenses, callback) {
     CSVController.addFile('expenses', () => {
+      console.log('got to CSVController.addFile callback!');
       //insert CSV ID and other thing here
       expenseController.addAllExpenses(expenses, (success) => {
+        console.log('got to expenseController.addAllExpenses callback!');
         // yay success
         callback(success);
       });

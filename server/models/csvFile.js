@@ -7,4 +7,4 @@ let File = Bookshelf.Model.extend({
   hasTimestamps:true
 });
 
-exports.module = File;
+module.exports = File;
