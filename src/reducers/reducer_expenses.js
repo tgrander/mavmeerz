@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux'
+
 import {
   REQUEST_EXPENSES,
   RECEIVE_EXPENSES,
   REQUEST_FAIL
 } from '../actions/actions.js'
 
-function expenses(state={
+export default function expenses(state={
   expenses: {},
   isFetching: false
 }, action){
@@ -27,9 +27,3 @@ function expenses(state={
       return state
   }
 }
-
-const rootReducer = combineReducers({
-  expenses
-})
-
-export default rootReducer

@@ -69,10 +69,6 @@ export default class AsyncApp extends Component {
 
 }
 
-AsyncApp.propTypes = {
-  expenses: PropTypes.object.isRequired
-}
-
 /*
 function that tells how to transform the current Redux store state into the
 props you want to pass to a presentational component you are wrapping
