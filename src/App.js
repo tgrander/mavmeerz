@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Provider} from 'react-redux';
 import DropzoneContainer from './components/Upload.js'
+import ExpensesApp from './containers/ExpensesApp'
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <DropzoneContainer />
         </div>
-      </div>
+        <ExpensesApp></ExpensesApp>
     );
   }
 }
