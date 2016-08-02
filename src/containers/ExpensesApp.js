@@ -12,36 +12,38 @@ then passed down to all children presentational components.
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {fetchExpenses, uploadClick} from '../actions/expensesActions.js'
-
 import ExpenseList from '../components/ExpenseList.js'
-import Expense from '../components/Expense.js'
 import Total from '../components/Total.js'
 
-export default class AsyncApp extends Component {
+export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
     //function to handle submitting new category for expense
     //function to handle clicking 'uplod CSV' button
   }
 
+  componentWillMount(){
+
+  }
   componentDidMount(){
     // dispatch function to fetch all expenses from server
-    // @param thunk action creator fucntion from ./actions/actions.js
-    dispatch(fetchExpenses());
+    // @param thunk action creator fucntion from ./actions/expensesActions.js
+
   }
   componentWillReceiveProps(nextProps){
     /*
     when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
     */
-    dispatch(fetchExpenses());
+
+    // dispatch(fetchExpenses())
   }
 
   //function to handle when a user click on the 'upload' button
   handleUploadClick(e){
     e.preventDefault()
     //launches modal to upload file
-    dispatch(uploadClick())
+
   }
 
   /*
@@ -49,7 +51,7 @@ export default class AsyncApp extends Component {
   @param = expenses object from state
   @return = integer
   */
-  getTotal(expensesObj){
+  _getTotal(expensesObj){
     let total = 0
     for (var id in expensesObj){
       let expense = expensesObj[id]
@@ -67,18 +69,26 @@ export default class AsyncApp extends Component {
   }
 }
 
+ExpensesApp.PropTypes = {
+  // Injected by Redux
+  expenses: PropTypes.array.isRequired
+}
+
 /*
-function that tells how to transform the current Redux store state into the
-props you want to pass to a presentational component you are wrapping
-
-@param = state object
-@return = object of transformed store state
+function that describes how to transform the current Redux store state into the
+props you want to pass to a child presentational component you are wrapping
+  @param = state object
+  @return = object of transformed store state
 */
-
-const mapStateToProps = (state) => {
-  const {expenses} = state
+function mapStateToProps(state){
+  console.log('STATE: ', state);
   return {
-    expenses: expenses,
-    total: getTotal(expenses)
+    expenses: state.expenses,
+    total: this._getTotal(state.expenses)
   }
 }
+
+//function that connects React component to Redux store
+export default connect(
+  mapStateToProps
+)(ExpensesApp)

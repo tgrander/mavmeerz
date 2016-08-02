@@ -23,18 +23,19 @@ UX for uploading a CSV file
 //action creator function to notify state that CSV file has been sent to server
 export function uploadClick(){
   return {
-    type: actions.UPLOAD_CLICK
-  };
+    type: UPLOAD_CLICK
+  }
 }
 
 /*
 action creator function to notify state that CSV was successfully stored in DB
 and newly expenses have been received
 */
-export function uploadSent(){
+
+function uploadSent(){
   return {
-    type: actions.UPLOAD_SENT
-  };
+    type: UPLOAD_SENT
+  }
 }
 
 export function uploadCSV(){
