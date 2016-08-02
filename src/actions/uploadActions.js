@@ -55,7 +55,7 @@ export function uploadCSV(csv){
       // headers: {'Content-Type': 'text/csv'}
     })
       .then(function(response) {
-        console.log(response);
+        console.log('response in uploadCSV actions', response);
         // dispatch(uploadSent(response));
       })
       .catch(function(error) {
