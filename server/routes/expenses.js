@@ -11,6 +11,12 @@ router.use((req, res, next) => {
 // get expenses
 router.get('/', (req, res) => {
   res.send('get expenses');
+  // get all expenses from DB
+
+  // convert to json
+
+  // send as response
+
 });
 
 // send expenses
@@ -35,11 +41,17 @@ router.post('/', (req, res) => {
 
 // bulk update expenses
 router.put('/', (req, res) => {
+  // utility function to update category for an array of
+  // expenses in expenses DB
+
   res.send('bulk update expenses');
 });
 
 // update specific expense
 router.put('/:id', (req, res) => {
+  // utility function to update category for specific
+  // id in expenses DB
+
   res.send('update specific expenses');
 });
 

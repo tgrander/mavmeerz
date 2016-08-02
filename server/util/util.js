@@ -2,6 +2,7 @@ const fs  = require('fs');
 const csv = require('csv');
 const testCSV = __dirname + '/../test.csv';
 const expenseController = require('../controllers/expenseController.js');
+const CSVController     = require('../controllers/csvFileController.js');
 
 // parsing the CSV //
 
@@ -43,14 +44,16 @@ function parseCSVArr(arr, callback) {
     }
     results.push(expenseResult);
   }
-  cb(results);
+  callback(results);
 }
 
 function addExpensesToDB(expenses, callback) {
-    //insert CSV ID and other thing here
-    expenseController.addAllExpenses(expenses, (success) => {
-      // yay success
-      callback(success);
+    CSVController.addFile('expenses', () => {
+      //insert CSV ID and other thing here
+      expenseController.addAllExpenses(expenses, (success) => {
+        // yay success
+        callback(success);
+      });
     });
 }
 
@@ -62,4 +65,5 @@ function addExpensesToDB(expenses, callback) {
 //   });
 
 module.exports = { parseCSV:    parseCSV,
-                   parseCSVArr: parseCSVArr };
+                   parseCSVArr: parseCSVArr,
+                   addExpensesToDB: addExpensesToDB };
