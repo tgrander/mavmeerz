@@ -59,6 +59,16 @@ function addExpensesToDB(expenses, callback) {
     });
 }
 
+function getExpensesFromDB(callback) {
+  let results = [];
+  expenseController.getAllExpenses((expenses) => {
+    expenses.forEach((expense) => {
+      results.push(expense.attributes);
+    });
+  callback(results)
+  });
+}
+
 /// TO TEST FN (since have not implemented promises in test suite yet)
 // parseCSV(testCSV)
 //   .then(function(results) {
@@ -68,4 +78,5 @@ function addExpensesToDB(expenses, callback) {
 
 module.exports = { parseCSV:    parseCSV,
                    parseCSVArr: parseCSVArr,
-                   addExpensesToDB: addExpensesToDB };
+                   addExpensesToDB: addExpensesToDB,
+                   getExpensesFromDB: getExpensesFromDB };
