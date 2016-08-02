@@ -22,6 +22,7 @@ router.post('/', (req, res) => {
     util.addExpensesToDB(results, (success) => {
       console.log('got to addExpensesToDB callback');
       if (success) {
+        // send back expenses array as default response
         util.getExpensesFromDB(expenses => res.status(201).send(expenses));
       } else {
         // res.sendStatus(FAIL);
@@ -44,7 +45,10 @@ router.put('/:id', (req, res) => {
   let category  = req.body.category;
   util.updateExpenseCategoryinDB(expenseId, category, (success) => {
     if (success) {
+      // send back expenses array as default response
       util.getExpensesFromDB(expenses => res.send(expenses));
+    } else {
+      // res.sendStatus(FAIL);
     }
   });
 });
