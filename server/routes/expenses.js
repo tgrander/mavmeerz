@@ -11,6 +11,12 @@ router.use((req, res, next) => {
 // get expenses
 router.get('/', (req, res) => {
   res.send('get expenses');
+  // get all expenses from DB
+
+  // convert to json
+
+  // send as response
+
 });
 
 // send expenses
@@ -22,18 +28,31 @@ router.post('/', (req, res) => {
       results
     );
     // add results to dB
-    // then send 201 response if successful
-    res.sendStatus(201);
+    util.addExpensesToDB(results, (success) => {
+      console.log('got to addExpensesToDB callback');
+      // yay success, send 201
+      res.sendStatus(201);
+      // or reroute to '/' get
+      // res.redirect('/');
+      // if not success send fail message
+      // res.sendStatus(FAIL);
+    });
   });
 });
 
 // bulk update expenses
 router.put('/', (req, res) => {
+  // utility function to update category for an array of
+  // expenses in expenses DB
+
   res.send('bulk update expenses');
 });
 
 // update specific expense
 router.put('/:id', (req, res) => {
+  // utility function to update category for specific
+  // id in expenses DB
+
   res.send('update specific expenses');
 });
 

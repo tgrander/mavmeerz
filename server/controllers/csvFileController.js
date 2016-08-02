@@ -1,8 +1,9 @@
 "use strict"
-const File = require('../models/csvFile.js')
+const File = require('../models/csvFile.js');
 
 
 exports.addFile = (csvTitle, callback) => {
+  console.log("File", File);
   new File({csvTitle: csvTitle}).save().then(callback);
 };
 

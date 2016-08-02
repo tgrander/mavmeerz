@@ -12,10 +12,13 @@ exports.addExpense = (csvId, description, amount, category, callback) => {
   This function will take an array of expense data objects and then add
   each expense to the database.
 */
+
+//expense.Date needs to be formatted properly
 exports.addAllExpenses = (expenseDataArr, callback) => {
   expenseDataArr.forEach((expense) => {
-    new Expense({csvId: expense.csvId, description: expense.description, amount: expense.amount, category: expense.category}).save();
+    new Expense({csvId: 1, description: expense.Description, amount: expense.Amount, category: expense.Category}).save()
   });
+  callback('success');
 };
 
 

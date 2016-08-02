@@ -7,4 +7,4 @@ let Expense = Bookshelf.Model.extend({
   hasTimestamps:true
 });
 
-exports.module = Expense;
+module.exports = Expense;
