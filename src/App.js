@@ -13,7 +13,7 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <DropzoneContainer />
         </div>
-        <ExpensesApp></ExpensesApp>
+        <ExpensesApp />
       </div>
     );
   }

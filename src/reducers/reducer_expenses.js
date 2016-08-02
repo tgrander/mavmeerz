@@ -1,29 +1,18 @@
 'esversion: 6';
 
 import {
-  REQUEST_EXPENSES,
-  RECEIVE_EXPENSES,
-  REQUEST_FAIL
+  REQUEST_EXPENSES
 } from '../actions/expensesActions.js';
 
-export default function expenses(state={
-  expenses: {},
-  isFetching: false
-}, action){
+const INITIAL_STATE = {expenses: {}, isFetching: false}
+
+export default function expenses(state=INITIAL_STATE, action){
   switch (action.type) {
     case REQUEST_EXPENSES:
       return Object.assign({}, state, {
-        isFetching: true
+        expenses: action.payload
       })
       break;
-
-    case RECEIVE_EXPENSES:
-      return Object.assign({}, state, {
-        isFetching: false,
-        expenses: action.expenses
-      })
-      break;
-
     default:
       return state;
   }

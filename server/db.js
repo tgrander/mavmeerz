@@ -16,6 +16,12 @@
    }
  });
 
+//  var knex = require('knex')({ //Uncomment this to make this file work locally
+//  client: 'sqlite3',
+//  connection: {filename: './data/data.db'},
+//  useNullAsDefault: true
+// });
+
 knex.schema.hasTable('csv').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('csv', function(table) {

@@ -25,5 +25,10 @@ export default function(state= INITIAL_STATE, action){
     default:
       return state;
     //unfinished reducer function for CSV file uploads :)
+    case UPLOAD_FILE:
+      return state;
+      break;
+    default:
+      return state;
   }
 }

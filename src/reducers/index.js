@@ -4,8 +4,8 @@ import expensesReducer from './reducer_expenses'
 import uploadReducer from './reducer_upload'
 
 const rootReducer = combineReducers({
-  expenses: expensesReducer,
-  upload: uploadReducer
+  expensesReducer,
+  uploadReducer
 })
 
 export default rootReducer
