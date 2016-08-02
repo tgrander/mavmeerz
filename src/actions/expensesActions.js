@@ -4,6 +4,8 @@ export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const REQUEST_FAIL = 'REQUEST_FAIL';
 
+const ROOT_URL = 'http://localhost:8080/'
+
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 
 /*
@@ -11,8 +13,10 @@ Action creator
 @returns object with action type
 */
 function requestExpenses(){
+  const request = Axios.get("/")
   return {
-    type: actions.REQUEST_EXPENSES
+    type: REQUEST_EXPENSES,
+    payload: request
   }
 }
 
@@ -25,9 +29,10 @@ The return value of expenses needs to be reformatted to look like this:
     }
   }
 */
+
 function receiveExpenses(json){
   return {
-    type: actions.RECEIVE_EXPENSES,
+    type: RECEIVE_EXPENSES,
     expenses: json.data.children.map(child => child.data)
   }
 }

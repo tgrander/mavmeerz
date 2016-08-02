@@ -8,7 +8,7 @@ import {
   REQUEST_EXPENSES,
   RECEIVE_EXPENSES,
   REQUEST_FAIL
-} from '../actions/actions.js'
+} from '../actions/expensesActions.js'
 
 const exampleData = {
   1: {
