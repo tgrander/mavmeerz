@@ -22,8 +22,14 @@ router.post('/', (req, res) => {
       results
     );
     // add results to dB
-    // then send 201 response if successful
-    res.sendStatus(201);
+    util.addExpensesToDB(results, (success) => {
+      // yay success, send 201
+      res.sendStatus(201);
+      // or reroute to '/' get
+      // res.redirect('/');
+      // if not success send fail message
+      res.sendStatus();
+    });
   });
 });
 

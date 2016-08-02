@@ -1,6 +1,7 @@
 const fs  = require('fs');
 const csv = require('csv');
 const testCSV = __dirname + '/../test.csv';
+const expenseController = require('../controllers/expenseController.js');
 
 // parsing the CSV //
 
@@ -29,9 +30,9 @@ function parseCSV(FILE) {
       else resolve(results);
     });
   });
-};
+}
 
-function parseCSVArr(arr, cb) {
+function parseCSVArr(arr, callback) {
   let headers = arr[0];
   let results = [];
   for (let i = 1; i < arr.length; i++) {
@@ -43,7 +44,15 @@ function parseCSVArr(arr, cb) {
     results.push(expenseResult);
   }
   cb(results);
-};
+}
+
+function addExpensesToDB(expenses, callback) {
+    //insert CSV ID and other thing here
+    expenseController.addAllExpenses(expenses, (success) => {
+      // yay success
+      callback(success);
+    });
+}
 
 /// TO TEST FN (since have not implemented promises in test suite yet)
 // parseCSV(testCSV)
@@ -52,5 +61,5 @@ function parseCSVArr(arr, cb) {
 //     console.log(results);
 //   });
 
-module.exports = { parseCSV: parseCSV,
+module.exports = { parseCSV:    parseCSV,
                    parseCSVArr: parseCSVArr };
