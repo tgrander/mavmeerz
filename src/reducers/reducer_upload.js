@@ -1,4 +1,9 @@
-import { UPLOAD_FILE, UPLOAD_CLICK, UPLOAD_SENT } from '../actions/uploadActions.js'
+import {
+  // UPLOAD_FILE,
+  UPLOAD_CLICK,
+  UPLOAD_SENT,
+  UPLOAD_CSV }
+  from '../actions/uploadActions.js'
 
 //initial state for the 'upload' chunk of state
 const INITIAL_STATE = {
@@ -13,6 +18,12 @@ const INITIAL_STATE = {
 
 export default function(state= INITIAL_STATE, action){
   switch(action.type){
+    case UPLOAD_CLICK:
+      console.log("ding ding ding ", action);
+      break;
+
+    default:
+      return state;
     //unfinished reducer function for CSV file uploads :)
   }
 }

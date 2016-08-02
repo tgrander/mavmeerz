@@ -14,10 +14,12 @@ import {connect} from 'react-redux'
 import {fetchExpenses, uploadClick} from '../actions/expensesActions.js'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
+import Upload from '../components/Upload.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
+    console.log('AsyncApp props', props);
     //function to handle submitting new category for expense
     //function to handle clicking 'uplod CSV' button
   }
@@ -28,9 +30,10 @@ export default class ExpensesApp extends Component {
   componentDidMount(){
     // dispatch function to fetch all expenses from server
     // @param thunk action creator fucntion from ./actions/expensesActions.js
-
+    // dispatch(fetchExpenses());
   }
   componentWillReceiveProps(nextProps){
+    console.log('AsyncApp nextProps', nextProps);
     /*
     when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
@@ -43,7 +46,9 @@ export default class ExpensesApp extends Component {
   handleUploadClick(e){
     e.preventDefault()
     //launches modal to upload file
-
+    console.log('upload clicked', e);
+    dispatch(uploadClick())
+    console.log('upload clicked', e);
   }
 
   /*
@@ -80,15 +85,17 @@ props you want to pass to a child presentational component you are wrapping
   @param = state object
   @return = object of transformed store state
 */
-function mapStateToProps(state){
-  console.log('STATE: ', state);
-  return {
-    expenses: state.expenses,
-    total: this._getTotal(state.expenses)
-  }
-}
+//todo
+// function mapStateToProps(state){
+//   console.log('STATE: ', state);
+//   return {
+//     expenses: state.expenses,
+//     total: this._getTotal(state.expenses)
+//   }
+// }
 
 //function that connects React component to Redux store
-export default connect(
-  mapStateToProps
-)(ExpensesApp)
+//todo
+// export default connect(
+//   mapStateToProps
+// )(ExpensesApp)
