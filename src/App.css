@@ -22,3 +22,10 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.dropzone {
+    margin: 10px auto;
+    padding: 10px;
+    border: 2px dotted white;
+    max-width: 40%;
+}

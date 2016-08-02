@@ -22,7 +22,7 @@ class DropzoneContainer extends Component {
   render () {
     return (
       <div>
-        <Dropzone onDrop={this.onDrop}>
+        <Dropzone className="dropzone" onDrop={this.onDrop}>
           <div> Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>
       </div>
