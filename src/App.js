@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {Provider} from 'react-redux';
-import configureStore from './store/configureStore.js'
+import AsyncApp from './containers/AsyncApp'
 
 const store = configureStore()
 
@@ -15,6 +14,7 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
         </div>
+        <AsyncApp></AsyncApp>
       </Provider>
     );
   }
