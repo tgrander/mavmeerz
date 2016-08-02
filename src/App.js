@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+<<<<<<< HEAD
 import DropzoneContainer from './components/Upload.js'
+=======
+>>>>>>> redux
 import ExpensesApp from './containers/ExpensesApp'
 
 class App extends Component {

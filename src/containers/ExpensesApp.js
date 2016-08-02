@@ -12,7 +12,6 @@ then passed down to all children presentational components.
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {fetchExpenses, uploadClick} from '../actions/expensesActions.js'
-
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 
@@ -29,6 +28,7 @@ export default class ExpensesApp extends Component {
   componentDidMount(){
     // dispatch function to fetch all expenses from server
     // @param thunk action creator fucntion from ./actions/expensesActions.js
+
   }
   componentWillReceiveProps(nextProps){
     /*
