@@ -10,13 +10,8 @@ router.use((req, res, next) => {
 
 // get expenses
 router.get('/', (req, res) => {
-  res.send('get expenses');
-  // get all expenses from DB
-
-  // convert to json
-
-  // send as response
-
+  // get all expenses from DB and send response
+  util.getExpensesFromDB(expenses => res.send(expenses));
 });
 
 // send expenses
@@ -31,9 +26,9 @@ router.post('/', (req, res) => {
     util.addExpensesToDB(results, (success) => {
       console.log('got to addExpensesToDB callback');
       // yay success, send 201
-      res.sendStatus(201);
+      // res.sendStatus(201);
       // or reroute to '/' get
-      // res.redirect('/');
+      res.redirect('/v1/api/expenses/');
       // if not success send fail message
       // res.sendStatus(FAIL);
     });
