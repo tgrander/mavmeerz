@@ -1,8 +1,10 @@
+'esversion: 6'
 import axios from 'axios'
 
 /*
 * action types
 */
+
 export const UPLOAD_CLICK = 'UPLOAD_CLICK';
 export const UPLOAD_SENT = 'UPLOAD_SENT';
 export const UPLOAD_CSV = 'UPLOAD_CSV';
@@ -47,7 +49,9 @@ export function uploadSent(csv){
   };
 }
 
-//change the styling?
+/*
+* uses axios to make asyn call to send the csv file to the backend where it will get parsed
+*/
 export function uploadCSV(csv){
   // return function(dispatch){
   //   dispatch(uploadClick());
@@ -58,13 +62,9 @@ export function uploadCSV(csv){
       data: csv
       // headers: {'Content-Type': 'text/csv'}
     })
-      .then(function(response) {
-        console.log('response in uploadCSV actions', response);
+      .then (response => console.log('response in uploadCSV actions', response))
         // dispatch(uploadSent(response));
-      })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => console.log(error));
         // dispatch(response);
-      });
   // };
 }
