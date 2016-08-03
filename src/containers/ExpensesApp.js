@@ -90,7 +90,6 @@ props you want to pass to a child presentational component you are wrapping
   @param = state object
   @return = object of transformed store state
 */
-
 function mapStateToProps(state){
   console.log('STATE: ', state);
   const { expenses, isFetching } = state.expensesReducer
