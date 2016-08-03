@@ -14,11 +14,13 @@ exports.addExpense = (csvId, description, amount, category, callback) => {
 */
 
 //expense.Date needs to be formatted properly
-exports.addAllExpenses = (expenseDataArr, callback) => {
-  expenseDataArr.forEach((expense) => {
-    new Expense({csvId: 1, description: expense.Description, amount: expense.Amount, category: expense.Category}).save()
+exports.addAllExpenses = (expenseDataArr) => {
+  return new Promise((resolve, reject) => {
+    expenseDataArr.forEach((expense) => {
+      new Expense({csvId: 1, description: expense.Description, amount: expense.Amount, category: expense.Category}).save()
+    });
+    resolve('success');
   });
-  callback('success');
 };
 
 
@@ -26,12 +28,13 @@ exports.addAllExpenses = (expenseDataArr, callback) => {
   This function will take a callback which will work on an array of expense data objects.
   data.models is an array where EACH element has an 'attributes' (i.e. data.models[0].attributes)
 */
-exports.getAllExpenses = (callback) => {
-  new Expense().fetchAll().then((data) => callback(data.models));
+exports.getAllExpenses = () => {
+  return new Expense().fetchAll();
 };
 
 exports.updateExpenseCategory = (expenseId, category, callback) => {
-  new Expense({id: expenseId}).save({category: category}).then(() => {
-    callback('success');
-  });
+  // new Expense({id: expenseId}).save({category: category}).then(() => {
+  //   callback('success');
+  // });
+  return new Expense({id: expenseId}).save({category: category});
 }

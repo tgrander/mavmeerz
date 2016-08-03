@@ -3,8 +3,7 @@ const File = require('../models/csvFile.js');
 
 
 exports.addFile = (csvTitle, callback) => {
-  console.log("File", File);
-  new File({csvTitle: csvTitle}).save().then(callback);
+  return new File({csvTitle: csvTitle}).save();
 };
 
 exports.getFileId = (fileName,callback) => {

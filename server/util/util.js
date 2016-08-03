@@ -37,40 +37,55 @@ function parseCSV(FILE) {
 // this function refactors the parsedCSV from express-csv-middleware
 // into an array of objects and then sends into a callback
 function parseCSVArr(arr, callback) {
-  let headers = arr[0];
-  let results = [];
-  for (let i = 1; i < arr.length; i++) {
-    let expense       = arr[i];
-    let expenseResult = {};
-    for (let j = 0; j < expense.length; j++) {
-      expenseResult[headers[j]] = expense[j];
+  return new Promise((resolve, reject) => {
+    let headers = arr[0];
+    let results = [];
+    for (let i = 1; i < arr.length; i++) {
+      let expense       = arr[i];
+      let expenseResult = {};
+      for (let j = 0; j < expense.length; j++) {
+        expenseResult[headers[j]] = expense[j];
+      }
+      results.push(expenseResult);
     }
-    results.push(expenseResult);
-  }
-  callback(results);
+    resolve(results);
+  });
 }
 
 function addExpensesToDB(expenses, callback) {
     // CSVController.addFile is here because it is required to
     // link a foreign id to the expense table. The CSV table will
     // eventually be replaced by a user table
-    CSVController.addFile('expenses', () => {
+    // CSVController.addFile('expenses', () => {
       //insert CSV ID and other thing here
-      expenseController.addAllExpenses(expenses, (success) => {
-        callback(success);
+      // expenseController.addAllExpenses(expenses, (success) => {
+        // callback(success);
+      // });
+    // });
+
+  return new Promise((resolve, reject) => {
+    CSVController.addFile('expenses')
+      .then(() => {
+        return expenseController.addAllExpenses(expenses);
+      })
+      .then(() => {
+        resolve('success');
       });
-    });
+  });
 }
 
 // takes expenses from MySQL db, puts them into an array of objects,
 // and then sends it into a callback
-function getExpensesFromDB(callback) {
+function getExpensesFromDB() {
   let results = [];
-  expenseController.getAllExpenses((expenses) => {
-    expenses.forEach((expense) => {
-      results.push(expense.attributes);
-    });
-  callback(results)
+  return new Promise((resolve, reject) => {
+    expenseController.getAllExpenses()
+      .then((expenses) => {
+        expenses.forEach((expense) => {
+          results.push(expense.attributes);
+        });
+        resolve(results);
+      });
   });
 }
 
@@ -78,9 +93,14 @@ function getExpensesFromDB(callback) {
 // updates the database entry with the category,
 // and sends it into a callback if successful
 function updateExpenseCategoryinDB(expenseId, category, callback) {
-  expenseController.updateExpenseCategory(expenseId, category, (success) => {
-    if (success) callback(success);
-  });
+  // expenseController.updateExpenseCategory(expenseId, category, (success) => {
+  //   if (success) callback(success);
+  // });
+  return new Promise((resolve, reject) => {
+    expenseController.updateExpenseCategory(expenseId, category)
+      .then(success => resolve(success));
+  })
+
 }
 
 /// TO TEST FN (since have not implemented promises in test suite yet)
