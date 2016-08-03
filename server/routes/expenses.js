@@ -29,7 +29,10 @@ router.post('/', (req, res) => {
 router.put('/', (req, res) => {
   // utility function to update category for an array of
   // expenses in expenses DB
-  res.send('bulk update expenses');
+  let expenses = req.body.expenses;
+  util.bulkUpdateExpenseCategoriesinDB(expenses)
+    .then(success => util.getExpensesFromDB())
+    .then(expenses => res.send(expenses));
 });
 
 // update specific expense
