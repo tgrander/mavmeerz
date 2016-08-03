@@ -15,7 +15,6 @@ import {fetchExpenses} from '../actions/expensesActions.js'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 import Upload from '../components/Upload.js'
-console.log(fetchExpenses);
 
 export default class ExpensesApp extends Component {
   constructor(props){

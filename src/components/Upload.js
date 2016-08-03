@@ -1,17 +1,18 @@
 import React, { Component, PropTypes } from 'react'
-import {uploadCSV} from '../actions/uploadActions.js'
+import {fetchCSV,
+  uploadRequest,
+  uploadSuccess
+} from '../actions/uploadActions.js'
 
 var Dropzone = require('react-dropzone');
 
 class DropzoneContainer extends Component {
-  // onDrop (files) {
-  //   console.log('Received files: ', files);
-  // }
-
   onDrop(files){
       //  var req = request.post('/upload');
+      uploadRequest();
        files.forEach((file)=> {
-         uploadCSV(file);
+         fetchCSV(file);
+         uploadSuccess();
          console.log('file sent through onDrop', file);
         // req.attach(file.name, file);
        });
