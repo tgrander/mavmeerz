@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-// export const UPLOAD_FILE = 'UPLOAD_FILE';
+/*
+* action types
+*/
 export const UPLOAD_CLICK = 'UPLOAD_CLICK';
 export const UPLOAD_SENT = 'UPLOAD_SENT';
 export const UPLOAD_CSV = 'UPLOAD_CSV';
@@ -22,6 +24,7 @@ UX for uploading a CSV file
 */
 
 //action creator function to notify state that CSV file has been sent to server
+//do I need this?
 export function uploadClick(){
   console.log('upload clicked in uploadActions')
   return {
@@ -34,7 +37,7 @@ export function uploadClick(){
 action creator function to notify state that CSV was successfully stored in DB
 and newly expenses have been received
 */
-
+//do I need this?
 export function uploadSent(csv){
   console.log('uploadSent');
   return {
@@ -44,6 +47,7 @@ export function uploadSent(csv){
   };
 }
 
+//change the styling?
 export function uploadCSV(csv){
   // return function(dispatch){
   //   dispatch(uploadClick());
