@@ -1,3 +1,4 @@
+"use strict"
 const fs  = require('fs');
 const csv = require('csv');
 const testCSV = __dirname + '/../test.csv';
