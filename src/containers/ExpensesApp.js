@@ -86,8 +86,7 @@ export default class ExpensesApp extends Component {
 ExpensesApp.PropTypes = {
   // Injected by Redux
   expenses: PropTypes.array.isRequired,
-  fetchExpenses: PropTypes.func.isRequired,
-  uploadCSV: PropTypes.func.isRequired
+  fetchExpenses: PropTypes.func.isRequired
 }
 
 /*
@@ -127,7 +126,6 @@ function mapStateToProps(state){
 export default connect(
   mapStateToProps,
   {
-    fetchExpenses: fetchExpenses,
-    fetchCSV: fetchCSV
+    fetchExpenses: fetchExpenses
   }
 )(ExpensesApp)
