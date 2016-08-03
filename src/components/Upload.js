@@ -1,18 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {fetchCSV,
-  uploadRequest,
-  uploadSuccess
-} from '../actions/uploadActions.js'
+import { uploadCSV } from '../actions/uploadActions.js'
 
 var Dropzone = require('react-dropzone');
 
-export default class UploadApp extends Component {
+export default class Upload extends Component {
   onDrop(files){
       //  var req = request.post('/upload');
       // uploadRequest();
        files.forEach((file)=> {
-         fetchCSV(file);
+         uploadCSV(file);
         //  uploadSuccess();
          console.log('file sent through onDrop', file);
         // req.attach(file.name, file);
@@ -34,15 +31,15 @@ export default class UploadApp extends Component {
 
 function mapStateToProps(state) {
   console.log('STATE from upload', state);
-  const { expenses, isUploading } = state.uploadReducer
+  const { expenses, isFetching } = state.expensesReducer
   console.log('EXPENSES from upload: ', expenses);
   return {
     expenses: expenses,
-    isUploading: isUploading
+    isFetching: isFetching
   }
 }
 
 export default connect(
   mapStateToProps,
-  { fetchCSV: fetchCSV }
-)(UploadApp)
+  { uploadCSV: uploadCSV }
+)(Upload)

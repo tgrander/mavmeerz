@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import DropzoneContainer from './components/Upload.js'
+import Upload from './components/Upload.js'
 import ExpensesApp from './containers/ExpensesApp'
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
         <div className="App-header">
           <div className="title"> ZENMO </div>
             <img src={logo} className="App-logo" alt="logo" />
-            <DropzoneContainer />
+            <Upload />
         </div>
         <ExpensesApp />
       </div>
