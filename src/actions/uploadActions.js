@@ -1,9 +1,13 @@
+'esversion: 6'
 import axios from 'axios'
 
-// export const UPLOAD_FILE = 'UPLOAD_FILE';
-export const UPLOAD_CLICK = 'UPLOAD_CLICK';
-export const UPLOAD_SENT = 'UPLOAD_SENT';
-export const UPLOAD_CSV = 'UPLOAD_CSV';
+/*
+* action types
+*/
+// export const UPLOAD_CLICK = 'UPLOAD_CLICK';
+export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
+export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
+export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
 
 /*
 ACTION CREATORS FOR UPLOADING A CSV FILE TO SERVER
@@ -13,7 +17,7 @@ UX for uploading a CSV file
     -action: UPLOAD_CLICK
     -response from state: show UI for selecting a file
   2. select file from computer and click 'choose'
-    -action: UPLOAD_SENT
+    -action: 'RECEIVE_CSV'
     -response from state: hide upload UI and show loading feature
   3. CSV is parsed and sent to backend
   4. Expenses are received from server
@@ -22,45 +26,38 @@ UX for uploading a CSV file
 */
 
 //action creator function to notify state that CSV file has been sent to server
-export function uploadClick(){
-  console.log('upload clicked in uploadActions')
+//do I need this?
+function uploadRequest(){
+  console.log('upload request clicked in uploadActions')
   return {
-    type: UPLOAD_CLICK,
-    payload: request
+    type: UPLOAD_REQUEST,
+    isUploading: true
   };
 }
 
+export function uploadFailure(csv) {
+  console.log('uploadFail!');
+  return {
+    type: UPLOAD_FAILURE ,
+    isUploading: false
+    // payload: request
+  };
+}
 /*
-action creator function to notify state that CSV was successfully stored in DB
-and newly expenses have been received
+* uses axios to make asyn call to send the csv file to the backend where it will get parsed
 */
-
-export function uploadSent(csv){
-  console.log('uploadSent');
-  return {
-    type: UPLOAD_SENT,
-    data: 'text/csv',
-    payload: request
-  };
-}
-
-export function uploadCSV(csv){
-  // return function(dispatch){
-  //   dispatch(uploadClick());
-
-    return axios({
+export function fetchCSV(csv){
+  console.log('in fetchCSV', csv);
+  uploadRequest();
+    const request = axios({
       method: 'POST',
       url: '/v1/api/expenses',
       data: csv
-      // headers: {'Content-Type': 'text/csv'}
     })
-      .then(function(response) {
-        console.log('response in uploadCSV actions', response);
-        // dispatch(uploadSent(response));
-      })
-      .catch(function(error) {
-        console.log(error);
-        // dispatch(response);
-      });
-  // };
+
+    return {
+      type: UPLOAD_SUCCESS,
+      isUploading: false,
+      payload: request
+    }
 }

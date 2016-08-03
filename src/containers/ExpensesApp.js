@@ -17,7 +17,7 @@ import Total from '../components/Total.js'
 import Upload from '../components/Upload.js'
 
 import { fetchExpenses } from '../actions/expensesActions.js'
-import { uploadCSV } from '../actions/uploadActions.js'
+import { fetchCSV } from '../actions/uploadActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
@@ -128,6 +128,6 @@ export default connect(
   mapStateToProps,
   {
     fetchExpenses: fetchExpenses,
-    uploadCSV: uploadCSV
+    fetchCSV: fetchCSV
   }
 )(ExpensesApp)
