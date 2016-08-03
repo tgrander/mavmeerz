@@ -23,12 +23,11 @@ export default class ExpensesApp extends Component {
     console.log('ExpensesApp props', this.props);
     //function to handle submitting new category for expense
     //function to handle clicking 'uplod CSV' button
-    console.log(this.props.fetchExpenses);
   }
 
   componentWillMount(){
-    console.log(this.props);
-    // this.props.fetchExpenses()
+    console.log('componentWillMount', this.props);
+    this.props.fetchExpenses()
   }
   componentDidMount(){
     // dispatch function to fetch all expenses from server
@@ -39,32 +38,32 @@ export default class ExpensesApp extends Component {
     when component receives new props from store as a result of an update,
     the component should dispatch fetchExpenses() again
     */
-
+    console.log('nextProps', nextProps)
     // dispatch(fetchExpenses())
   }
 
   //function to handle when a user click on the 'upload' button
-  handleUploadClick(e){
-    e.preventDefault()
-    //launches modal to upload file
-    console.log('upload clicked', e);
-    dispatch(uploadClick())
-    console.log('upload clicked', e);
-  }
+  // handleUploadClick(e){
+  //   e.preventDefault()
+  //   //launches modal to upload file
+  //   console.log('upload clicked', e);
+  //   dispatch(uploadClick())
+  //   console.log('upload clicked', e);
+  // }
 
   /*
   function to calculate total from expenses array
   @param = expenses array from state
   @return = integer
   */
-  // _getTotal(expensesArr){
-  //   total = 0
-  //   for (var i = 0; i < expensesArr.length; i++) {
-  //     let expense = expensesArr[i]
-  //     total += expense.amount
-  //   }
-  //   return total
-  // }
+  _getTotal(expensesArr){
+    total = 0
+    for (var i = 0; i < expensesArr.length; i++) {
+      let expense = expensesArr[i]
+      total += expense.amount
+    }
+    return total
+  }
   //function that renders all child components
   render(){
     return (

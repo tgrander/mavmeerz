@@ -37,3 +37,7 @@
     border: 2px dotted white;
     max-width: 40%;
 }
+
+.transactions {
+  margin: 0 auto;
+}
