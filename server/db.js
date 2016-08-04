@@ -26,9 +26,9 @@ knex.schema.hasTable('csv').then(function(exists) {
   }
 });
 
-db.schema.hasTable('users').then(function(exists) {
+knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
-    db.schema.createTable('users', function (user) {
+    knex.schema.createTable('users', function (user) {
       user.increments('id').primary();
       user.string('email', 100).unique();
       user.string('password', 100);
