@@ -7,50 +7,24 @@ const CSVController     = require('../controllers/csvFileController.js');
 // parsing the CSV //
 
 // not being used at the moment //
-function parseCSV(FILE) {
-  return new Promise(function(resolve, reject) {
-    const file   = fs.createReadStream(FILE);
-    const parser = csv.parse({
-      columns:    true,
-      auto_parse: true
-    });
-
-    let results = [];
-
-    file.pipe(parser);
-    parser.on('readable', () => {
-      let record;
-
-      // push row('record') to results until done
-      while (record = parser.read()) {
-        // invokes callback for each row of csv
-        results.push(record);
-      }
-    });
-    parser.on('finish', () => {
-      if (results.length == 0) reject('nothing in CSV file!');
-      else resolve(results);
-    });
-  });
-}
 
 // this function refactors the parsedCSV from express-csv-middleware
 // into an array of objects and then sends into a callback
-function parseCSVArr(arr, callback) {
-  return new Promise((resolve, reject) => {
-    let headers = arr[0];
-    let results = [];
-    for (let i = 1; i < arr.length; i++) {
-      let expense       = arr[i];
-      let expenseResult = {};
-      for (let j = 0; j < expense.length; j++) {
-        expenseResult[headers[j]] = expense[j];
-      }
-      results.push(expenseResult);
-    }
-    resolve(results);
-  });
-}
+// function parseCSVArr(arr, callback) {
+//   return new Promise((resolve, reject) => {
+//     let headers = arr[0];
+//     let results = [];
+//     for (let i = 1; i < arr.length; i++) {
+//       let expense       = arr[i];
+//       let expenseResult = {};
+//       for (let j = 0; j < expense.length; j++) {
+//         expenseResult[headers[j]] = expense[j];
+//       }
+//       results.push(expenseResult);
+//     }
+//     resolve(results);
+//   });
+// }
 
 function addExpensesToDB(expenses, callback) {
     // CSVController.addFile is here because it is required to
@@ -119,8 +93,8 @@ function bulkUpdateExpenseCategoriesinDB(expenses) {
 //     console.log(results);
 //   });
 
-module.exports = { parseCSV:    parseCSV,
-                   parseCSVArr: parseCSVArr,
+module.exports = {
+                  //  parseCSVArr: parseCSVArr,
                    addExpensesToDB: addExpensesToDB,
                    getExpensesFromDB: getExpensesFromDB,
                    updateExpenseCategoryinDB: updateExpenseCategoryinDB,
