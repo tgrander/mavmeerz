@@ -18,13 +18,15 @@
 
 knex.schema.hasTable('users').then(function(exists) {
  if (!exists) {
-   knex.schema.createTable('users', function (user) {
+   return knex.schema.createTable('users', function (user) {
      user.increments('id').primary();
      user.string('email', 100).unique();
      user.string('password', 100);
      user.string('firstName', 100);
      user.string('lastName', 100);
      user.timestamps();
+     knex.schema
+     console.log(`Created users table`);
    });//.then(function () {
      //console.log('Created users table');
    //});
@@ -38,6 +40,7 @@ knex.schema.hasTable('statements').then(function(exists) {
       table.integer('userId').unsigned().references('id').inTable('users');
       table.string('csvTitle');
       table.timestamps();
+      console.log(`Created statements table`);
     });
   }
 });
@@ -48,6 +51,7 @@ knex.schema.hasTable('categories').then(function(exists) {
       table.increments('id').primary();
       table.string('other');
       table.timestamps();
+      console.log(`Created categories table`);
     });
   }
 })
@@ -63,23 +67,10 @@ knex.schema.hasTable('expenses').then(function(exists) {
       table.integer('statementId').unsigned().references('id').inTable('statements');
       table.integer('userId').unsigned().references('id').inTable('users');
       table.timestamps();
+      console.log(`Created expenses table`);
     });
   }
 });
-
-knex.schema.hasTable('users').then((exists) => {
-  console.log("Created users table is ${exists}");
-});
-knex.schema.hasTable('statements').then((exists) => {
-  console.log("Created statements table is ${exists}");
-});
-knex.schema.hasTable('categories').then((exists) => {
-  console.log("Created categories table is ${exists}");
-});
-knex.schema.hasTable('expenses').then((exists) => {
-  console.log("Created expenses table is ${exists}");
-});
-
 
 
 const Bookshelf = require('bookshelf')(knex);
