@@ -1,7 +1,7 @@
 /*
 This is the container component for the entire application. It is rendered
 in App.js. All children presentational components of the hierarchy will be
-rendered from AsycnApp.
+rendered from ExpensesApp.
 
 This component is what connects React to Redux; therefore, the only passage that
 the presentational components have to the state tree and to Redux is through
@@ -14,40 +14,20 @@ import { connect } from 'react-redux'
 
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
-import Upload from '../components/Upload.js'
 
 import { fetchExpenses } from '../actions/expensesActions.js'
-import { fetchCSV } from '../actions/uploadActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
+    console.log('Expenses Props: ', this.props.fetchExpenses);
     //function to handle submitting new category for expense
-    //function to handle clicking 'uplod CSV' button
   }
 
   componentWillMount(){
     this.props.fetchExpenses()
   }
-  componentWillReceiveProps(nextProps){
-    /*
-    when component receives new props from store as a result of an update,
-    the component should dispatch fetchExpenses() again
-    */
-    console.log('nextProps', nextProps)
-    // dispatch(fetchExpenses())
-  }
 
-  //function to handle when a user click on the 'upload' button
-  // handleUploadClick(e){
-  //   e.preventDefault()
-  //   //launches modal to upload file
-  //   console.log('upload clicked', e);
-  //   dispatch(uploadClick())
-  //   console.log('upload clicked', e);
-  // }
-
-  //function that renders all child components
   render(){
     return (
       <div>
