@@ -27,11 +27,6 @@ export default class ExpensesApp extends Component {
   }
 
   componentWillMount(){
-    console.log('componentWillMount', this.props);
-    this.props.fetchExpenses()
-  }
-  componentDidMount(){
-    // dispatch function to fetch all expenses from server
     this.props.fetchExpenses()
   }
   componentWillReceiveProps(nextProps){
@@ -52,19 +47,6 @@ export default class ExpensesApp extends Component {
   //   console.log('upload clicked', e);
   // }
 
-  /*
-  function to calculate total from expenses array
-  @param = expenses array from state
-  @return = integer
-  */
-  _getTotal(expensesArr){
-    total = 0
-    for (var i = 0; i < expensesArr.length; i++) {
-      let expense = expensesArr[i]
-      total += expense.amount
-    }
-    return total
-  }
   //function that renders all child components
   render(){
     return (
