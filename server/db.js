@@ -50,7 +50,7 @@ knex.schema.hasTable('categories').then(function(exists) {
       table.timestamps();
     });
   }
-});
+})
 
 knex.schema.hasTable('csv').then(function(exists) {
   if (!exists) {
