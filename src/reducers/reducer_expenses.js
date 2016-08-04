@@ -3,7 +3,8 @@ import {
   RECEIVE_EXPENSES,
   UPLOAD_REQUEST,
   UPLOAD_SUCCESS,
-  UPLOAD_FAILURE
+  UPLOAD_FAILURE,
+  PARSING_CSV
 } from '../actions/expensesActions.js';
 
 const INITIAL_STATE = {expenses: [], isFetching: false}
@@ -31,6 +32,11 @@ export default function expenses(state=INITIAL_STATE, action){
         expenses: state.expenses.concat(action.expenses)
       })
       break;
+    case PARSING_CSV:
+      return Object.assign({}, state, {
+        isFetching: action.isFetching,
+        //expenses: state.expenses.concat(action.expenses)
+      })
     default:
       return state;
   }

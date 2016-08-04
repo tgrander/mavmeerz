@@ -6,8 +6,10 @@ UploadAppButton component.
 */
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-
-import { uploadCSV } from '../actions/expensesActions.js'
+import parse from 'csv-parse'
+import Papa from '../../papaparse-4.1.2'
+// import Papa from 'babyparse'
+import { uploadCSV, parsingCSV } from '../actions/expensesActions.js'
 const Dropzone = require('react-dropzone');
 
 export default class UploadApp extends Component {
@@ -18,9 +20,16 @@ export default class UploadApp extends Component {
   }
 
   onDrop(files){
+    var that = this;
     files.forEach((file) => {
-       this.props.uploadCSV(file);
-       console.log('file sent through onDrop', file);
+      console.log('here props', that.props)
+      that.props.parsingCSV()
+       parseCSV(file)
+       .then(function(result) {
+         that.props.uploadCSV(result.data)
+         console.log('file sent through onDrop', result);
+       })
+
     });
   }
 
@@ -39,6 +48,24 @@ UploadApp.PropTypes = {
   uploadCSV: PropTypes.func.isRequired
 }
 
+function parseCSV(file) {
+  return new Promise(function(resolve, reject) {
+    console.log('parsing file', file);
+    Papa.parse(file.preview, {
+      header: true,
+      download: true,
+      complete: function(results) {
+        if (results.errors.length === 0) {
+          console.log('papa results', results)
+          resolve(results);
+        } else {
+          reject(errors);
+        }
+      }
+    })
+  });
+}
+
 export default connect(
   (state) => {
     const { expenses, isFetching } = state.expensesReducer
@@ -48,6 +75,7 @@ export default connect(
     }
   },
   {
-    uploadCSV: uploadCSV
+    uploadCSV: uploadCSV,
+    parsingCSV: parsingCSV
   }
 )(UploadApp)
