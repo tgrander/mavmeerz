@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Upload from './components/Upload.js'
+import UploadApp from './containers/UploadApp'
 import ExpensesApp from './containers/ExpensesApp'
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
         <div className="App-header">
           <div className="title"> ZENMO </div>
             <img src={logo} className="App-logo" alt="logo" />
-            <Upload />
+            <UploadApp />
         </div>
         <ExpensesApp />
       </div>
