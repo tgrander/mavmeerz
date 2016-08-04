@@ -35,8 +35,10 @@ router.use((req, res, next) => {
 
 // TO-DO: figure out how to have /v1/api automatically be appended
 // const apiRoute      = router.route('/v1/api')
-const expenseRoutes = require('./routes/expenses');
+const expenseRoutes = require('./routes/expenseRoutes');
+const userRoutes    = require('./routes/userRoutes');
 
+app.use('/v1/api', userRoutes);
 app.use('/v1/api/expenses', expenseRoutes);
 
 app.listen(port);
