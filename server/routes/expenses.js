@@ -17,12 +17,14 @@ router.get('/', (req, res) => {
 // send expenses, currently expects 'text/csv'
 router.post('/', (req, res) => {
   // replace with make-do fn for now using express-csv middleware
-  util.parseCSVArr(req.body)
+  console.log('req DAT body', req.body);
+  res.send('PAPA ROCKS!');
+  // util.parseCSVArr(req.body)
     // add results to dB
-    .then(results => util.addExpensesToDB(results))
-    // send back expenses array as default response
-    .then(success => util.getExpensesFromDB())
-    .then(expenses => res.status(201).send(expenses));
+    // .then(results => util.addExpensesToDB(results))
+    // // send back expenses array as default response
+    // .then(success => util.getExpensesFromDB())
+    // .then(expenses => res.status(201).send(expenses));
 });
 
 // bulk update expenses

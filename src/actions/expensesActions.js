@@ -13,6 +13,7 @@ export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
 export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
+export const PARSING_CSV = 'PARSING_CSV';
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 
@@ -49,6 +50,15 @@ function uploadSuccess(response){
     expenses: response
   };
 }
+
+//Action creator
+export function parsingCSV() {
+  return {
+    type: PARSING_CSV,
+    isFetching: true
+    // expenses: response
+  };
+}
 /*
 Async Action creator
 Create async flow that notifies state of different stages of fetching expenses
@@ -62,14 +72,15 @@ export function fetchExpenses(){
       .catch(err => console.error(err))
   }
 }
+
 export function uploadCSV(csv){
   return dispatch => {
-    dispatch(uploadRequest())
-    return Axios({
-      method: 'POST',
-      url: '/v1/api/expenses',
-      data: csv
-    })
+      dispatch(uploadRequest())
+      return Axios({
+        method: 'POST',
+        url: '/v1/api/expenses',
+        data: csv
+      })
     .then(res => dispatch(uploadSuccess(res.data)))
     .catch(err => console.error(err))
   }
