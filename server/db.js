@@ -16,6 +16,42 @@
    }
  });
 
+knex.schema.hasTable('users').then(function(exists) {
+ if (!exists) {
+   knex.schema.createTable('users', function (user) {
+     user.increments('id').primary();
+     user.string('email', 100).unique();
+     user.string('password', 100);
+     user.string('firstName', 100);
+     user.string('lastName', 100);
+     user.timestamps();
+   });//.then(function () {
+     //console.log('Created users table');
+   //});
+ }
+});
+
+knex.schema.hasTable('statements').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('statements', function(table) {
+      table.increments('id').primary();
+      table.integer('userId').unsigned().references('id').inTable('users');
+      table.string('csvTitle');
+      table.timestamps();
+    });
+  }
+});
+
+knex.schema.hasTable('categories').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('categories', function(table) {
+      table.increments('id').primary();
+      table.string('other');
+      table.timestamps();
+    });
+  }
+});
+
 knex.schema.hasTable('csv').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('csv', function(table) {
@@ -25,22 +61,6 @@ knex.schema.hasTable('csv').then(function(exists) {
     });
   }
 });
-
-knex.schema.hasTable('users').then(function(exists) {
-  if (!exists) {
-    knex.schema.createTable('users', function (user) {
-      user.increments('id').primary();
-      user.string('email', 100).unique();
-      user.string('password', 100);
-      user.string('firstName', 100);
-      user.string('lastName', 100);
-      user.timestamps();
-    });//.then(function () {
-      //console.log('Created users table');
-    //});
-  }
-});
-
 
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
