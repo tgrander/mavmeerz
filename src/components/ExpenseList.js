@@ -14,7 +14,6 @@ let ExpenseList = ({expenses}) => {
 
     return (
       <div>
-        <h3>Transactions</h3>
         <table className="transactions" cellpadding="0" cellspacing="0">
           <tbody>
             {expenseList}
