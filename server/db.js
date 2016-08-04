@@ -67,6 +67,21 @@ knex.schema.hasTable('expenses').then(function(exists) {
   }
 });
 
+knex.schema.hasTable('users').then((exists) => {
+  console.log("Created users table is ${exists}");
+});
+knex.schema.hasTable('statements').then((exists) => {
+  console.log("Created statements table is ${exists}");
+});
+knex.schema.hasTable('categories').then((exists) => {
+  console.log("Created categories table is ${exists}");
+});
+knex.schema.hasTable('expenses').then((exists) => {
+  console.log("Created expenses table is ${exists}");
+});
+
+
+
 const Bookshelf = require('bookshelf')(knex);
 
 module.exports = Bookshelf;
