@@ -56,11 +56,12 @@ knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
       table.increments('id').primary();
-      table.integer('csvId').unsigned().references('id').inTable('csv');
       table.string('description');
       table.float('amount',6,2);
-      table.string('category');
       table.date('date')
+      table.integer('categoryId').unsigned().references('id').inTable('categories');
+      table.integer('statementId').unsigned().references('id').inTable('statements');
+      table.integer('userId').unsigned().references('id').inTable('users');
       table.timestamps();
     });
   }
