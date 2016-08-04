@@ -103,6 +103,15 @@ function updateExpenseCategoryinDB(expenseId, category, callback) {
 
 }
 
+function bulkUpdateExpenseCategoriesinDB(expenses) {
+  return new Promise((resolve, reject) => {
+    expenses.forEach((expense) => {
+      expenseController.updateExpenseCategory(expense.id, expense.category);
+    });
+    resolve('success');
+  });
+}
+
 /// TO TEST FN (since have not implemented promises in test suite yet)
 // parseCSV(testCSV)
 //   .then(function(results) {
@@ -114,4 +123,5 @@ module.exports = { parseCSV:    parseCSV,
                    parseCSVArr: parseCSVArr,
                    addExpensesToDB: addExpensesToDB,
                    getExpensesFromDB: getExpensesFromDB,
-                   updateExpenseCategoryinDB: updateExpenseCategoryinDB };
+                   updateExpenseCategoryinDB: updateExpenseCategoryinDB,
+                   bulkUpdateExpenseCategoriesinDB: bulkUpdateExpenseCategoriesinDB };

@@ -26,6 +26,22 @@ knex.schema.hasTable('csv').then(function(exists) {
   }
 });
 
+knex.schema.hasTable('users').then(function(exists) {
+  if (!exists) {
+    knex.schema.createTable('users', function (user) {
+      user.increments('id').primary();
+      user.string('email', 100).unique();
+      user.string('password', 100);
+      user.string('firstName', 100);
+      user.string('lastName', 100);
+      user.timestamps();
+    });//.then(function () {
+      //console.log('Created users table');
+    //});
+  }
+});
+
+
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
