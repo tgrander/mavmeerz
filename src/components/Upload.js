@@ -1,22 +1,22 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { uploadCSV } from '../actions/uploadActions.js'
 
-var Dropzone = require('react-dropzone');
+import { uploadCSV } from '../actions/expensesActions.js'
+const Dropzone = require('react-dropzone');
 
 export default class Upload extends Component {
-  onDrop(files){
-      //  var req = request.post('/upload');
-      // uploadRequest();
-       files.forEach((file)=> {
-         uploadCSV(file);
-        //  uploadSuccess();
-         console.log('file sent through onDrop', file);
-        // req.attach(file.name, file);
-       });
 
-      //  req.end(callback);
-   }
+  constructor(props){
+    super(props)
+    this.onDrop = this.onDrop.bind(this)
+  }
+
+  onDrop(files){
+    files.forEach((file) => {
+       this.props.uploadCSV(file);
+       console.log('file sent through onDrop', file);
+    });
+  }
 
   render () {
     return (
@@ -29,17 +29,19 @@ export default class Upload extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  console.log('STATE from upload', state);
-  const { expenses, isFetching } = state.expensesReducer
-  console.log('EXPENSES from upload: ', expenses);
-  return {
-    expenses: expenses,
-    isFetching: isFetching
-  }
+Upload.PropTypes = {
+  uploadCSV: PropTypes.func.isRequired
 }
 
 export default connect(
-  mapStateToProps,
-  { uploadCSV: uploadCSV }
+  (state) => {
+    const { expenses, isFetching } = state.expensesReducer
+    return {
+      expenses: expenses,
+      isFetching: isFetching
+    }
+  },
+  {
+    uploadCSV: uploadCSV
+  }
 )(Upload)

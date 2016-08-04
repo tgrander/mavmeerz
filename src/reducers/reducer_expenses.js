@@ -28,7 +28,7 @@ export default function expenses(state=INITIAL_STATE, action){
     case UPLOAD_SUCCESS:
       return Object.assign({}, state, {
         isFetching: action.isFetching,
-        expenses: state[expenses].concat(action.expenses)
+        expenses: state.expenses.concat(action.expenses)
       })
       break;
     default:
