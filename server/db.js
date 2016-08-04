@@ -52,16 +52,6 @@ knex.schema.hasTable('categories').then(function(exists) {
   }
 })
 
-knex.schema.hasTable('csv').then(function(exists) {
-  if (!exists) {
-    return knex.schema.createTable('csv', function(table) {
-      table.increments('id').primary();
-      table.string('csvTitle');
-      table.timestamps();
-    });
-  }
-});
-
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
