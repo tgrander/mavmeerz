@@ -24,6 +24,7 @@ router.post('/', (req, res) => {
   // makedo fn for now using express-csv middleware
   // util.parseCSVArr(req.body)
     // add expenses to dB
+    console.log('REQ DAT BAWDY shoddy.', req.body);
     util.addExpensesToDB(req.body.expenses)
     // // send back expenses array as default response
     .then(success => util.getExpensesFromDB())

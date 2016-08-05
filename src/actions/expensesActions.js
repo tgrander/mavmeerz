@@ -74,12 +74,13 @@ export function fetchExpenses(){
 }
 
 export function uploadCSV(csv){
+  console.log('csv in uploadCSV', csv);
   return dispatch => {
       dispatch(uploadRequest())
       return Axios({
         method: 'POST',
         url: '/v1/api/expenses',
-        data: csv
+        data: {expenses: csv}
       })
     .then(res => dispatch(uploadSuccess(res.data)))
     .catch(err => console.error(err))
