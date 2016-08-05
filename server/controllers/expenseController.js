@@ -17,7 +17,7 @@ exports.addExpense = (csvId, description, amount, category, callback) => {
 exports.addAllExpenses = (expenseDataArr) => {
   return new Promise((resolve, reject) => {
     expenseDataArr.forEach((expense) => {
-      new Expense({csvId: 1, description: expense.Description, amount: expense.Amount, category: expense.Category}).save()
+      new Expense({description: expense.Description, amount: expense.Amount, category: expense.Category}).save()
     });
     resolve('success');
   });
