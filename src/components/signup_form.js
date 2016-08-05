@@ -3,6 +3,7 @@ import {reduxForm} from 'redux-form'
 
 import {Link} from 'react-router'
 import {signup} from '../actions/authActions'
+import UploadApp from '../containers/UploadApp'
 
 class SignupForm extends Component {
   static contextTypes = {
@@ -39,8 +40,9 @@ class SignupForm extends Component {
           <div className="btn-group">
             <button type="submit" className="btn hvr-bounce-to-left">Submit</button>
           </div>
-        </form>
-        <Link to="/signup" className="btn hvr-bounce-to-left">LOGIN</Link>
+        </form><br/>
+        <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link><br/>
+        <UploadApp/>
       </div>
 
     )

@@ -11,36 +11,16 @@ class Dashboard extends Component {
     router: PropTypes.object
   }
 
-  componentWillMount() {
-    if(!this.props.isAuth){
-      this.context.router.push('/login')
-    }
-    this.props.fetchGroups()
-  }
-
-  renderGroups() {
-    if(this.props.groups.length === 0 || !Array.isArray(this.props.groups)) return (<p>You are not in any groups yet.</p>)
-    else if(this.props.groups.length !== 0 && Array.isArray(this.props.groups)){
-      return this.props.groups.map((group) => {
-        return (
-          <GroupEntry group={group} key={group.id}/>
-        )
-      })
-    }
-  }
+  // componentWillMount() {
+  //   if(!this.props.isAuth){
+  //     this.context.router.push('/login')
+  //   }
+  // }
 
   render() {
     return (
       <div>
-        <p className="heading">Groups</p>
-        {this.renderGroups()}
-        <ReactAnimate transitionName="showForm" transitionEnterTimeout={640} transitionLeaveTimeout={640}>
-          {this.props.children}
-        </ReactAnimate>
-        <div className="btn-group">
-          <Link to='/dashboard/creategroup' className="btn hvr-bounce-to-left">Create Group</Link><br/>
-          <Link to='/dashboard/joingroup' className="btn hvr-bounce-to-left">Join Group</Link>
-        </div>
+        <ExpenseList/>
         <Link to='/login' className="btn hvr-bounce-to-left">Logout</Link>
       </div>
     )

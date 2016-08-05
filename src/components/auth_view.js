@@ -25,7 +25,9 @@ class AuthView extends Component {
         <Link to="/signup" className="btn hvr-bounce-to-left">SIGNUP</Link>
         <br/>
         <p className="auth-view-p">Or Continue To Collect Budget Karma</p>
-        <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link>
+        <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link><br/>
+
+        <Link to="/dashboard">Navigate to Main Page (temporary link while routes and tokens are undercon)</Link>
       </div>
     )
   }
