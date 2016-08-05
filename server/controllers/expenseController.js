@@ -16,8 +16,9 @@ exports.addExpense = (csvId, description, amount, category, callback) => {
 //expense.Date needs to be formatted properly
 exports.addAllExpenses = (expenseDataArr) => {
   return new Promise((resolve, reject) => {
+    console.log('expense data array lowercased ?', expenseDataArr[0]);
     expenseDataArr.forEach((expense) => {
-      new Expense({description: expense.Description, amount: expense.Amount, category: expense.Category}).save()
+      new Expense({description: expense.description, amount: expense.amount, category: expense.category}).save()
     });
     resolve('success');
   });
