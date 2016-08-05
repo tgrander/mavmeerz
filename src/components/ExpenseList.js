@@ -4,7 +4,7 @@ import Upload from '../containers/UploadApp'
 
 let ExpenseList = ({expenses}) => {
 
-  if (expenses) {
+  if (expenses.length>0) {
     //map function that returns and array of Expense Component, each with its
     //own expese object
     let expenseList = expenses.map(exp =>
