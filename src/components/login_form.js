@@ -26,7 +26,6 @@ class LoginForm extends Component {
     const {fields:{email, password}, handleSubmit} = this.props
     return (
       <div>
-        <Link to="/">ZENMO</Link><br/>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <p className="heading">Login</p>
             <div>
