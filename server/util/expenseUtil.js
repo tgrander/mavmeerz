@@ -50,6 +50,7 @@ function getExpensesFromDB() {
   return new Promise((resolve, reject) => {
     expenseController.getAllExpenses()
       .then((expenses) => {
+        console.log(expenses);
         expenses.forEach((expense) => {
           results.push(expense.attributes);
         });
