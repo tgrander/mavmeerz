@@ -1,6 +1,7 @@
+"use strict"
 const express = require('express');
 const router  = express.Router();
-const util    = require('../util/util.js');
+const util    = require('../util/expenseUtil.js');
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -17,19 +18,26 @@ router.get('/', (req, res) => {
 // send expenses, currently expects 'text/csv'
 router.post('/', (req, res) => {
   // replace with make-do fn for now using express-csv middleware
-  util.parseCSVArr(req.body)
+  console.log('req DAT body', req.body);
+  res.send('PAPA ROCKS!');
+  // util.parseCSVArr(req.body)
+  // makedo fn for now using express-csv middleware
+  // util.parseCSVArr(req.body)
     // add results to dB
-    .then(results => util.addExpensesToDB(results))
-    // send back expenses array as default response
-    .then(success => util.getExpensesFromDB())
-    .then(expenses => res.status(201).send(expenses));
+    // .then(results => util.addExpensesToDB(results))
+    // // send back expenses array as default response
+    // .then(success => util.getExpensesFromDB())
+    // .then(expenses => res.status(201).send(expenses));
 });
 
 // bulk update expenses
 router.put('/', (req, res) => {
   // utility function to update category for an array of
   // expenses in expenses DB
-  res.send('bulk update expenses');
+  let expenses = req.body.expenses;
+  util.bulkUpdateExpenseCategoriesinDB(expenses)
+    .then(success => util.getExpensesFromDB())
+    .then(expenses => res.send(expenses));
 });
 
 // update specific expense

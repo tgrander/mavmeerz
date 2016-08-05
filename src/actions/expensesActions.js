@@ -8,11 +8,12 @@ Axios + redux-promise http request to server for expenses
   from 'pending' to 'success'
 */
 
-export const REQUEST_EXPENSES = 'REQUEST_EXPENSES'
-export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES'
-export const UPLOAD_REQUEST = 'UPLOAD_REQUEST'
+export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
+export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
+export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
-export const UPLOAD_FAILURE = 'UPLOAD_FAILURE'
+export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
+export const PARSING_CSV = 'PARSING_CSV';
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 
@@ -24,7 +25,7 @@ function requestExpenses(){
   return {
     type: REQUEST_EXPENSES,
     isFetching: true
-  }
+  };
 }
 //Action creator
 function uploadRequest(){
@@ -39,7 +40,7 @@ function receiveExpenses(expenses){
     type: RECEIVE_EXPENSES,
     isFetching: false,
     expenses: expenses
-  }
+  };
 }
 //Action creator
 function uploadSuccess(response){
@@ -47,7 +48,16 @@ function uploadSuccess(response){
     type: UPLOAD_SUCCESS,
     isFetching: false,
     expenses: response
-  }
+  };
+}
+
+//Action creator
+export function parsingCSV() {
+  return {
+    type: PARSING_CSV,
+    isFetching: true
+    // expenses: response
+  };
 }
 /*
 Async Action creator
@@ -62,14 +72,15 @@ export function fetchExpenses(){
       .catch(err => console.error(err))
   }
 }
+
 export function uploadCSV(csv){
   return dispatch => {
-    dispatch(uploadRequest())
-    return Axios({
-      method: 'POST',
-      url: '/v1/api/expenses',
-      data: csv
-    })
+      dispatch(uploadRequest())
+      return Axios({
+        method: 'POST',
+        url: '/v1/api/expenses',
+        data: csv
+      })
     .then(res => dispatch(uploadSuccess(res.data)))
     .catch(err => console.error(err))
   }
