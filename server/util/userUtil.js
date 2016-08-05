@@ -1,6 +1,7 @@
 const userController = require('../controllers/userController.js');
 
 function addUserToDB(userInfo) {
+  console.log('sucess');
   return new Promise((resolve, reject) => {
     userController.addUser(userInfo)
       .then((user) => {
@@ -10,7 +11,11 @@ function addUserToDB(userInfo) {
           firstName: user.get('firstName'),
           lastName:  user.get('lastName')
         });
-      });
+      })
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+      })
   });
 }
 

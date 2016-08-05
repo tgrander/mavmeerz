@@ -10,11 +10,10 @@ class LoginForm extends Component {
   }
 
   componentWillMount(){
-    window.localStorage.removeItem('pyroToken')
+    window.localStorage.removeItem('zenmoToken')
   }
 
   onSubmit(loginData){
-    console.log('Login Data: ', loginData);
     this.props.login(loginData)
     .then((response) => {
       if(response.payload.status < 300){
@@ -24,15 +23,15 @@ class LoginForm extends Component {
   }
 
   render() {
-    const {fields:{name, password}, handleSubmit} = this.props
+    const {fields:{email, password}, handleSubmit} = this.props
     return (
       <div>
         <Link to="/">ZENMO</Link><br/>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <p className="heading">Login</p>
             <div>
-              <input type="text" {...name} placeholder='name' className="biginput"/>
-              <div className="err-msg">{name.touched ? name.error : ''}</div>
+              <input type="text" {...email} placeholder='name' className="biginput"/>
+              <div className="err-msg">{email.touched ? email.error : ''}</div>
             </div>
 
             <div>
@@ -51,13 +50,13 @@ class LoginForm extends Component {
 
 function validate(values) {
   const errors = {}
-  if(!values.name) errors.name = 'Please enter a valid name'
+  if(!values.email) errors.email = 'Please enter a valid email'
   if(!values.password) errors.password = 'Please enter a password'
   return errors
 }
 
 export default reduxForm({
   form: "LoginForm",
-  fields: ['name', 'password'],
+  fields: ['email', 'password'],
   validate
 }, null, {login} )(LoginForm)

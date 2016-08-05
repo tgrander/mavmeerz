@@ -11,11 +11,11 @@ class Dashboard extends Component {
     router: PropTypes.object
   }
 
-  // componentWillMount() {
-  //   if(!this.props.isAuth){
-  //     this.context.router.push('/login')
-  //   }
-  // }
+  componentWillMount() {
+    if(!this.props.isAuth){
+      this.context.router.push('/login')
+    }
+  }
 
   render() {
     return (
