@@ -12,6 +12,7 @@ then passed down to all children presentational components.
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
+import Upload from './UploadApp'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 
@@ -20,7 +21,6 @@ import { fetchExpenses } from '../actions/expensesActions.js'
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    console.log('Expenses Props: ', this.props.fetchExpenses);
     //function to handle submitting new category for expense
   }
 
@@ -32,7 +32,6 @@ export default class ExpensesApp extends Component {
     return (
       <div>
         <div className="expense-list-container">
-          <h3>TRANSACTIONS</h3>
           <ExpenseList
             expenses={this.props.expenses}
           />

@@ -1,7 +1,9 @@
 import React from 'react'
 import Expense from './Expense.js'
+import Upload from '../containers/UploadApp'
 
 let ExpenseList = ({expenses}) => {
+
   if (expenses) {
     //map function that returns and array of Expense Component, each with its
     //own expese object
@@ -14,17 +16,22 @@ let ExpenseList = ({expenses}) => {
 
     return (
       <div>
+        <h3>TRANSACTIONS</h3>
         <table className="transactions" cellpadding="0" cellspacing="0">
           <tbody>
             {expenseList}
           </tbody>
         </table>
       </div>
-
     )
+
   } else {
     return (
-      <p>No transactions at this time</p>
+      <div>
+        <p>You have no expenses yet! Upload files below to get started.</p><br/>
+        <Upload/><br/>
+        <p>Or add your expenses manually.</p>
+      </div>
     )
   }
 
