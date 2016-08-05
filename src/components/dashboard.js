@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import ReactAnimate from 'react-addons-css-transition-group'
 
-import ExpenseList from './ExpenseList'
+import ExpensesApp from './ExpenseList'
 
 class Dashboard extends Component {
 
@@ -20,7 +20,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <ExpenseList/>
+        <ExpensesApp/>
         <Link to='/login' className="btn hvr-bounce-to-left">Logout</Link>
       </div>
     )
