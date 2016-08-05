@@ -16,5 +16,5 @@ exports.getUser = (user) => {
 };
 
 exports.getAllUsers = (fileName,callback) => {
-  new File().query('where','csvTitle','=',fileName).fetch().then((data) => callback(data.attributes))
+  new User().query('where','csvTitle','=',fileName).fetch().then((data) => callback(data.attributes))
 };
