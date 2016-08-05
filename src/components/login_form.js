@@ -14,6 +14,7 @@ class LoginForm extends Component {
   }
 
   onSubmit(loginData){
+    console.log('Login Data: ', loginData);
     this.props.login(loginData)
     .then((response) => {
       if(response.payload.status < 300){
@@ -26,6 +27,7 @@ class LoginForm extends Component {
     const {fields:{name, password}, handleSubmit} = this.props
     return (
       <div>
+        <Link to="/">ZENMO</Link><br/>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <p className="heading">Login</p>
             <div>
