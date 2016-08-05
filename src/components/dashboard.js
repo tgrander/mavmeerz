@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {fetchGroups} from '../actions/dashboardActions'
 import {Link} from 'react-router'
 import ReactAnimate from 'react-addons-css-transition-group'
 
@@ -46,7 +45,7 @@ class Dashboard extends Component {
       </div>
     )
   }
-  
+
 }
 
 export default connect(
