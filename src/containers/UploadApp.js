@@ -26,8 +26,11 @@ export default class UploadApp extends Component {
       that.props.parsingCSV()
        parseCSV(file)
        .then(function(result) {
-         that.props.uploadCSV(result.data)
+         that.props.uploadCSV(result)
          console.log('file sent through onDrop', result);
+       })
+       .catch(function(error) {
+         console.log(error);
        })
 
     });
@@ -55,11 +58,12 @@ function parseCSV(file) {
       header: true,
       download: true,
       complete: function(results) {
-        if (results.errors.length === 0) {
-          console.log('papa results', results)
-          resolve(results);
+        console.log('results from complete', results);
+        if (results.data.length !== 0) {
+          console.log('papa results', results.data)
+          resolve(results.data);
         } else {
-          reject(errors);
+          reject('nothing was parsed!');
         }
       }
     })
