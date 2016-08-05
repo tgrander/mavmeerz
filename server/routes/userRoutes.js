@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const util    = require('../util/userUtil.js');
+const createToken = require('../util/tokenUtil').createToken
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -15,10 +16,14 @@ router.post('/signup', (req, res) => {
   if (userInfo.email !== undefined && userInfo.password !== undefined) {
     util.addUserToDB(userInfo)
       .then((results) => {
-        // create token
         console.log(results);
-        res.status(201).send(results);
-      });
+        createToken(req, res, results.id)
+        // res.status(201).send(results);
+      })
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
+      })
   };
 });
 
@@ -28,9 +33,13 @@ router.post('/login', (req, res) => {
   if (userInfo.email !== undefined && userInfo.password !== undefined) {
     util.attemptLogin(userInfo)
       .then((results) => {
-        // create token
         console.log(results);
-        res.status(201).send(results);
+        createToken(req, res, results.id)
+        // res.status(201).send(results);
+      })
+      .catch(err => {
+        console.log(err);
+        res.sendStatus(500);
       })
   }
 });
