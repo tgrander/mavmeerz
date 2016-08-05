@@ -12,6 +12,7 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
+    console.log('TOKEN:', window.localStorage.getItem('zenmoToken'));
     if(!this.props.isAuth){
       this.context.router.push('/login')
     }
