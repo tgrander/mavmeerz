@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import ReactAnimate from 'react-addons-css-transition-group'
-import ExpensesApp from '../containers/ExpensesApp' 
+import ExpensesApp from '../containers/ExpensesApp'
 
 class Dashboard extends Component {
 
@@ -11,6 +11,7 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
+    console.log('TOKEN:', window.localStorage.getItem('zenmoToken'));
     if(!this.props.isAuth){
       this.context.router.push('/login')
     }
