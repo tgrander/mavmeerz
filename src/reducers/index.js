@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux'
 
 import expensesReducer from './reducer_expenses'
-import uploadReducer from './reducer_upload'
+import authReducer from './reducer_auth'
+import { routerReducer } from 'react-router-redux'
+import { reducer as formReducer } from 'redux-form'
 
 const rootReducer = combineReducers({
   expensesReducer,
-  uploadReducer
+  isAuth: authReducer,
+  routing: routerReducer,
+  form: formReducer
 })
 
 export default rootReducer

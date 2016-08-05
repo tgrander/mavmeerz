@@ -3,7 +3,7 @@ const Bookshelf = require('../db.js')
 
 
 let File = Bookshelf.Model.extend({
-  tableName: 'csv',
+  tableName: 'statements',
   hasTimestamps:true
 });
 

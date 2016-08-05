@@ -1,10 +1,5 @@
 import React from 'react'
 
-//props
-  //expense object
-    //{id: 1, date: integer, text: string, amount: integer, category: string}
-  //submitCategory() callback
-    //dispatches ADD_CATEGORY action
 let Expense = ({exp, handleCategorySubmit}) => {
   //component that returns a single expense item
   //each expense item contains a date, description text, amount, and a category
