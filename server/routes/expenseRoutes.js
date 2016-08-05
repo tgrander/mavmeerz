@@ -1,7 +1,7 @@
 "use strict"
 const express = require('express');
 const router  = express.Router();
-const util    = require('../util/util.js');
+const util    = require('../util/expenseUtil.js');
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -20,6 +20,8 @@ router.post('/', (req, res) => {
   // replace with make-do fn for now using express-csv middleware
   console.log('req DAT body', req.body);
   res.send('PAPA ROCKS!');
+  // util.parseCSVArr(req.body)
+  // makedo fn for now using express-csv middleware
   // util.parseCSVArr(req.body)
     // add results to dB
     // .then(results => util.addExpensesToDB(results))

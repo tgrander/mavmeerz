@@ -2,13 +2,18 @@
 const User = require('../models/user.js');
 
 
-exports.addUser = (email, firstName, lastName, password) => {
-  return new User({email: email, password: password, firstName: firstName, lastName: lastName}).save();
+exports.addUser = (user) => {
+  return new User({
+    email: user.email,
+    password: user.password,
+    firstName: user.firstName,
+    lastName: user.lastName
+  }).save();
 };
 
-exports.getUser = (email) => {
+exports.getUser = (user) => {
   // return new File().fetch({email: email}).then((data) => callback(data.attributes))
-  return new File().fetch({email: email})
+  return new User().fetch({email: user.email})
 };
 
 exports.getAllUsers = (fileName,callback) => {

@@ -31,12 +31,6 @@ function addExpensesToDB(expenses, callback) {
     // CSVController.addFile is here because it is required to
     // link a foreign id to the expense table. The CSV table will
     // eventually be replaced by a user table
-    // CSVController.addFile('expenses', () => {
-      //insert CSV ID and other thing here
-      // expenseController.addAllExpenses(expenses, (success) => {
-        // callback(success);
-      // });
-    // });
 
   return new Promise((resolve, reject) => {
     CSVController.addFile('expenses')
