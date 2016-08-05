@@ -92,6 +92,7 @@ function lowerCaseCategories(expenses) {
     }
     result.push(expense);
   });
+  console.log('lower cased expenses!', result);
   return result;
 }
 
