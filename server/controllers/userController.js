@@ -12,8 +12,7 @@ exports.addUser = (user) => {
 };
 
 exports.getUser = (user) => {
-  // return new File().fetch({email: email}).then((data) => callback(data.attributes))
-  return new User().fetch({email: user.email})
+  return new User().fetch({email: user})
 };
 
 exports.getAllUsers = (fileName,callback) => {

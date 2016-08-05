@@ -16,7 +16,6 @@ router.post('/signup', (req, res) => {
   if (userInfo.email !== undefined && userInfo.password !== undefined) {
     util.addUserToDB(userInfo)
       .then((results) => {
-        console.log(results);
         createToken(req, res, results.id)
         // below code not needed becasue createToken() handles response
         // res.status(201).send(results);
@@ -30,13 +29,11 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
   let userInfo = req.body;
-  console.log(userInfo);
   if (userInfo.email !== undefined && userInfo.password !== undefined) {
 
     util.attemptLogin(userInfo)
       .then((results) => {
-        console.log(results);
-        createToken(req, res, results.id)
+        createToken(req,  res, results.id)
         // below code not needed becasue createToken() handles response
         // res.status(201).send(results);
       })
