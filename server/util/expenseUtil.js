@@ -35,7 +35,7 @@ function addExpensesToDB(expenses, callback) {
   return new Promise((resolve, reject) => {
     CSVController.addFile('expenses')
       .then(() => {
-        return expenseController.addAllExpenses(expenses);
+        return expenseController.addAllExpenses(lowerCaseCategories(expenses));
       })
       .then(() => {
         resolve('success');
@@ -79,6 +79,21 @@ function bulkUpdateExpenseCategoriesinDB(expenses) {
     });
     resolve('success');
   });
+}
+
+// this makes sure every heading is lowercased regardless
+// of the CSV it is coming from
+function lowerCaseCategories(expenses) {
+  let result = [];
+  expenses.forEach(expense => {
+    for (let key in expense) {
+      expense[key.toLowerCase()] = expense[key];
+      delete expense[key];
+    }
+    result.push(expense);
+  });
+  console.log('lower cased expenses!', result);
+  return result;
 }
 
 /// TO TEST FN (since have not implemented promises in test suite yet)
