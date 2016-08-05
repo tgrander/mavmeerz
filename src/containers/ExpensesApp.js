@@ -12,7 +12,7 @@ then passed down to all children presentational components.
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import UplaodApp from './containers/UplaodApp'
+import Upload from './UploadApp'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 
@@ -32,7 +32,6 @@ export default class ExpensesApp extends Component {
     return (
       <div>
         <div className="expense-list-container">
-          <h3>TRANSACTIONS</h3>
           <ExpenseList
             expenses={this.props.expenses}
           />
