@@ -4,6 +4,7 @@ import {Link} from 'react-router'
 import ReactAnimate from 'react-addons-css-transition-group'
 import ExpensesApp from '../containers/ExpensesApp'
 
+
 class Dashboard extends Component {
 
   static contextTypes = {
@@ -24,6 +25,7 @@ class Dashboard extends Component {
           <Link to='/login' className="btn hvr-bounce-to-left">Logout</Link>
         </div>
         <ExpensesApp/>
+
       </div>
     )
   }

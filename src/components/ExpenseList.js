@@ -15,13 +15,17 @@ let ExpenseList = ({expenses}) => {
     )
 
     return (
-      <div>
+      <div className="transactions">
         <h3>TRANSACTIONS</h3>
-        <table className="transactions" cellpadding="0" cellspacing="0">
-          <tbody>
-            {expenseList}
-          </tbody>
-        </table>
+        <BootstrapTable data={ this.props.expenses } insertRow={ true } striped={ true } hover={ true } deleteRow={ true } columnFilter={ true } exportCSV={ true }
+          selectRow={{mode: 'checkbox', clickToSelect: true}}
+        >
+          <TableHeaderColumn dataField='date' editable={ { type: 'textarea' } }>Date</TableHeaderColumn>
+          <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
+          <TableHeaderColumn dataField='category' editable={ { type: 'checkbox', options: { values: 'Y:N' } } }>Category</TableHeaderColumn>
+          <TableHeaderColumn dataField='amount' editable={ { type: 'checkbox', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
+          <TableHeaderColumn dataField='essential' editable={ { type: 'checkbox', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
+        </BootstrapTable>
       </div>
     )
 
