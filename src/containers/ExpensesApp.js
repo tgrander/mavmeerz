@@ -51,12 +51,6 @@ ExpensesApp.PropTypes = {
 }
 
 /*
-function to calculate total from expenses array
-@param = expenses array from state
-@return = integer
-*/
-
-/*
 function that describes how to transform the current Redux store state into the
 props you want to pass to a child presentational component you are wrapping
   @param = state object
