@@ -13,11 +13,12 @@ function addExpensesToDB(expenses, callback) {
   return new Promise((resolve, reject) => {
     CSVController.addFile('expenses')
       .then(() => {
-        return expenseController.addAllExpenses(lowerCaseCategories(expenses));
+        return expenseController.addAllExpenses(processExpenses(expenses));
       })
       .then(() => {
         resolve('success');
-      });
+      })
+      .catch((err) => console.log('error in addAllExpenses', err));
   });
 }
 
@@ -59,23 +60,64 @@ function bulkUpdateExpenseCategoriesinDB(expenses) {
   });
 }
 
+
 // this makes sure every heading is lowercased regardless
 // of the CSV it is coming from
-function lowerCaseCategories(expenses) {
+function processExpenses(expenses) {
   let result = [];
   expenses.forEach(expense => {
-    for (let key in expense) {
-      expense[key.toLowerCase()] = expense[key];
-      delete expense[key];
-    }
+    console.log(expense);
+    // match cost check if cost is reported as amount instead
+    // + match date
+    // + match description
+    matchHeaders(expense);
+    console.log('this is the expense', expense);
+    lowerCaseKeys(expense);
+    console.log('this is the expense after lowerCaseKeys', expense);
     result.push(expense);
   });
-  console.log('lower cased expenses!', result);
   return result;
 }
 
-module.exports = {
-                   addExpensesToDB: addExpensesToDB,
+function matchHeaders(expense) {
+  // anything that has 'cost' or 'amount' should be changed to 'amount'
+  matchCostHeader(expense);
+  matchDateHeader(expense);
+  // matchDescriptionHeader(expenses);
+}
+
+
+//TO-DO combine matchDateHeader and matchCostHeader functions into one
+function matchDateHeader(expense) {
+ for (let key in expense) {
+   if (key.match(/date/i)) {
+     expense['date'] = expense[key];
+     delete expense[key];
+   }
+ }
+}
+
+function matchCostHeader(expense) {
+  for (let key in expense) {
+    if (key.match(/cost/i) || key.match(/amount/i) || key.match(/debit/i)) {
+      expense['amount'] = expense[key];
+      delete expense[key];
+    }
+  }
+}
+
+function lowerCaseKeys(object) {
+  for (let key in object) {
+    lowerCaseKey(object, key);
+  }
+}
+
+function lowerCaseKey(object, key) {
+  object[key.toLowerCase()] = object[key];
+};
+
+module.exports = { addExpensesToDB: addExpensesToDB,
                    getExpensesFromDB: getExpensesFromDB,
                    updateExpenseCategoryinDB: updateExpenseCategoryinDB,
-                   bulkUpdateExpenseCategoriesinDB: bulkUpdateExpenseCategoriesinDB };
+                   bulkUpdateExpenseCategoriesinDB: bulkUpdateExpenseCategoriesinDB,
+                   processExpenses: processExpenses };
