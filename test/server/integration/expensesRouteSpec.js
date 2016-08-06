@@ -1,5 +1,5 @@
 const supertest = require('supertest')
-    , index     = require('../../index');
+    , index     = require('../../../server/index');
 
 exports.get_expenses_route_should_exist = function(done) {
   supertest(index)

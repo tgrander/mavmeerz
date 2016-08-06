@@ -4,7 +4,6 @@ import {Link} from 'react-router'
 import ReactAnimate from 'react-addons-css-transition-group'
 import ExpensesApp from '../containers/ExpensesApp'
 
-
 class Dashboard extends Component {
 
   static contextTypes = {
@@ -19,6 +18,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log("In dashboard. Props to be passed are: ", this.props);
     return (
       <div>
         <div className="dash-logout">

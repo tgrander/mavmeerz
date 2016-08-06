@@ -14,6 +14,8 @@ let ExpenseList = ({expenses}) => {
       />
     )
 
+
+
     return (
       <div className="transactions">
         <h3>TRANSACTIONS</h3>
