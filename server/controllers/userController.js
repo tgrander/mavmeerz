@@ -11,10 +11,11 @@ exports.addUser = (user) => {
   }).save();
 };
 
-exports.getUser = (user) => {
-  return new User().fetch({email: user})
-};
 
-exports.getAllUsers = (fileName,callback) => {
-  new User().query('where','csvTitle','=',fileName).fetch().then((data) => callback(data.attributes))
+exports.getUser = (user) => {
+  return new Promise((resolve,reject) => {
+    new User().fetch({id: user.id}).then((data) => {
+      resolve(data.attributes)
+    })
+  });
 };
