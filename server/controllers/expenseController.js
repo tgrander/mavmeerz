@@ -29,7 +29,12 @@ exports.addAllExpenses = (expenseDataArr) => {
   data.models is an array where EACH element has an 'attributes' (i.e. data.models[0].attributes)
 */
 exports.getExpenses = (user) => {
-  return new Expense().query("where", "userId", "=", user.id).fetch();
+  return new Promise((resolve,reject) => {
+    new Expense().fetch({userId: user.id}).then((data) => {
+      resolve(data.models)
+    });
+  });
+  // return new Expense().query("where", "userId", "=", user.id).fetch();
 };
 
 /**
