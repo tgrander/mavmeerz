@@ -12,8 +12,9 @@ export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
-export const UPLOAD_FAILURE = 'UPLOAD_FAILURE';
 export const PARSING_CSV = 'PARSING_CSV';
+export const GET_TOTAL = 'GET_TOTAL';
+
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 
@@ -21,21 +22,21 @@ export const PARSING_CSV = 'PARSING_CSV';
 Action creator
 Notifies state that expenses have been requested -> signal 'load feature'
 */
-function requestExpenses(){
+export function requestExpenses(){
   return {
     type: REQUEST_EXPENSES,
     isFetching: true
   };
 }
 //Action creator
-function uploadRequest(){
+export function uploadRequest(){
   return {
     type: UPLOAD_REQUEST,
     isFetching: true
   };
 }
 //Action creator
-function receiveExpenses(expenses){
+export function receiveExpenses(expenses){
   return {
     type: RECEIVE_EXPENSES,
     isFetching: false,
@@ -43,7 +44,7 @@ function receiveExpenses(expenses){
   };
 }
 //Action creator
-function uploadSuccess(response){
+export function uploadSuccess(response){
   return {
     type: UPLOAD_SUCCESS,
     isFetching: false,
@@ -59,6 +60,26 @@ export function parsingCSV() {
     // expenses: response
   };
 }
+
+//Action creator
+export function getTotal(total) {
+  return {
+    type: GET_TOTAL,
+    total: total
+  }
+}
+
+function computeTotal(expensesArr){
+  let total = 0
+  if (expensesArr) {
+    for (var i = 0; i < expensesArr.length; i++) {
+      let expense = expensesArr[i]
+      total += expense.amount
+    }
+  }
+  return total;
+}
+
 /*
 Async Action creator
 Create async flow that notifies state of different stages of fetching expenses
@@ -73,8 +94,8 @@ export function fetchExpenses(){
   }
 }
 
+//Async Action for sending a post request to upload CSV
 export function uploadCSV(csv){
-  console.log('csv in uploadCSV', csv);
   return dispatch => {
       dispatch(uploadRequest())
       return Axios({
@@ -82,7 +103,10 @@ export function uploadCSV(csv){
         url: '/v1/api/expenses',
         data: {expenses: csv}
       })
-    .then(res => dispatch(uploadSuccess(res.data)))
+    .then(res =>  {
+      dispatch(uploadSuccess(res.data))
+      dispatch(getTotal(computeTotal(res.data)))
+    })
     .catch(err => console.error(err))
   }
 }
