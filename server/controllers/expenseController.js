@@ -37,7 +37,12 @@ exports.getExpenses = (user) => {
   data.models is an array where EACH element has an 'attributes' (i.e. data.models[0].attributes)
 */
 exports.getAllExpenses = () => {
-  return new Expense().fetchAll();
+  return new Promise((resolve,reject) => {
+    new Expense().fetchAll().then((data) => {
+      resolve(data.models)
+    });
+  });
+  // return new Expense().fetchAll();
 };
 
 exports.updateExpenseCategory = (expenseId, category, callback) => {
