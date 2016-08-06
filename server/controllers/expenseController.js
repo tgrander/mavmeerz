@@ -33,8 +33,7 @@ exports.getExpenses = (user) => {
 };
 
 /**
-  This function will take a callback which will work on an array of expense data objects.
-  data.models is an array where EACH element has an 'attributes' (i.e. data.models[0].attributes)
+  This function will return a Promise which will have access to data.models
 */
 exports.getAllExpenses = () => {
   return new Promise((resolve,reject) => {

@@ -6,7 +6,6 @@ exports.addFile = (csvTitle, callback) => {
   return new File({csvTitle: csvTitle}).save();
 };
 
-
 /**
   This function will return a promise, which will have the
   file id as the passed data (i.e. getFileId("expenses").then((id)=>console.log(id)))
