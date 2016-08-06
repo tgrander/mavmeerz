@@ -30,6 +30,7 @@
     "knex": "^0.11.9 ",
     "mysql": "^2.11.1",
     "mysql-server": "^1.0.5",
+    "nock": "^8.0.0",
     "react": "^15.2.1",
     "react-addons-css-transition-group": "^15.3.0",
     "react-dom": "^15.2.1",
@@ -46,7 +47,7 @@
     "sqlite3": "^3.1.4"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register --recursive",
+    "test": "mocha --compilers js:babel-register --recursive & node_modules/.bin/mocha -u exports test/server/**/*",
     "test:watch": "npm test -- --watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
