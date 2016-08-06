@@ -14,7 +14,3 @@ exports.addUser = (user) => {
 exports.getUser = (user) => {
   return new User().fetch({email: user})
 };
-
-exports.getAllUsers = (fileName,callback) => {
-  new User().query('where','csvTitle','=',fileName).fetch().then((data) => callback(data.attributes))
-};
