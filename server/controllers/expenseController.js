@@ -26,7 +26,8 @@ exports.addAllExpenses = (expenseDataArr) => {
 
 /**
   This function will take in a user id input and then return an array
-  of 'models' which will 
+  of 'models' which will be an array of expense data objects for the
+  specific input user
 */
 exports.getExpenses = (user) => {
   return new Promise((resolve,reject) => {
@@ -38,7 +39,8 @@ exports.getExpenses = (user) => {
 };
 
 /**
-  This function will return a Promise which will have access to data.models
+  This function will return a Promise which will have access to data.models,
+  which is an array expense data objects
 */
 exports.getAllExpenses = () => {
   return new Promise((resolve,reject) => {
