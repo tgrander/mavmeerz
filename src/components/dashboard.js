@@ -2,8 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import ReactAnimate from 'react-addons-css-transition-group'
-import ExpensesApp from '../containers/ExpensesApp'
-import ChartApp from '../containers/ChartApp'
+import ExpensesApp from '../containers/ExpensesApp.js'
+import ChartApp from '../containers/ChartApp.js'
 // import UploadApp from '../containers/UploadApp'
 
 class Dashboard extends Component {

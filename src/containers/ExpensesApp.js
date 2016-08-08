@@ -58,7 +58,11 @@ props you want to pass to a child presentational component you are wrapping
 */
 function mapStateToProps(state){
   const { expenses, isFetching, total } = state.expensesReducer
+<<<<<<< dc1471ef6a2726b8d6e35d96635ccae5ca2761d4
   console.log('EXPENSES: ', expenses);
+=======
+  console.log('mapStateToProps expenses are: ', expenses);
+>>>>>>> [feat] working on getting chart to render
   return {
     expenses: expenses,
     isFetching: isFetching,

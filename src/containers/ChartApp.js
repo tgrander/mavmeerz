@@ -1,12 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import * as DonutChart from '../components/Chart.js'
-// Load Highcharts
-var Highcharts = require('highcharts')
-// Load a module
-require('highcharts/modules/funnel')(Highcharts);
+// import * as DonutChart from '../components/Chart.js'
+var Highcharts = require('highcharts');
+import DonutChart from '../components/Chart.js'
 
-class App extends React.Component {
+export class ChartApp extends React.Component {
 	constructor(props) {
     	super(props);
 
@@ -20,73 +18,4 @@ class App extends React.Component {
     }
  }
 
-class Donut extends React.Component {
-	constructor(props) {
-    	super(props);
-        this.chart = undefined;
-    }
-
-  componentDidMount() {
-	this.chart = $(React.findDOMNode(this.refs.chart)).highcharts({
-            chart: {
-                type: 'pie'
-            },
-            title: 'Browser Market sahre',
-            yAxis: {
-                title: {
-                    text: 'Total percent market share'
-                }
-            },
-            plotOptions: {
-                pie: {
-                    shadow: false
-                }
-            },
-            tooltip: {
-                formatter: function() {
-                    return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
-                }
-            },
-            series: [{
-                name: 'Browsers',
-                data: this.props.data,
-                size: '100%',
-                innerSize: '85%',
-                showInLegend:true,
-                dataLabels: {
-                    enabled: true
-                }
-            }]
-        });
-  }
-
-  componentWillReceiveProps(props) {
-  	this.chart.highcharts().series[0].setData(props.data);
-  }
-
-  render() {
-      return (
-        <div ref='chart'>
-        </div>
-      )
-  }
-}
-
-// React.render(<App/>,
-//   document.getElementById('container')
-// );
-
-// export default connect(
-//   (state) => {
-//     console.log('ChartApp [state] is', state);
-//     // const { expenses, isFetching } = state.expensesReducer
-//     return {
-//       expenses: expenses,
-//       isFetching: isFetching
-//     }
-//   },
-//   {
-//     uploadCSV: uploadCSV,
-//     parsingCSV: parsingCSV
-//   }
-// )(ChartApp)
+ export default ChartApp
