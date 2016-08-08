@@ -10,10 +10,11 @@ class ExpenseList extends Component {
     super(props)
   }
 
-  _categorize(e){
-    e.preventDefault()
+  _categorize(category){
     const selected = this.refs.table.state.selectedRowKeys
-    console.log(selected);
+    if (selected.length > 1) {
+      this.props.addCategory(...selected, category)
+    }
   }
 
   render(){
@@ -21,14 +22,15 @@ class ExpenseList extends Component {
       return (
         <div className="transactions">
           <h3>TRANSACTIONS</h3>
-          <Dropdown />
+          <Dropdown
+              addCategory={this._categorize.bind(this)}
+          />
           <BootstrapTable
-                  data={ this.props.expenses }
-                  striped={ true }
-                  hover={ true }
-                  selectRow={{mode: 'checkbox', clickToSelect: true, bgColor: 'yellow'}}
-                  ref='table'
-
+              data={ this.props.expenses }
+              striped={ true }
+              hover={ true }
+              selectRow={ {mode: 'checkbox', clickToSelect: true, bgColor: 'yellow'} }
+              ref='table'
           >
             <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
             <TableHeaderColumn dataField='date' editable={ { type: 'textarea' } }>Date</TableHeaderColumn>
