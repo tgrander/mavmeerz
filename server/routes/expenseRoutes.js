@@ -1,7 +1,8 @@
 "use strict"
-const express = require('express');
-const router  = express.Router();
-const util    = require('../util/expenseUtil.js');
+const express     = require('express')
+    , router      = express.Router()
+    , expenseUtil = require('../util/expenseUtil.js')
+    , tokenUtil   = require('../util/tokenUtil.js');
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -10,20 +11,24 @@ router.use((req, res, next) => {
 });
 
 // get expenses
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
+  let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
   // get all expenses from DB and send response
-  util.getExpensesFromDB().then(expenses => res.send(expenses));
+  expenseUtil.getExpensesFromDB().then(expenses => res.send(expenses));
 });
 
 // send expenses, currently expects 'text/csv'
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
+    console.log(req.headers);
     // check if proper request made
     if (req.body.expenses) {
       // add expenses to dB
-      util.addExpensesToDB(req.body.expenses)
+      expenseUtil.addExpensesToDB(req.body.expenses)
       // send back expenses array as default response
-      .then(success => util.getExpensesFromDB())
-      .then(expenses => res.status(201).send(expenses));
+      .then(success => expenseUtil.getExpensesFromDB())
+      .catch(err => console.log('error in addExpensesToDB:', err))
+      .then(expenses => res.status(201).send(expenses))
+      .catch(err => console.log('Error in getExpensesFromDB:', err));
     } else {
       res.send('request body needs expenses!');
     }
@@ -35,8 +40,8 @@ router.put('/', (req, res) => {
   // expenses in expenses DB
   if (req.body.expenses) {
     let expenses = req.body.expenses;
-    util.bulkUpdateExpenseCategoriesinDB(expenses)
-      .then(success => util.getExpensesFromDB())
+    expenseUtil.bulkUpdateExpenseCategoriesinDB(expenses)
+      .then(success => expenseUtil.getExpensesFromDB())
       .then(expenses => res.send(expenses));
   } else {
     res.send('request body needs expenses!');
@@ -48,9 +53,9 @@ router.put('/:id', (req, res) => {
   if (req.body.category) {
     let expenseId = req.url.slice(1);
     let category  = req.body.category;
-    util.updateExpenseCategoryinDB(expenseId, category)
+    expenseUtil.updateExpenseCategoryinDB(expenseId, category)
        // send back expenses array as default response
-      .then(success => util.getExpensesFromDB())
+      .then(success => expenseUtil.getExpensesFromDB())
       .then(expenses => res.send(expenses));
   } else {
     res.send('request body needs categories!');

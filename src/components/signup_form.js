@@ -8,7 +8,6 @@ import UploadApp from '../containers/UploadApp'
 class SignupForm extends Component {
   constructor(props){
     super(props)
-    console.log('Signup props', this.props);
   }
 
   static contextTypes = {
@@ -16,7 +15,6 @@ class SignupForm extends Component {
   }
 
   onSubmit(signupData){
-    console.log('Signup Data: ', signupData);
     this.props.signup(signupData)
     .then(() => {
       this.context.router.push('/dashboard')
@@ -27,7 +25,6 @@ class SignupForm extends Component {
     const {fields:{name, email, password}, handleSubmit} = this.props
     return (
       <div>
-        <Link to="/">ZENMO</Link><br/>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <p className="heading">Signup</p>
           <div>
@@ -49,7 +46,6 @@ class SignupForm extends Component {
           </div>
         </form><br/>
         <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link><br/>
-        <UploadApp/>
       </div>
 
     )

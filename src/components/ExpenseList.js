@@ -1,38 +1,54 @@
-import React from 'react'
-import Expense from './Expense.js'
+import React, { Component} from 'react'
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+// import Expense from './Expense.js'
 import Upload from '../containers/UploadApp'
+import Dropdown from '../components/Dropdown'
+import '../css/styles.css'
 
-let ExpenseList = ({expenses}) => {
+class ExpenseList extends Component {
+  constructor(props){
+    super(props)
+  }
 
-  if (expenses.length>0) {
-    //map function that returns and array of Expense Component, each with its
-    //own expese object
-    let expenseList = expenses.map(exp =>
-      <Expense
-        key={exp.id}
-        exp={exp}
-      />
-    )
+  _categorize(e){
+    e.preventDefault()
+    const selected = this.refs.table.state.selectedRowKeys
+    console.log(selected);
+  }
 
-    return (
-      <div>
-        <h3>TRANSACTIONS</h3>
-        <table className="transactions" cellpadding="0" cellspacing="0">
-          <tbody>
-            {expenseList}
-          </tbody>
-        </table>
-      </div>
-    )
+  render(){
+    if (this.props.expenses.length>0) {
+      return (
+        <div className="transactions">
+          <h3>TRANSACTIONS</h3>
+          <Dropdown />
+          <BootstrapTable
+                  data={ this.props.expenses }
+                  striped={ true }
+                  hover={ true }
+                  selectRow={{mode: 'checkbox', clickToSelect: true, bgColor: 'yellow'}}
+                  ref='table'
 
-  } else {
-    return (
-      <div>
-        <p>You have no expenses yet! Upload files below to get started.</p><br/>
-        <Upload/><br/>
-        <p>Or add your expenses manually.</p>
-      </div>
-    )
+          >
+            <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
+            <TableHeaderColumn dataField='date' editable={ { type: 'textarea' } }>Date</TableHeaderColumn>
+            <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
+            <TableHeaderColumn dataField='category' editable={ { type: 'dropdown'} }>Category</TableHeaderColumn>
+            <TableHeaderColumn dataField='amount' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
+
+          </BootstrapTable>
+        </div>
+      )
+
+    } else {
+      return (
+        <div>
+          <p>You have no expenses yet! Upload files below to get started.</p><br/>
+          <Upload/><br/>
+          <p>Or add your expenses manually.</p>
+        </div>
+      )
+    }
   }
 
 }

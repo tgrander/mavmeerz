@@ -41,6 +41,11 @@ const userRoutes    = require('./routes/userRoutes');
 app.use('/v1/api', userRoutes);
 app.use('/v1/api/expenses', expenseRoutes);
 
+// redirect gets to root if address not found //
+app.get('*', (req, res) => {
+  res.redirect('/');
+});
+
 app.listen(port);
 
 console.log('Zenmo is now listening on port ' + port);
