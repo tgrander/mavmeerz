@@ -20,7 +20,7 @@ class App extends React.Component {
     }
  }
 
-class DonutChart extends React.Component {
+class Donut extends React.Component {
 	constructor(props) {
     	super(props);
         this.chart = undefined;
