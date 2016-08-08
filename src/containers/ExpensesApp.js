@@ -14,12 +14,15 @@ import { connect } from 'react-redux'
 
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
+import ChartApp from './ChartApp.js'
 
 import { fetchExpenses, updateCategories } from '../actions/expensesActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
+
+    this.state = {total: 0}
   }
 
   componentWillMount(){
@@ -30,15 +33,12 @@ export default class ExpensesApp extends Component {
     return (
       <div>
         <div className="expense-list-container">
-
           <ExpenseList
             expenses={this.props.expenses}
             updateCategories={this.props.updateCategories.bind(this)}
+            total={this.props.total}
           />
         </div>
-        <Total
-          total={this.props.total}
-        />
       </div>
     )
   }
@@ -47,6 +47,7 @@ export default class ExpensesApp extends Component {
 ExpensesApp.PropTypes = {
   // Injected by Redux
   expenses: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
   fetchExpenses: PropTypes.func.isRequired
 }
 
@@ -58,11 +59,7 @@ props you want to pass to a child presentational component you are wrapping
 */
 function mapStateToProps(state){
   const { expenses, isFetching, total } = state.expensesReducer
-<<<<<<< dc1471ef6a2726b8d6e35d96635ccae5ca2761d4
-  console.log('EXPENSES: ', expenses);
-=======
-  console.log('mapStateToProps expenses are: ', expenses);
->>>>>>> [feat] working on getting chart to render
+  console.log('ExpensesApp total is: ', total)
   return {
     expenses: expenses,
     isFetching: isFetching,

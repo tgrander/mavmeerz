@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import Highcharts from 'highcharts'
 
 export class DonutChart extends React.Component {
@@ -8,7 +9,7 @@ export class DonutChart extends React.Component {
     }
 
   componentDidMount() {
-	this.chart = $(React.findDOMNode(this.refs.chart)).highcharts({
+	this.chart = $(ReactDOM.findDOMNode(this.refs.chart)).highcharts({
             chart: {
                 type: 'pie'
             },
