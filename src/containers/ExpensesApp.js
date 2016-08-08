@@ -33,6 +33,7 @@ export default class ExpensesApp extends Component {
 
           <ExpenseList
             expenses={this.props.expenses}
+            addCategory={this.props.addCategory}
           />
         </div>
         <Total
@@ -75,6 +76,7 @@ function mapStateToProps(state){
 export default connect(
   mapStateToProps,
   {
-    fetchExpenses: fetchExpenses
+    fetchExpenses: fetchExpenses,
+    addCategory: addCategory
   }
 )(ExpensesApp)

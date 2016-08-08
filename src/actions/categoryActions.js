@@ -1,4 +1,11 @@
 import Axios from 'axios'
 
 export const ADD_CATEGORY = 'ADD_CATEGORY';
-export const CATEGORY_UPDATE = 'CATEGORY_UPDATE';
+
+export function addCategory(id, category){
+  return {
+    type: ADD_CATEGORY,
+    id: ...id,
+    category
+  }
+}
