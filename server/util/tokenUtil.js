@@ -1,21 +1,20 @@
-var jwt = require('jwt-simple');
+const jwt = require('jwt-simple');
 
 exports.createToken = function(request, response, user_id){
-  var payload = {'user_id': user_id};
-  var secret = 'mavmeerzrule'
-  var token = jwt.encode(payload, secret);
+  let payload = {'user_id': user_id}
+    , secret = 'mavmeerzrule'
+    , token = jwt.encode(payload, secret);
   response.set('token', token).status(201).json({token: token});
 };
 
-exports.checkToken = function(request, response, next){
-  console.log(request.headers['x-access-token']);
-  var secret = 'mavmeerzrule'
-  if(!request.headers['x-access-token']){
-    response.sendStatus(401);
-  } else {
-    var decodedToken = jwt.decode(request.headers['x-access-token'], secret);
-    request.user = {};
-    request.user.id = decodedToken.user_id;
-    next();
+exports.getUserIDFromToken = function(token){
+  let secret       = 'mavmeerzrule'
+    , decodedToken =  null
+    , userID       =  null;
+
+  if (token) {
+    decodedToken = jwt.decode(token, secret);
+    userID = decodedToken.user_id;
   }
+  return userID;
 };
