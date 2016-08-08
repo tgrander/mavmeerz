@@ -31,7 +31,7 @@ export default class ExpensesApp extends Component {
     return (
       <div>
         <div className="expense-list-container">
-          
+          <Dropdown />
           <ExpenseList
             expenses={this.props.expenses}
           />
