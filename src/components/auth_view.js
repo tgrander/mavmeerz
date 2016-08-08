@@ -19,7 +19,7 @@ class AuthView extends Component {
     return (
       <div className="auth-view">
         <h2 className="auth-view-logo">ZENMO</h2>
-        <p className="auth-view-slogan">Attain Financial Nirvana</p>
+        <p className="auth-view-slogan">Financial Nirvana</p>
         <br/>
         <p className="auth-view-p">Begin Your Journey to Mindful Budgeting</p>
         <Link to="/signup" className="btn hvr-bounce-to-left">SIGNUP</Link>
