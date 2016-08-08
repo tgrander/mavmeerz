@@ -12,11 +12,14 @@ exports.addUser = (user) => {
 };
 
 
-
-exports.getUser = (user) => {
+/**
+  This function will take an email for input and return a
+  'User' Bookshelf model 
+ */
+exports.getUser = (userEmail) => {
   return new Promise((resolve,reject) => {
-    new User().fetch({id: user.id}).then((data) => {
-      resolve(data.attributes)
+    new User().fetch({email: userEmail}).then((user) => {
+      resolve(user)
     })
   });
 };
