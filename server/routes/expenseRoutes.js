@@ -23,7 +23,9 @@ router.post('/', (req, res) => {
       util.addExpensesToDB(req.body.expenses)
       // send back expenses array as default response
       .then(success => util.getExpensesFromDB())
-      .then(expenses => res.status(201).send(expenses));
+      .catch(err => console.log('error in addExpensesToDB:', err))
+      .then(expenses => res.status(201).send(expenses))
+      .catch(err => console.log('Error in getExpensesFromDB:', err));
     } else {
       res.send('request body needs expenses!');
     }

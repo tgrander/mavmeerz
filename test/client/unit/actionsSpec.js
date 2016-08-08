@@ -23,7 +23,11 @@ describe('async actions', () => {
 
   it('creates UPLOAD_SUCCESS when fetching upload has been done', () => {
     nock('http://localhost:8080')
-    .post('/v1/api/expenses')
+    .post('/v1/api/expenses', {
+      expenses: {
+        // Date:
+      }
+    })
        .reply(201, {
          ok: true
        });
