@@ -14,7 +14,6 @@ import { connect } from 'react-redux'
 
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
-import Dropdown from '../components/Dropdown'
 
 import { fetchExpenses } from '../actions/expensesActions.js'
 
@@ -31,7 +30,7 @@ export default class ExpensesApp extends Component {
     return (
       <div>
         <div className="expense-list-container">
-          <Dropdown />
+
           <ExpenseList
             expenses={this.props.expenses}
           />
