@@ -89,7 +89,10 @@ export function fetchExpenses(){
   return dispatch => {
     dispatch(requestExpenses())
     return Axios.get("/v1/api/expenses/")
-      .then(res => dispatch(receiveExpenses(res.data)))
+      .then(res => {
+        dispatch(receiveExpenses(res.data))
+        dispatch(getTotal(computeTotal(res.data)))
+      })
       .catch(err => console.error(err))
   }
 }
