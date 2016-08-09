@@ -13,7 +13,7 @@ function addExpensesToDB(expenses, userId) {
   return new Promise((resolve, reject) => {
     CSVController.addFile('expenses')
       .then((fileId) => {
-        return expenseController.addAllExpenses(lowerCaseCategories(expenses),fileId);
+        return expenseController.addAllExpenses(processExpenses(expenses),fileId);
       })
       .then(() => {
         resolve('success');
@@ -54,6 +54,7 @@ function updateExpenseCategoryinDB(expenseId, category, callback) {
 function bulkUpdateExpenseCategoriesinDB(expenses) {
   return new Promise((resolve, reject) => {
     expenses.forEach((expense) => {
+      lowerCaseKeys(expense);
       expenseController.updateExpenseCategory(expense.id, expense.category);
     });
     resolve('success');
