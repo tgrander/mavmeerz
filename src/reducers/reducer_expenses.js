@@ -49,7 +49,7 @@ export default function expenses(state=INITIAL_STATE, action){
       console.log("IDs of selected: ", action.id);
       console.log("Category", action.category);
       return Object.assign({}, state, {
-        expenses: action.expenses
+        expenses: action.expenses.data
       })
       break;
     default:
