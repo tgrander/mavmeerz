@@ -19,6 +19,7 @@ router.get('/', (req, res, next) => {
 
 // send expenses, currently expects 'text/csv'
 router.post('/', (req, res, next) => {
+  let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
     console.log(req.headers);
     // check if proper request made
     if (req.body.expenses) {
