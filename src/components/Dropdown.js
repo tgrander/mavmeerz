@@ -3,9 +3,14 @@ import '../css/dropdown.css'
 import DropdownItem from './DropdownItem'
 import categories from '../assets/categoriesData'
 
-const Dropdown = () => {
+const Dropdown = ({categorize}) => {
 
-  const categoryList = categories.map(category => <DropdownItem category={category}/>)
+  const categoryList = categories.map(category =>
+    <DropdownItem
+        category={category}
+        categorize={categorize}
+    />
+  )
 
   return (
     <div>
@@ -13,6 +18,8 @@ const Dropdown = () => {
         <ul>
           <li class="current-menu-item"><a href="#">Add</a></li>
           <li class="current-menu-item"><a href="#">Delete</a></li>
+          <li class="current-menu-item"><a href="#">Upload CSV</a></li>
+          <li class="current-menu-item"><a href="#">Filter By Date</a></li>
           <li><a href="#">Categorize</a>
             <ul>
               {categoryList}

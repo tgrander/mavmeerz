@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 
-import { fetchExpenses } from '../actions/expensesActions.js'
+import { fetchExpenses, updateCategories } from '../actions/expensesActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
@@ -33,6 +33,7 @@ export default class ExpensesApp extends Component {
 
           <ExpenseList
             expenses={this.props.expenses}
+            updateCategories={this.props.updateCategories.bind(this)}
           />
         </div>
         <Total
@@ -75,6 +76,7 @@ function mapStateToProps(state){
 export default connect(
   mapStateToProps,
   {
-    fetchExpenses: fetchExpenses
+    fetchExpenses: fetchExpenses,
+    updateCategories: updateCategories
   }
 )(ExpensesApp)
