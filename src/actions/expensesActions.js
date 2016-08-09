@@ -111,7 +111,7 @@ export function uploadCSV(csv){
 //
 export function updateCategories(expenses, category){
   return dispatch => {
-    return Axios.put('/', {
+    return Axios.put('/v1/api/expenses/', {
       expenses: expenses,
       category: category
     })
