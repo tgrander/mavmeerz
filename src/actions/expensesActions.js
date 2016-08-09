@@ -80,7 +80,9 @@ function addCategory(id, category){
 export function fetchExpenses(){
   return dispatch => {
     dispatch(requestExpenses())
-    return Axios.get("/v1/api/expenses/")
+    return Axios.get("/v1/api/expenses/", {
+      headers: {'x-access-token': window.localStorage.getItem('zenmoToken')}
+    })
       .then(res => {
         dispatch(receiveExpenses(res.data))
         dispatch(getTotal(computeTotal(res.data)))
@@ -96,6 +98,7 @@ export function uploadCSV(csv){
       return Axios({
         method: 'POST',
         url: '/v1/api/expenses',
+        headers: {'x-access-token': window.localStorage.getItem('zenmoToken')},
         data: {expenses: csv}
       })
     .then(res =>  {

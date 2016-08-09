@@ -3,7 +3,12 @@ const File = require('../models/csvFile.js');
 
 
 exports.addFile = (csvTitle, callback) => {
-  return new File({csvTitle: csvTitle}).save();
+  // return new File({csvTitle: csvTitle}).save();
+  return new Promise((resolve,reject) => {
+    new File({csvTitle: csvTitle}).save().then((newFileData) =>{
+      resolve(newFileData.attributes.id)
+    });
+  });
 };
 
 /**
