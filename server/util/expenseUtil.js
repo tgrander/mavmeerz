@@ -15,7 +15,7 @@ function addExpensesToDB(expenses, userId) {
     console.log('expenses after processExpenses', expenses);
     CSVController.addFile('expenses')
       .then((fileId) => {
-        return expenseController.addAllExpenses(expenses,fileId);
+        return expenseController.addAllExpenses(expenses,fileId,userId);
       })
       .then(() => {
         resolve('success');

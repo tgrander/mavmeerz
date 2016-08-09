@@ -1,3 +1,4 @@
+"use strict"
 const jwt = require('jwt-simple');
 
 exports.createToken = function(request, response, user_id){

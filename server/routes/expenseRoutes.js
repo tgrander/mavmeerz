@@ -24,7 +24,7 @@ router.post('/', (req, res, next) => {
     // check if proper request made
     if (req.body.expenses) {
       // add expenses to dB
-      expenseUtil.addExpensesToDB(req.body.expenses)
+      expenseUtil.addExpensesToDB(req.body.expenses,userID)
       // send back expenses array as default response
       .then(success => expenseUtil.getExpensesFromDB())
       .catch(err => console.log('error in addExpensesToDB:', err))
