@@ -5,15 +5,15 @@ const testCSV = __dirname + '/../test.csv';
 const expenseController = require('../controllers/expenseController.js');
 const CSVController     = require('../controllers/csvFileController.js');
 
-function addExpensesToDB(expenses, callback) {
+function addExpensesToDB(expenses, userId) {
     // CSVController.addFile is here because it is required to
     // link a foreign id to the expense table. The CSV table will
     // eventually be replaced by a user table
 
   return new Promise((resolve, reject) => {
     CSVController.addFile('expenses')
-      .then(() => {
-        return expenseController.addAllExpenses(processExpenses(expenses));
+      .then((fileId) => {
+        return expenseController.addAllExpenses(lowerCaseCategories(expenses),fileId);
       })
       .then(() => {
         resolve('success');
