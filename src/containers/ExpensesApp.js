@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 
-import { fetchExpenses } from '../actions/expensesActions.js'
+import { fetchExpenses, updateCategories } from '../actions/expensesActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
@@ -33,7 +33,7 @@ export default class ExpensesApp extends Component {
 
           <ExpenseList
             expenses={this.props.expenses}
-            addCategory={this.props.addCategory}
+            updateCategories={this.props.updateCategories.bind(this)}
           />
         </div>
         <Total
@@ -64,7 +64,6 @@ props you want to pass to a child presentational component you are wrapping
 */
 function mapStateToProps(state){
   const { expenses, isFetching, total } = state.expensesReducer
-  console.log('EXPENSES: ', expenses);
   return {
     expenses: expenses,
     isFetching: isFetching,
@@ -77,6 +76,6 @@ export default connect(
   mapStateToProps,
   {
     fetchExpenses: fetchExpenses,
-    addCategory: addCategory
+    updateCategories: updateCategories
   }
 )(ExpensesApp)

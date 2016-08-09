@@ -1,14 +1,14 @@
 import React from 'react'
 
-const DropdownItem = ({category, addCategory}) => {
+const DropdownItem = ({category, categorize}) => {
 
-  const click = (e) => {
+  const handleClick = (e) => {
     e.preventDefault()
-    addCategory(category)
+    categorize(category)
   }
 
   return (
-    <li><a href="" onClick={click}>{category}</a></li>
+    <li><a href="" onClick={e => handleClick(e)}>{category}</a></li>
   )
 
 }
