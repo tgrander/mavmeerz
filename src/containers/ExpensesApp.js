@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
-import ChartApp from './ChartApp.js'
+
 
 import { fetchExpenses, updateCategories } from '../actions/expensesActions.js'
 
