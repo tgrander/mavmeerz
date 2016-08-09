@@ -51,11 +51,10 @@ function updateExpenseCategoryinDB(expenseId, category, callback) {
 
 }
 
-function bulkUpdateExpenseCategoriesinDB(expenses) {
+function bulkUpdateExpenseCategoriesinDB(expenses, category) {
   return new Promise((resolve, reject) => {
-    expenses.forEach((expense) => {
-      lowerCaseKeys(expense);
-      expenseController.updateExpenseCategory(expense.id, expense.category);
+    expenses.forEach((id) => {
+      expenseController.updateExpenseCategory(id, category);
     });
     resolve('success');
   });

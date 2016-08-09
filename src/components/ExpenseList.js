@@ -28,7 +28,9 @@ class ExpenseList extends Component {
         <div>
           <div className="transactions">
             <h3>TRANSACTIONS</h3>
-            <Dropdown />
+            <Dropdown
+                categorize={this._categorize.bind(this)}
+            />
             <BootstrapTable
                     data={ this.props.expenses }
                     striped={ true }
