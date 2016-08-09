@@ -22,18 +22,18 @@ class AuthView extends Component {
       <div className="auth-view">
 
         <div className="auth-view-logo">
-          <h2>ZENMO</h2>
-          <p className="auth-view-slogan">Financial Nirvana</p>
+          <h1 className="logo">ZENMO</h1>
+          <p className="slogan">Financial Nirvana</p>
         </div>
 
-        <div className='auth-signup'>
-          <p className="auth-view-p">Begin Your Journey to Mindful Budgeting</p>
-          <Link to="/signup" className="btn hvr-bounce-to-left">SIGNUP</Link>
+        <div className='signup'>
+          <p className="text">Begin Your Journey <br/> to Mindful Budgeting</p>
+          <Link to="/signup" className="btn hvr-bounce-to-left text">SIGNUP</Link>
         </div>
 
-        <div className='auth-login'>
-          <p className="auth-view-p">Or Continue To Collect Budget Karma</p>
-          <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link>
+        <div className='login'>
+          <p className="text">Or Continue To Collect <br/> Budget Karma</p>
+          <Link to="/login" className="btn hvr-bounce-to-left text">LOGIN</Link>
         </div>
 
       </div>
