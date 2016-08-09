@@ -39,8 +39,10 @@ router.put('/', (req, res) => {
   // utility function to update category for an array of
   // expenses in expenses DB
   if (req.body.expenses) {
-    let expenses = req.body.expenses;
-    expenseUtil.bulkUpdateExpenseCategoriesinDB(expenses)
+    //expenses = array of ids of expenses to be updated
+    const expenses = req.body.expenses,
+          category = req.body.category
+    expenseUtil.bulkUpdateExpenseCategoriesinDB(expenses, category)
       .then(success => expenseUtil.getExpensesFromDB())
       .then(expenses => res.send(expenses));
   } else {

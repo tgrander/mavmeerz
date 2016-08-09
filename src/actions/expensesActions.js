@@ -66,11 +66,10 @@ function computeTotal(expensesArr){
 }
 
 //CATEGORIES ACTION CREATORS
-function addCategory(id, category){
+function addCategory(expenses){
   return {
     type: ADD_CATEGORY,
-    id,
-    category
+    expenses: expenses
   }
 }
 
@@ -110,9 +109,15 @@ export function uploadCSV(csv){
 }
 
 //
-export function updateCategories(id, category){
+export function updateCategories(expenses, category){
   return dispatch => {
-    // return Axios.put(`/${id}`, {category: categories})
-    dispatch(addCategory(id, category))
+    return Axios.put('/', {
+      expenses: expenses,
+      category: category
+    })
+    .then(expenses => {
+      dispatch(addCategory(expenses))
+    })
+    .catch(err => console.error(err))
   }
 }

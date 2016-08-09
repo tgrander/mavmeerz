@@ -46,11 +46,11 @@ export default function expenses(state=INITIAL_STATE, action){
       })
       break;
     case ADD_CATEGORY:
-      // return Object.assign({}, state, {
-      //   expenses: action.expenses
-      // })
       console.log("IDs of selected: ", action.id);
       console.log("Category", action.category);
+      return Object.assign({}, state, {
+        expenses: action.expenses
+      })
       break;
     default:
       return state;
