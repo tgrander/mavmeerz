@@ -74,6 +74,7 @@ export default connect(
   (state) => {
     console.log('UploadApp [state] is', state);
     const { expenses, isFetching } = state.expensesReducer
+    console.log('mapStateToProps expenses are: ', expenses);
     return {
       expenses: expenses,
       isFetching: isFetching
