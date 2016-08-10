@@ -12,6 +12,9 @@ export default (
     <IndexRoute component={AuthView}/>
     <Route path='/signup' component={SignupForm}/>
     <Route path='/login' component={LoginForm}/>
-    <Route path='/dashboard' component={Dashboard}/>
+    <Route path='/dashboard' component={Dashboard}>
+      <Route path='/transactions'/>
+      <Route path='/budget'/>
+    </Route>
   </Route>
 )
