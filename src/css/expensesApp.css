@@ -5,13 +5,13 @@
 
 .expense-list-container,
 .chart-container {
-  top: 16%
+  top: 15%
 }
 
 .expense-list-container {
   position: absolute;
   left: 5%;
-  width: 52%;
+  width: 48%;
 }
 
 .chart-container {
