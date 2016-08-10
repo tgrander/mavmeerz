@@ -18,11 +18,24 @@ exports.addAllExpenses = (expenseDataArr,fileId,userId) => {
   return new Promise((resolve, reject) => {
     console.log('expense data array lowercased ?', expenseDataArr[0]);
     expenseDataArr.forEach((expense) => {
-      new Expense({description: expense.description, amount: expense.amount, category: expense.category, statementId: fileId, userId: userId, date: '2016-08-08'}).save()
+
+      let inDate = {
+        year: expense['date'].match(/\d+/g)[2],
+        month: expense['date'].match(/\d+/g)[0],
+        day: expense['date'].match(/\d+/g)[1]
+      }
+
+      new Expense({description: expense.description, amount: expense.amount, category: expense.category, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save()
     });
     resolve('success');
   });
 };
+
+// const dateFormatter = (date) => {
+//
+//
+//
+// }
 
 /**
   This function will take in a user id input and then return an array

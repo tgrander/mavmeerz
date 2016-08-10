@@ -2,10 +2,10 @@
 const File = require('../models/csvFile.js');
 
 
-exports.addFile = (csvTitle, callback) => {
+exports.addFile = (csvTitle, userId) => {
   // return new File({csvTitle: csvTitle}).save();
   return new Promise((resolve,reject) => {
-    new File({csvTitle: csvTitle}).save().then((newFileData) =>{
+    new File({csvTitle: csvTitle, userId: userId}).save().then((newFileData) =>{
       resolve(newFileData.attributes.id)
     });
   });
