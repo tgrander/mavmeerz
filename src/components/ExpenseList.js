@@ -3,7 +3,6 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 // import Expense from './Expense.js'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
-import '../css/styles.css'
 import ExpensesApp from '../containers/ExpensesApp.js'
 
 class ExpenseList extends Component {
