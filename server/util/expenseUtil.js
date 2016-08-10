@@ -13,7 +13,7 @@ function addExpensesToDB(expenses, userId) {
   return new Promise((resolve, reject) => {
     expenses = processExpenses(expenses);
     console.log('expenses after processExpenses', expenses);
-    CSVController.addFile('expenses')
+    CSVController.addFile('expenses',userId)
       .then((fileId) => {
         return expenseController.addAllExpenses(expenses,fileId,userId);
       })
