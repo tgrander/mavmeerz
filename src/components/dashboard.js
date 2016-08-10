@@ -1,8 +1,9 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router'
+import { Link, IndexLink } from 'react-router'
 import ReactAnimate from 'react-addons-css-transition-group'
 import ExpensesApp from '../containers/ExpensesApp.js'
+import BudgetApp from '../containers/BudgetApp'
 import Navbar from './Navbar'
 import '../css/dashboard.css'
 
@@ -30,7 +31,13 @@ class Dashboard extends Component {
         <div className="nav">
           <Navbar />
         </div>
-        <ExpensesApp/>
+        <div className="dash-nested-paths-nav">
+          <ul className="dash-paths">
+            <li className="dash-link"><IndexLink to='/dashboard'>TRANSACTIONS</IndexLink></li>
+            <li className="dash-link"><Link to='/budget'>BUDGET</Link></li>
+          </ul>
+        </div>
+        {this.props.children}
       </div>
     )
   }
