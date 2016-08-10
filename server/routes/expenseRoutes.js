@@ -19,11 +19,12 @@ router.get('/', (req, res, next) => {
 
 // send expenses, currently expects 'text/csv'
 router.post('/', (req, res, next) => {
+  let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
     console.log(req.headers);
     // check if proper request made
     if (req.body.expenses) {
       // add expenses to dB
-      expenseUtil.addExpensesToDB(req.body.expenses)
+      expenseUtil.addExpensesToDB(req.body.expenses,userID)
       // send back expenses array as default response
       .then(success => expenseUtil.getExpensesFromDB())
       .catch(err => console.log('error in addExpensesToDB:', err))
@@ -39,8 +40,10 @@ router.put('/', (req, res) => {
   // utility function to update category for an array of
   // expenses in expenses DB
   if (req.body.expenses) {
-    let expenses = req.body.expenses;
-    expenseUtil.bulkUpdateExpenseCategoriesinDB(expenses)
+    //expenses = array of ids of expenses to be updated
+    const expenses = req.body.expenses,
+          category = req.body.category
+    expenseUtil.bulkUpdateExpenseCategoriesinDB(expenses, category)
       .then(success => expenseUtil.getExpensesFromDB())
       .then(expenses => res.send(expenses));
   } else {

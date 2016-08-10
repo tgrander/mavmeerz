@@ -4,10 +4,12 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
 import '../css/styles.css'
+import ExpensesApp from '../containers/ExpensesApp.js'
 
 class ExpenseList extends Component {
   constructor(props){
     super(props)
+
   }
 
   _categorize(category){
@@ -21,31 +23,33 @@ class ExpenseList extends Component {
   render(){
     if (this.props.expenses.length>0) {
       return (
-        <div className="transactions">
-          <h3>TRANSACTIONS</h3>
-          <Dropdown
-              categorize={this._categorize.bind(this)}
-          />
-          <BootstrapTable
-              data={ this.props.expenses }
-              striped={ true }
-              hover={ true }
-              selectRow={ {mode: 'checkbox', clickToSelect: true, bgColor: 'yellow'} }
-              ref='table'
-          >
-            <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
-            <TableHeaderColumn dataField='date' editable={ { type: 'textarea' } }>Date</TableHeaderColumn>
-            <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
-            <TableHeaderColumn dataField='category' editable={ { type: 'dropdown'} }>Category</TableHeaderColumn>
-            <TableHeaderColumn dataField='amount' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
+        <div>
+          <div className="transactions">
 
-          </BootstrapTable>
+            <Dropdown
+                categorize={this._categorize.bind(this)}
+            />
+            <BootstrapTable
+                    data={ this.props.expenses }
+                    striped={ true }
+                    hover={ true }
+                    selectRow={{mode: 'checkbox', clickToSelect: true, bgColor: 'yellow'}}
+                    ref='table'
+            >
+              <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
+              <TableHeaderColumn dataField='date' editable={ { type: 'textarea' } }>Date</TableHeaderColumn>
+              <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
+              <TableHeaderColumn dataField='category' editable={ { type: 'dropdown'} }>Category</TableHeaderColumn>
+              <TableHeaderColumn dataField='amount' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
+
+            </BootstrapTable>
+          </div>
         </div>
       )
 
     } else {
       return (
-        <div>
+        <div className='no-expenses'>
           <p>You have no expenses yet! Upload files below to get started.</p><br/>
           <Upload/><br/>
           <p>Or add your expenses manually.</p>

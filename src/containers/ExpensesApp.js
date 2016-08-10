@@ -14,12 +14,17 @@ import { connect } from 'react-redux'
 
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
+import ChartApp from './ChartApp.js'
+
+import '../css/expensesApp.css'
 
 import { fetchExpenses, updateCategories } from '../actions/expensesActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
+
+    this.state = {total: 0}
   }
 
   componentWillMount(){
@@ -28,17 +33,23 @@ export default class ExpensesApp extends Component {
 
   render(){
     return (
-      <div>
-        <div className="expense-list-container">
+      <div className="expenseApp-container">
 
+        <div className="expense-list-container">
           <ExpenseList
             expenses={this.props.expenses}
             updateCategories={this.props.updateCategories.bind(this)}
+            total={this.props.total}
           />
         </div>
-        <Total
-          total={this.props.total}
-        />
+
+        <div className="chart-container">
+          <Total
+              total={this.props.total}
+          />
+          <ChartApp />
+        </div>
+
       </div>
     )
   }
@@ -47,14 +58,9 @@ export default class ExpensesApp extends Component {
 ExpensesApp.PropTypes = {
   // Injected by Redux
   expenses: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
   fetchExpenses: PropTypes.func.isRequired
 }
-
-/*
-function to calculate total from expenses array
-@param = expenses array from state
-@return = integer
-*/
 
 /*
 function that describes how to transform the current Redux store state into the
@@ -64,7 +70,7 @@ props you want to pass to a child presentational component you are wrapping
 */
 function mapStateToProps(state){
   const { expenses, isFetching, total } = state.expensesReducer
-  console.log('EXPENSES: ', expenses);
+  console.log('Expenses: ', expenses );
   return {
     expenses: expenses,
     isFetching: isFetching,
