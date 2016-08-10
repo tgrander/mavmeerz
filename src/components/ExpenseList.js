@@ -17,7 +17,7 @@ class ExpenseList extends Component {
   _categorize(category){
     const selected = this.refs.table.state.selectedRowKeys
     console.log('Category from _categorize function: ', category);
-    if (selected.length > 1) {
+    if (selected.length > 0) {
       this.props.updateCategories(selected, category)
     }
   }
