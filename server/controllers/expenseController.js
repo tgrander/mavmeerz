@@ -20,9 +20,9 @@ exports.addAllExpenses = (expenseDataArr,fileId,userId) => {
     expenseDataArr.forEach((expense) => {
 
       let inDate = {
-        year: expense['Trans Date'].match(/\d+/g)[2],
-        month: expense['Trans Date'].match(/\d+/g)[0],
-        day: expense['Trans Date'].match(/\d+/g)[1]
+        year: expense['date'].match(/\d+/g)[2],
+        month: expense['date'].match(/\d+/g)[0],
+        day: expense['date'].match(/\d+/g)[1]
       }
 
       new Expense({description: expense.description, amount: expense.amount, category: expense.category, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save()
