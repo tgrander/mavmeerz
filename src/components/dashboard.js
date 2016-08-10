@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import ReactAnimate from 'react-addons-css-transition-group'
 import ExpensesApp from '../containers/ExpensesApp.js'
+import Navbar from './Navbar'
 import '../css/dashboard.css'
 
 // import UploadApp from '../containers/UploadApp'
@@ -26,8 +27,8 @@ class Dashboard extends Component {
   render() {
     return (
       <div classNam="dash">
-        <div className="nav dash-logout">
-          <Link to='/login' className="logout hvr-bounce-to-left">Logout</Link>
+        <div className="nav">
+          <Navbar />
         </div>
         <ExpensesApp/>
       </div>
