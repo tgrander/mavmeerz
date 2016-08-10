@@ -26,10 +26,10 @@ function addExpensesToDB(expenses, userId) {
 
 // takes expenses from MySQL db, puts them into an array of objects,
 // and then sends it into a callback
-function getExpensesFromDB() {
+function getExpensesFromDB(user) {
   return new Promise((resolve, reject) => {
     let results = [];
-    expenseController.getAllExpenses()
+    expenseController.getExpenses(user)
       .then((expenses) => {
         expenses.forEach((expense) => {
           results.push(expense.attributes);
