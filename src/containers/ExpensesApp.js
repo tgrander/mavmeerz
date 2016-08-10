@@ -14,7 +14,9 @@ import { connect } from 'react-redux'
 
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
+import ChartApp from './ChartApp.js'
 
+import '../css/expensesApp.css'
 
 import { fetchExpenses, updateCategories } from '../actions/expensesActions.js'
 
@@ -31,7 +33,8 @@ export default class ExpensesApp extends Component {
 
   render(){
     return (
-      <div>
+      <div className="expenseApp-container">
+
         <div className="expense-list-container">
           <ExpenseList
             expenses={this.props.expenses}
@@ -39,6 +42,14 @@ export default class ExpensesApp extends Component {
             total={this.props.total}
           />
         </div>
+
+        <div className="chart-container">
+          <Total
+              total={this.props.total}
+          />
+          <ChartApp />
+        </div>
+
       </div>
     )
   }

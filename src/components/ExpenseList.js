@@ -3,9 +3,7 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 // import Expense from './Expense.js'
 import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
-import Total from './Total.js'
 import '../css/styles.css'
-import ChartApp from '../containers/ChartApp.js'
 import ExpensesApp from '../containers/ExpensesApp.js'
 
 class ExpenseList extends Component {
@@ -27,7 +25,7 @@ class ExpenseList extends Component {
       return (
         <div>
           <div className="transactions">
-            <h3>TRANSACTIONS</h3>
+
             <Dropdown
                 categorize={this._categorize.bind(this)}
             />
@@ -37,7 +35,6 @@ class ExpenseList extends Component {
                     hover={ true }
                     selectRow={{mode: 'checkbox', clickToSelect: true, bgColor: 'yellow'}}
                     ref='table'
-
             >
               <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
               <TableHeaderColumn dataField='date' editable={ { type: 'textarea' } }>Date</TableHeaderColumn>
@@ -47,19 +44,12 @@ class ExpenseList extends Component {
 
             </BootstrapTable>
           </div>
-          <Total
-          total={this.props.total}
-          />
-          <div>
-            Chart goes here:
-            <ChartApp/>
-          </div>
         </div>
       )
 
     } else {
       return (
-        <div>
+        <div className='no-expenses'>
           <p>You have no expenses yet! Upload files below to get started.</p><br/>
           <Upload/><br/>
           <p>Or add your expenses manually.</p>

@@ -1,7 +1,12 @@
-.dash {
-  background: url(../assets/D.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.nav {
+  width: 100%;
+  position: fixed;
+  height: 15%;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.logout {
+  margin: 5px 5px 5px 5px;
+  right: 5%;
 }
