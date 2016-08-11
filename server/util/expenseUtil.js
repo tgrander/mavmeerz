@@ -5,15 +5,17 @@ const testCSV = __dirname + '/../test.csv';
 const expenseController = require('../controllers/expenseController.js');
 const CSVController     = require('../controllers/csvFileController.js');
 
-function addExpensesToDB(expenses, callback) {
+function addExpensesToDB(expenses, userId) {
     // CSVController.addFile is here because it is required to
     // link a foreign id to the expense table. The CSV table will
     // eventually be replaced by a user table
 
   return new Promise((resolve, reject) => {
-    CSVController.addFile('expenses')
-      .then(() => {
-        return expenseController.addAllExpenses(processExpenses(expenses));
+    expenses = processExpenses(expenses);
+    console.log('expenses after processExpenses', expenses);
+    CSVController.addFile('expenses',userId)
+      .then((fileId) => {
+        return expenseController.addAllExpenses(expenses,fileId,userId);
       })
       .then(() => {
         resolve('success');
@@ -24,10 +26,10 @@ function addExpensesToDB(expenses, callback) {
 
 // takes expenses from MySQL db, puts them into an array of objects,
 // and then sends it into a callback
-function getExpensesFromDB() {
-  let results = [];
+function getExpensesFromDB(user) {
   return new Promise((resolve, reject) => {
-    expenseController.getAllExpenses()
+    let results = [];
+    expenseController.getExpenses(user)
       .then((expenses) => {
         expenses.forEach((expense) => {
           results.push(expense.attributes);
@@ -51,32 +53,54 @@ function updateExpenseCategoryinDB(expenseId, category, callback) {
 
 }
 
-function bulkUpdateExpenseCategoriesinDB(expenses) {
+function bulkUpdateExpenseCategoriesinDB(expenses, category) {
   return new Promise((resolve, reject) => {
-    expenses.forEach((expense) => {
-      expenseController.updateExpenseCategory(expense.id, expense.category);
+    expenses.forEach((id) => {
+      expenseController.updateExpenseCategory(id, category);
     });
     resolve('success');
   });
 }
 
 
+/////////////////////// HELPERS //////////////////////////////
+
+
 // this makes sure every heading is lowercased regardless
 // of the CSV it is coming from
 function processExpenses(expenses) {
-  let result = [];
-  expenses.forEach(expense => {
-    console.log(expense);
-    // match cost check if cost is reported as amount instead
-    // + match date
-    // + match description
-    matchHeaders(expense);
-    console.log('this is the expense', expense);
-    lowerCaseKeys(expense);
-    console.log('this is the expense after lowerCaseKeys', expense);
-    result.push(expense);
-  });
-  return result;
+  lowerCaseExpensesHeaders(expenses);
+  matchAllHeaders(expenses);
+  makeExpensesPositive(expenses);
+  expenses = filterOutDeposits(expenses);
+  return expenses;
+}
+
+function filterOutDeposits(expenses) {
+  let results = expenses.filter(expense => Number(expense.amount) > 0);
+  console.log('results', results);
+  expenses = results;
+  console.log('expenses', expenses);
+  return results;
+}
+
+function makeExpensesPositive(expenses) {
+  let negatives = expenses.reduce((total, expense) => {
+    return Number(expense.amount) < 0 ? total + 1 : total;
+  }, 0);
+  if (negatives !== 0 && (expenses.length / negatives) > 0.5) {
+    expenses.forEach((expense) => {
+      expense.amount = Number(expense.amount) * -1;
+    });
+  }
+}
+
+function lowerCaseExpensesHeaders(expenses) {
+  expenses.forEach(expense => lowerCaseKeys(expense));
+}
+
+function matchAllHeaders(expenses) {
+  expenses.forEach(expense => matchHeaders(expense));
 }
 
 function matchHeaders(expense) {
@@ -92,7 +116,6 @@ function matchDateHeader(expense) {
  for (let key in expense) {
    if (key.match(/date/i)) {
      expense['date'] = expense[key];
-     delete expense[key];
    }
  }
 }
@@ -101,7 +124,6 @@ function matchCostHeader(expense) {
   for (let key in expense) {
     if (key.match(/cost/i) || key.match(/amount/i) || key.match(/debit/i)) {
       expense['amount'] = expense[key];
-      delete expense[key];
     }
   }
 }

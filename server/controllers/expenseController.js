@@ -14,15 +14,28 @@ exports.addExpense = (csvId, description, amount, category, callback) => {
 */
 
 //expense.Date needs to be formatted properly
-exports.addAllExpenses = (expenseDataArr) => {
+exports.addAllExpenses = (expenseDataArr,fileId,userId) => {
   return new Promise((resolve, reject) => {
     console.log('expense data array lowercased ?', expenseDataArr[0]);
     expenseDataArr.forEach((expense) => {
-      new Expense({description: expense.description, amount: expense.amount, category: expense.category}).save()
+
+      let inDate = {
+        year: expense['date'].match(/\d+/g)[2],
+        month: expense['date'].match(/\d+/g)[0],
+        day: expense['date'].match(/\d+/g)[1]
+      }
+
+      new Expense({description: expense.description, amount: expense.amount, category: expense.category, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save()
     });
     resolve('success');
   });
 };
+
+// const dateFormatter = (date) => {
+//
+//
+//
+// }
 
 /**
   This function will take in a user id input and then return an array
@@ -31,7 +44,7 @@ exports.addAllExpenses = (expenseDataArr) => {
 */
 exports.getExpenses = (user) => {
   return new Promise((resolve,reject) => {
-    new Expense().fetch({userId: user.id}).then((data) => {
+    new Expense().query("where", "userId", "=", user.id).fetchAll().then((data) => {
       resolve(data.models)
     });
   });

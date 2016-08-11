@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 
 import {Link} from 'react-router'
 
+import '../css/auth-view.css'
+
 class AuthView extends Component {
 
   static contextTypes = {
@@ -18,16 +20,22 @@ class AuthView extends Component {
   render() {
     return (
       <div className="auth-view">
-        <h2 className="auth-view-logo">ZENMO</h2>
-        <p className="auth-view-slogan">Financial Nirvana</p>
-        <br/>
-        <p className="auth-view-p">Begin Your Journey to Mindful Budgeting</p>
-        <Link to="/signup" className="btn hvr-bounce-to-left">SIGNUP</Link>
-        <br/>
-        <p className="auth-view-p">Or Continue To Collect Budget Karma</p>
-        <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link><br/>
 
-        <Link to="/dashboard">Navigate to Main Page (temporary link while routes and tokens are undercon)</Link>
+        <div className="auth-view-logo">
+          <h1 className="logo">ZENMO</h1>
+          <p className="slogan">Financial Nirvana</p>
+        </div>
+
+        <div className='signup'>
+          <p className="text">Begin Your Journey <br/> to Mindful Budgeting</p>
+          <Link to="/signup" className="btn hvr-bounce-to-left text">SIGNUP</Link>
+        </div>
+
+        <div className='login'>
+          <p className="text">Or Continue To Collect <br/> Budget Karma</p>
+          <Link to="/login" className="btn hvr-bounce-to-left text">LOGIN</Link>
+        </div>
+
       </div>
     )
   }

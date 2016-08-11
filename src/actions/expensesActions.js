@@ -1,12 +1,4 @@
 import Axios from 'axios'
-/*
-Axios + redux-promise http request to server for expenses
-  -> When redux-promise is used (it is imported in configureStore.js),
-  .then / .catch are automatically taken care of. Becasue the return object
-  includes 'payload' property with a value of the Axios request, redux-promise
-  knows to wait to return object until the status of the Axios request changes
-  from 'pending' to 'success'
-*/
 
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
@@ -14,28 +6,15 @@ export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
 export const PARSING_CSV = 'PARSING_CSV';
 export const GET_TOTAL = 'GET_TOTAL';
-
+export const ADD_CATEGORY = 'ADD_CATEGORY'
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
-
-/*
-Action creator
-Notifies state that expenses have been requested -> signal 'load feature'
-*/
 export function requestExpenses(){
   return {
     type: REQUEST_EXPENSES,
     isFetching: true
   };
 }
-//Action creator
-export function uploadRequest(){
-  return {
-    type: UPLOAD_REQUEST,
-    isFetching: true
-  };
-}
-//Action creator
 export function receiveExpenses(expenses){
   return {
     type: RECEIVE_EXPENSES,
@@ -43,7 +22,14 @@ export function receiveExpenses(expenses){
     expenses: expenses
   };
 }
-//Action creator
+
+//UPLOAD ACTIONS CREATORS
+export function uploadRequest(){
+  return {
+    type: UPLOAD_REQUEST,
+    isFetching: true
+  };
+}
 export function uploadSuccess(response){
   return {
     type: UPLOAD_SUCCESS,
@@ -51,8 +37,6 @@ export function uploadSuccess(response){
     expenses: response
   };
 }
-
-//Action creator
 export function parsingCSV() {
   return {
     type: PARSING_CSV,
@@ -61,14 +45,15 @@ export function parsingCSV() {
   };
 }
 
-//Action creator
+
+
+//CALCULATE TOTAL ACTION CREATOR
 export function getTotal(total) {
   return {
     type: GET_TOTAL,
     total: total
   }
 }
-
 function computeTotal(expensesArr){
   let total = 0
   if (expensesArr) {
@@ -80,10 +65,16 @@ function computeTotal(expensesArr){
   return total;
 }
 
+//CATEGORIES ACTION CREATORS
+function addCategory(expenses){
+  return {
+    type: ADD_CATEGORY,
+    expenses: expenses
+  }
+}
+
 /*
-Async Action creator
-Create async flow that notifies state of different stages of fetching expenses
-as the expenses are requested and received
+~~~~~~~ ASYNC ACTION CREATORS ~~~~~~~~
 */
 export function fetchExpenses(){
   return dispatch => {
@@ -112,6 +103,20 @@ export function uploadCSV(csv){
     .then(res =>  {
       dispatch(uploadSuccess(res.data))
       dispatch(getTotal(computeTotal(res.data)))
+    })
+    .catch(err => console.error(err))
+  }
+}
+
+//
+export function updateCategories(expenses, category){
+  return dispatch => {
+    return Axios.put('/v1/api/expenses/', {
+      expenses: expenses,
+      category: category
+    })
+    .then(expenses => {
+      dispatch(addCategory(expenses))
     })
     .catch(err => console.error(err))
   }

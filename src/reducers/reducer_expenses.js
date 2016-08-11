@@ -5,7 +5,8 @@ import {
   UPLOAD_SUCCESS,
   UPLOAD_FAILURE,
   PARSING_CSV,
-  GET_TOTAL
+  GET_TOTAL,
+  ADD_CATEGORY
 } from '../actions/expensesActions.js';
 
 const INITIAL_STATE = {expenses: [], total: 0, isFetching: false}
@@ -42,6 +43,13 @@ export default function expenses(state=INITIAL_STATE, action){
     case GET_TOTAL:
       return Object.assign({}, state, {
         total: action.total
+      })
+      break;
+    case ADD_CATEGORY:
+      console.log("IDs of selected: ", action.id);
+      console.log("Category", action.category);
+      return Object.assign({}, state, {
+        expenses: action.expenses.data
       })
       break;
     default:

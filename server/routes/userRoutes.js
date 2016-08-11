@@ -34,7 +34,7 @@ router.post('/login', (req, res) => {
 
     util.attemptLogin(userInfo)
       .then((results) => {
-        createToken(req,  res, results.id)
+        createToken(req, res, results.id)
         // below code not needed becasue createToken() handles response
         // res.status(201).send(results);
       })

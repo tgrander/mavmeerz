@@ -1,3 +1,4 @@
+"use strict"
 const jwt = require('jwt-simple');
 
 exports.createToken = function(request, response, user_id){
@@ -9,11 +10,10 @@ exports.createToken = function(request, response, user_id){
 
 exports.getUserIDFromToken = function(token){
   let secret       = 'mavmeerzrule'
-    , decodedToken =  null
     , userID       =  null;
 
   if (token) {
-    decodedToken = jwt.decode(token, secret);
+    let decodedToken = jwt.decode(token, secret);
     userID = decodedToken.user_id;
   }
   return userID;

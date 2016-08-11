@@ -14,11 +14,11 @@ exports.addUser = (user) => {
 
 /**
   This function will take an email for input and return a
-  'User' Bookshelf model 
+  'User' Bookshelf model
  */
 exports.getUser = (userEmail) => {
   return new Promise((resolve,reject) => {
-    new User().fetch({email: userEmail}).then((user) => {
+    new User({email: userEmail}).fetch().then((user) => {
       resolve(user)
     })
   });
