@@ -49,13 +49,15 @@ knex.schema.hasTable('categories').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('categories', function(table) {
       table.increments('id').primary();
-      table.string('other');
+      table.string('category');
       table.timestamps();
-      console.log(`Created categories table`);
+      console.log(`Created main categories table`);
     });
   }
 })
 
+
+// TODO - remove category column, link categoryId to sub category table
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
@@ -63,8 +65,8 @@ knex.schema.hasTable('expenses').then(function(exists) {
       table.string('description');
       table.string('category');
       table.float('amount',6,2);
-      table.date('date')
-      table.integer('categoryId').unsigned().references('id').inTable('categories');
+      table.date('date');
+      table.integer('categoryId').unsigned().references('id').inTable('sub_categories');
       table.integer('statementId').unsigned().references('id').inTable('statements');
       table.integer('userId').unsigned().references('id').inTable('users');
       table.timestamps();
@@ -72,7 +74,6 @@ knex.schema.hasTable('expenses').then(function(exists) {
     });
   }
 });
-
 
 const Bookshelf = require('bookshelf')(knex);
 
