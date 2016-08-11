@@ -56,6 +56,17 @@ knex.schema.hasTable('categories').then(function(exists) {
   }
 })
 
+knex.schema.hasTable('sub_categories').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('sub_categories', function(table) {
+      table.increments('id').primary();
+      table.string('sub_category');
+      table.timestamps();
+      console.log(`Created sub categories table`);
+    });
+  }
+})
+
 
 // TODO - remove category column, link categoryId to sub category table
 knex.schema.hasTable('expenses').then(function(exists) {
