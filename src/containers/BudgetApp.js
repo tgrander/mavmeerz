@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BudgetTable from '../components/BudgetTable'
 
 class BudgetApp extends Component {
 
@@ -9,7 +10,7 @@ class BudgetApp extends Component {
   render(){
     return (
       <div>
-        <p>Hello World</p>
+        <BudgetTable />
       </div>
     )
   }
