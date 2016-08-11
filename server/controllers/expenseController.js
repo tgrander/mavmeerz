@@ -44,7 +44,7 @@ exports.addAllExpenses = (expenseDataArr,fileId,userId) => {
 */
 exports.getExpenses = (user) => {
   return new Promise((resolve,reject) => {
-    new Expense().fetch({userId: user.id}).then((data) => {
+    new Expense().query("where", "userId", "=", user.id).fetchAll().then((data) => {
       resolve(data.models)
     });
   });
