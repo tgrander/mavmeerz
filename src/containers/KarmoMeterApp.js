@@ -1,34 +1,39 @@
 import React, { Component } from 'react'
+import d3 from 'd3'
 
 
 export default class KarmoMeter extends Component {
 
+  constructor(props){
+    super(props)
+
+    this.config = liquidFillGaugeDefaultSettings();
+    this.config.circleColor = "#FF7777";
+    this.config.textColor = "#FF4444";
+    this.config.waveTextColor = "#FFAAAA";
+    this.config.waveColor = "#FFDDDD";
+    this.config.circleThickness = 0.2;
+    this.config.textVertPosition = 0.2;
+    this.config.waveAnimateTime = 1000;
+
+    this.gauge = loadLiquidFillGauge("fillgauge", 28, this.config);
+  }
+
+  NewValue(){
+      if(Math.random() > .5){
+          return Math.round(Math.random()*100);
+      } else {
+          return (Math.random()*100).toFixed(1);
+      }
+  }
+
   render(){
     return (
-      <svg id="fillgauge2" width="19%" height="200" onclick="gauge2.update(NewValue());"></svg>
+      <svg id="fillgauge" width="19%" height="200" onclick={this.gauge.update(this.NewValue())}></svg>
     )
   }
 
 }
-
-    var config1 = liquidFillGaugeDefaultSettings();
-    config1.circleColor = "#FF7777";
-    config1.textColor = "#FF4444";
-    config1.waveTextColor = "#FFAAAA";
-    config1.waveColor = "#FFDDDD";
-    config1.circleThickness = 0.2;
-    config1.textVertPosition = 0.2;
-    config1.waveAnimateTime = 1000;
-    var gauge2= loadLiquidFillGauge("fillgauge2", 28, config1);
-
-
-    function NewValue(){
-        if(Math.random() > .5){
-            return Math.round(Math.random()*100);
-        } else {
-            return (Math.random()*100).toFixed(1);
-        }
-    }
 
 function liquidFillGaugeDefaultSettings(){
     return {
