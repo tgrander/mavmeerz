@@ -43,10 +43,16 @@ export default class BudgetApp extends Component {
 
 export default connect(
   (state) => {
+<<<<<<< fab39be83f4d72a3495d06a6189320850cacdb0c
     const { expenses, total } = state.expensesReducer
     return {
       expenses: expenses,
       total: total
+=======
+    const { expenses } = state.expensesReducer
+    return {
+      expenses: expenses
+>>>>>>> [feat] Budget table
     }
   }
 )(BudgetApp)
