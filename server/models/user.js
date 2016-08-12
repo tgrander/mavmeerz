@@ -1,9 +1,9 @@
 "use strict"
-const Bookshelf = require('../db.js')
+const db = require('../db.js')
     , bcrypt = require('bcrypt-nodejs')
     , Promise = require('bluebird');
 
-var User = Bookshelf.Model.extend({
+var User = db.Bookshelf.Model.extend({
   tableName: 'users',
   hasTimestamps: true,
   initialize: function(){

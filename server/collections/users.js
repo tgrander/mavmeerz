@@ -1,7 +1,7 @@
-const Bookshelf = require('../db.js');
+const db = require('../db.js');
 const User = require('../models/user');
 
-const Users = new Bookshelf.Collection();
+const Users = new db.Bookshelf.Collection();
 
 Users.model = User;
 
