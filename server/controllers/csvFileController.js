@@ -19,9 +19,8 @@ exports.addFile = (csvTitle, userId) => {
 */
 exports.getFileId = (fileName) => {
   return new Promise((resolve,reject) => {
-    new File().fetch({csvTitle: fileName.csvTitle}).then((data) => {
+    new File().query("where", "category", "=", fileName.csvTitle).fetch().then((data) => {
       resolve(data.attributes.id)
     })
   });
-  // new File().query('where','csvTitle','=',fileName).fetch().then((data) => callback(data.attributes))
 };
