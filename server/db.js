@@ -81,7 +81,20 @@ knex.schema.hasTable('join_categories').then(function(exists) {
   }
 })
 
-// TODO - remove category column, link categoryId to sub category table
+knex.schema.hasTable('goals').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('goals', function(table) {
+      table.increments('id').primary();
+      table.integer('userId').unsigned().references('id').inTable('users');
+      table.integer('subCatId').unsigned().references('id').inTable('sub_categories');
+      table.float('amount',6,2);
+      table.timestamps();
+      console.log(`Created goals table`);
+    });
+  }
+});
+
+// TODO - remove category column
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
