@@ -3,6 +3,7 @@ const express = require('express');
 const router  = express.Router();
 const util    = require('../util/userUtil.js');
 const createToken = require('../util/tokenUtil').createToken
+const catUtil = require('../util/categoryUtil.js')
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -13,6 +14,12 @@ router.use((req, res, next) => {
 // post login
 router.post('/signup', (req, res) => {
   let userInfo = req.body;
+
+  catUtil.checkInitialCatTableFill().then((exists) => {
+    if(!exists){
+      catUtil.initialCatTableFill()
+    }
+  });
 
   if (userInfo.email !== undefined && userInfo.password !== undefined) {
     util.addUserToDB(userInfo)

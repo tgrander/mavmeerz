@@ -1,7 +1,7 @@
 "use strict"
-const Bookshelf = require('../db.js')
+const db = require('../db.js')
 
-let Expense = Bookshelf.Model.extend({
+let Expense = db.Bookshelf.Model.extend({
   tableName: 'expenses',
   hasTimestamps:true
 });
