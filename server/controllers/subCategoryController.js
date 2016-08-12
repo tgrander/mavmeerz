@@ -1,5 +1,5 @@
 "use strict"
-const subCategory = require('../models/subcategory.js');
+const subCategory = require('../models/subCategory.js');
 
 exports.addSubCategory = (sCat) => {
   new subCategory({sub_category: sCat}).save();
