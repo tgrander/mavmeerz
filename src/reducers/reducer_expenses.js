@@ -46,11 +46,13 @@ export default function expenses(state=INITIAL_STATE, action){
       })
       break;
     case ADD_CATEGORY:
-      console.log("IDs of selected: ", action.id);
-      console.log("Category", action.category);
-      return Object.assign({}, state, {
-        expenses: action.expenses.data
-      })
+      console.log('Expenses in reducer after update: ', action.expenses.data);
+      if (action.expenses.data.length) {
+        return Object.assign({}, state, {
+          expenses: action.expenses.data
+        })
+      }
+      return state
       break;
     default:
       return state;

@@ -112,10 +112,12 @@ export function uploadCSV(csv){
 export function updateCategories(expenses, category){
   return dispatch => {
     return Axios.put('/v1/api/expenses/', {
+      token: window.localStorage.getItem('zenmoToken'), 
       expenses: expenses,
       category: category
     })
     .then(expenses => {
+      console.log('EXPENSES/after category update', expenses.data);
       dispatch(addCategory(expenses))
     })
     .catch(err => console.error(err))
