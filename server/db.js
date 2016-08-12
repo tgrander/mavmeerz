@@ -48,6 +48,18 @@ knex.schema.hasTable('statements').then(function(exists) {
   }
 });
 
+knex.schema.hasTable('accounts').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('accounts', function(table) {
+      table.increments('id').primary();
+      table.string('name');
+      table.integer('userId').unsigned().references('id').inTable('users');
+      table.timestamps();
+      console.log('Created accounts table');
+    });
+  }
+});
+
 knex.schema.hasTable('categories').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('categories', function(table) {
