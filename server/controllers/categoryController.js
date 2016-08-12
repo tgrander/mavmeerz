@@ -9,4 +9,12 @@ exports.checkCategoryTable = () => {
   return new Promise((resolve,reject) => {
       new Category().fetch().then((data) => resolve(data));
   });
-}
+};
+
+exports.getCategoryId = (cat) => {
+  return new Promise((resolve,reject) => {
+    new Category().query("where", "category", "=", cat).fetch().then((data) => {
+      resolve(data.attributes.id)
+    })
+  });
+};

@@ -4,6 +4,8 @@ const router  = express.Router();
 const util    = require('../util/userUtil.js');
 const createToken = require('../util/tokenUtil').createToken
 const catUtil = require('../util/categoryUtil.js')
+const subCatUtil = require('../util/subCategoryUtil.js')
+const joinCatUtil = require('../util/joinCategoryUtil.js')
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -17,7 +19,9 @@ router.post('/signup', (req, res) => {
 
   catUtil.checkInitialCatTableFill().then((exists) => {
     if(!exists){
-      catUtil.initialCatTableFill()
+      catUtil.initialCatTableFill();
+      subCatUtil.initialSubCatTableFill();
+      joinCatUtil.initialJoinCatTableFill();
     }
   });
 
