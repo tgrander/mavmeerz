@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import '../css/datepicker.css'
+// import '../css/datepicker.css'
+import 'react-date-picker/index.css'
 import { MultiMonthView } from 'react-date-picker'
 
 // class DatePicker extends React.Component {
