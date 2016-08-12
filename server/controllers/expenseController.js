@@ -48,7 +48,6 @@ exports.getExpenses = (user) => {
       resolve(data.models)
     });
   });
-  // return new Expense().query("where", "userId", "=", user.id).fetch();
 };
 
 /**

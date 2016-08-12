@@ -13,6 +13,9 @@
      password : '',
      database : 'zenmoDB',
      charset  : 'utf8'
+   },
+   seeds: {
+     directory: './seeds.js'
    }
  });
 
@@ -98,4 +101,7 @@ knex.schema.hasTable('expenses').then(function(exists) {
 
 const Bookshelf = require('bookshelf')(knex);
 
-module.exports = Bookshelf;
+module.exports = {
+  Bookshelf: Bookshelf,
+  knex: knex
+};

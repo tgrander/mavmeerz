@@ -4,6 +4,8 @@ const csv = require('csv');
 const testCSV = __dirname + '/../test.csv';
 const expenseController = require('../controllers/expenseController.js');
 const CSVController     = require('../controllers/csvFileController.js');
+// const categoryController = require('../controllers/categoryController.js');
+
 
 function addExpensesToDB(expenses, userId) {
     // CSVController.addFile is here because it is required to
