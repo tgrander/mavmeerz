@@ -1,8 +1,9 @@
 import React from 'react'
 import '../css/dropdown.css'
 import Categories from './DropdownCategory'
+import Accounts from './DropdownAccount'
 
-const Dropdown = ({categorize}) => {
+const Dropdown = ({categorize, selectAccount}) => {
 
   return (
     <div>
@@ -15,6 +16,11 @@ const Dropdown = ({categorize}) => {
           <li><a href="#">Categorize</a>
             <Categories
               categorize={categorize}
+            />
+          </li>
+          <li><a href='#'>Select Account</a>
+            <Accounts
+              selectAccount={selectAccount}
             />
           </li>
         </ul>

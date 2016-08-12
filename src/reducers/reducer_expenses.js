@@ -1,3 +1,6 @@
+// const _ = require('lodash');
+import * as _ from 'lodash';
+
 import {
   REQUEST_EXPENSES,
   RECEIVE_EXPENSES,
@@ -6,7 +9,8 @@ import {
   UPLOAD_FAILURE,
   PARSING_CSV,
   GET_TOTAL,
-  ADD_CATEGORY
+  ADD_CATEGORY,
+  ADD_ACCOUNT
 } from '../actions/expensesActions.js';
 
 const INITIAL_STATE = {expenses: [], total: 0, isFetching: false}
@@ -46,13 +50,34 @@ export default function expenses(state=INITIAL_STATE, action){
       })
       break;
     case ADD_CATEGORY:
-      console.log('Expenses in reducer after update: ', action.expenses.data);
       if (action.expenses.data.length) {
         return Object.assign({}, state, {
           expenses: action.expenses.data
         })
       }
-      return state
+      return state;
+      break;
+    case ADD_ACCOUNT:
+      if (action.expenses.length) {
+        /////// TEMP ///////
+        //add to object for now until backend complete//
+        let clonedState = _.cloneDeep(state);
+        console.log('=====> clonedState in reducer_expenses', clonedState);
+        for (let i = 0; i < action.expenses.length; i++) {
+          let expenseID = action.expenses[i];
+          for (let j = 0; j < clonedState.expenses.length; j++) {
+            let currentExpense = clonedState.expenses[j];
+            if (currentExpense.id == expenseID) {
+              currentExpense.account = action.account;
+              break;
+            }
+          }
+        }
+        return Object.assign({}, state, {
+          expenses: clonedState.expenses
+        });
+      }
+      return state;
       break;
     default:
       return state;
