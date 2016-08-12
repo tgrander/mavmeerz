@@ -18,7 +18,7 @@ const Categories = ({categorize}) => {
   const nestedList = () => {
     return categories.map(category => {
         return (
-          <li><a href="">{category}</a>
+          <li><a href="" onClick={e => e.preventDefault()}>{category}</a>
             <ul>
               {subCategoryList(category)}
             </ul>
