@@ -28,7 +28,6 @@ class ExpenseList extends Component {
             <Dropdown
                 categorize={this._categorize.bind(this)}
             />
-            
             <BootstrapTable
                     data={ this.props.expenses }
                     striped={ true }

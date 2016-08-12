@@ -13,9 +13,7 @@ const Dropdown = ({categorize}) => {
           <li class="current-menu-item"><a href="#">Upload CSV</a></li>
           <li class="current-menu-item"><a href="#">Filter By Date</a></li>
           <li><a href="#">Categorize</a>
-            <Categories
-              categorize={categorize}
-            />
+            
           </li>
         </ul>
       </nav>
