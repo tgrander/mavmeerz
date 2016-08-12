@@ -82,7 +82,7 @@ knex.schema.hasTable('join_categories').then(function(exists) {
   }
 })
 
-// TODO - remove category column, link categoryId to sub category table
+// TODO - remove category column
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
