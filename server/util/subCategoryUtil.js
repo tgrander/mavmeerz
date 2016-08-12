@@ -21,5 +21,5 @@ function checkInitialSubCatTableFill() {
 module.exports = {
   initialSubCatTableFill: initialSubCatTableFill,
   checkInitialSubCatTableFill: checkInitialSubCatTableFill,
-  updateSubCatEss: updateSubCatEsss
+  updateSubCatEss: updateSubCatEss
 }

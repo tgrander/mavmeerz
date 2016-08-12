@@ -37,9 +37,11 @@ router.use((req, res, next) => {
 // const apiRoute      = router.route('/v1/api')
 const expenseRoutes = require('./routes/expenseRoutes');
 const userRoutes    = require('./routes/userRoutes');
+const goalRoutes    = require('./routes/goalRoutes')
 
 app.use('/v1/api', userRoutes);
 app.use('/v1/api/expenses', expenseRoutes);
+app.use('/v1/api/goals', expenseRoutes);
 
 // redirect gets to root if address not found //
 app.get('*', (req, res) => {
