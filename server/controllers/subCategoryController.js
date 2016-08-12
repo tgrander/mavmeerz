@@ -14,7 +14,9 @@ exports.getSubCategoryId = (cat) => {
 };
 
 exports.updateSubCategoryEss = (sCat,essState) => {
-  new subCategory({sub_category: sCat}).save({essential: essState});
+  exports.getSubCategoryId(sCat).then((id) => {
+    new subCategory({id: id}).save({essential: essState});
+  });
 };
 
 exports.checkSubCategoryTable = () => {
