@@ -1,16 +1,9 @@
 import React from 'react'
 import '../css/dropdown.css'
-import DropdownItem from './DropdownItem'
-import categories from '../assets/categoriesData'
+import Categories from './DropdownCategory'
+import Accounts from './DropdownAccount'
 
-const Dropdown = ({categorize}) => {
-
-  const categoryList = categories.map(category =>
-    <DropdownItem
-        category={category}
-        categorize={categorize}
-    />
-  )
+const Dropdown = ({categorize, selectAccount}) => {
 
   return (
     <div>
@@ -21,9 +14,14 @@ const Dropdown = ({categorize}) => {
           <li class="current-menu-item"><a href="#">Upload CSV</a></li>
           <li class="current-menu-item"><a href="#">Filter By Date</a></li>
           <li><a href="#">Categorize</a>
-            <ul>
-              {categoryList}
-            </ul>
+            <Categories
+              categorize={categorize}
+            />
+          </li>
+          <li><a href='#'>Select Account</a>
+            <Accounts
+              selectAccount={selectAccount}
+            />
           </li>
         </ul>
       </nav>

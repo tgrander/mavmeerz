@@ -1,20 +1,29 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import BudgetTable from '../components/BudgetTable'
 
-class BudgetApp extends Component {
+export default class BudgetApp extends Component {
 
   constructor(props){
     super(props)
+    console.log('EXPENSES YAS:', this.props.expenses );
   }
 
   render(){
     return (
       <div>
-        <BudgetTable />
+        <BudgetTable/>
       </div>
     )
   }
 
 }
 
-export default BudgetApp
+export default connect(
+  (state) => {
+    const { expenses } = state.expensesReducer
+    return {
+      expenses: expenses
+    }
+  }
+)(BudgetApp)

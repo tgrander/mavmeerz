@@ -4,6 +4,8 @@ const csv = require('csv');
 const testCSV = __dirname + '/../test.csv';
 const expenseController = require('../controllers/expenseController.js');
 const CSVController     = require('../controllers/csvFileController.js');
+// const categoryController = require('../controllers/categoryController.js');
+
 
 function addExpensesToDB(expenses, userId) {
     // CSVController.addFile is here because it is required to
@@ -13,7 +15,7 @@ function addExpensesToDB(expenses, userId) {
   return new Promise((resolve, reject) => {
     expenses = processExpenses(expenses);
     console.log('expenses after processExpenses', expenses);
-    CSVController.addFile('expenses')
+    CSVController.addFile('expenses',userId)
       .then((fileId) => {
         return expenseController.addAllExpenses(expenses,fileId,userId);
       })
@@ -26,10 +28,10 @@ function addExpensesToDB(expenses, userId) {
 
 // takes expenses from MySQL db, puts them into an array of objects,
 // and then sends it into a callback
-function getExpensesFromDB() {
+function getExpensesFromDB(user) {
   return new Promise((resolve, reject) => {
     let results = [];
-    expenseController.getAllExpenses()
+    expenseController.getExpenses(user)
       .then((expenses) => {
         expenses.forEach((expense) => {
           results.push(expense.attributes);

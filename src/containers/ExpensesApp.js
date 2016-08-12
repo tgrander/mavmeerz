@@ -14,31 +14,59 @@ import { connect } from 'react-redux'
 
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
-import ChartApp from './ChartApp.js'
+import Chart from '../components/Chart.js'
 
 import '../css/expensesApp.css'
 
-import { fetchExpenses, updateCategories } from '../actions/expensesActions.js'
+import { fetchExpenses, updateCategories, updateAccounts } from '../actions/expensesActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-
+    console.log('this.props in constructor in ExpensesApp', this.props);
     this.state = {total: 0}
   }
 
   componentWillMount(){
+    console.log('this.props.expenses in componentWillMount in ExpensesApp', this.props.expenses);
     this.props.fetchExpenses()
   }
 
+  parseCategoriesForChart() {
+    function filterByCategory(obj) {
+      if ('category' in obj && typeof(obj.category) === 'string' && obj.category !== null) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    let dataSum = 0;
+    let arrByCategory = this.props.expenses.filter(filterByCategory);
+    let reduced = arrByCategory.reduce((p,c) => {
+      p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount;
+      dataSum += c.amount;
+      return p;
+    }, {});
+
+    let result = [];
+    for (let key in reduced) {
+      result.push({name: key, y: Math.round((reduced[key] / dataSum) * 100)});
+    };
+    return result;
+  }
+
   render(){
+    var expenses = this.props.expenses;
     return (
       <div className="expenseApp-container">
 
         <div className="expense-list-container">
+
           <ExpenseList
-            expenses={this.props.expenses}
+            expenses={expenses}
             updateCategories={this.props.updateCategories.bind(this)}
+            updateAccounts={this.props.updateAccounts.bind(this)}
             total={this.props.total}
           />
         </div>
@@ -47,7 +75,9 @@ export default class ExpensesApp extends Component {
           <Total
               total={this.props.total}
           />
-          <ChartApp />
+          <Chart
+            data={this.parseCategoriesForChart()}
+          />
         </div>
 
       </div>
@@ -70,7 +100,7 @@ props you want to pass to a child presentational component you are wrapping
 */
 function mapStateToProps(state){
   const { expenses, isFetching, total } = state.expensesReducer
-  console.log('Expenses: ', expenses );
+  console.log('EXPENSES: ', expenses);
   return {
     expenses: expenses,
     isFetching: isFetching,
@@ -83,6 +113,7 @@ export default connect(
   mapStateToProps,
   {
     fetchExpenses: fetchExpenses,
-    updateCategories: updateCategories
+    updateCategories: updateCategories,
+    updateAccounts: updateAccounts
   }
 )(ExpensesApp)
