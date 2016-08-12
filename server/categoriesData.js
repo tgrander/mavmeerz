@@ -78,7 +78,14 @@ const allCategories = [
     ]
   },
   {
-    'Travel': []
+    'Travel': [
+      'Air Travel',
+      'Ground Travel',
+      'Hotel',
+      'Taxi',
+      'Rental Car',
+      'Vacation'
+    ]
   }
 ]
 
