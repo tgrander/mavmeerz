@@ -6,4 +6,4 @@ let joinCategory = db.Bookshelf.Model.extend({
   hasTimestamps:true
 });
 
-module.exports = subCategory;
+module.exports = joinCategory;
