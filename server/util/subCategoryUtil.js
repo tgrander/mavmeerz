@@ -5,7 +5,7 @@ const catData = require('../categoriesData.js');
 function initialSubCatTableFill() {
   catData.forEach((catObj) => {
     for(var mainCat in catObj){
-      catObj[mainCat].forEach((subCat) => subCategoryController.addSubCategory(subCat))
+      catObj[mainCat].forEach((subCat) => subCategoryController.addSubCategory(subCat,0))
     }
   });
 }

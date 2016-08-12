@@ -64,6 +64,7 @@ knex.schema.hasTable('sub_categories').then(function(exists) {
     return knex.schema.createTable('sub_categories', function(table) {
       table.increments('id').primary();
       table.string('sub_category');
+      table.boolean('essential');
       table.timestamps();
       console.log(`Created sub categories table`);
     });

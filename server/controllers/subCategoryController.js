@@ -1,8 +1,8 @@
 "use strict"
 const subCategory = require('../models/subCategory.js');
 
-exports.addSubCategory = (sCat) => {
-  new subCategory({sub_category: sCat}).save();
+exports.addSubCategory = (sCat,essState) => {
+  new subCategory({sub_category: sCat, essential: essState}).save();
 };
 
 exports.getSubCategoryId = (cat) => {
@@ -11,6 +11,10 @@ exports.getSubCategoryId = (cat) => {
       resolve(data.attributes.id)
     })
   });
+};
+
+exports.updateSubCategoryEss = (sCat,essState) => {
+  new subCategory({sub_category: sCat}).save({essential: essState});
 };
 
 exports.checkSubCategoryTable = () => {
