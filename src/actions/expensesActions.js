@@ -1,5 +1,7 @@
 import Axios from 'axios'
 
+import expensesUtil from '../utils/expensesUtils'
+
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
@@ -134,7 +136,6 @@ export function updateCategories(expenses, category){
       category: category
     })
     .then(expenses => {
-      console.log('EXPENSES/after category update', expenses.data);
       dispatch(addCategory(expenses))
     })
     .catch(err => console.error(err))
