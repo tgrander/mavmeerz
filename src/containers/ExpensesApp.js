@@ -35,6 +35,7 @@ export default class ExpensesApp extends Component {
       <div className="expenseApp-container">
 
         <div className="expense-list-container">
+
           <ExpenseList
             expenses={this.props.expenses}
             updateCategories={this.props.updateCategories.bind(this)}
