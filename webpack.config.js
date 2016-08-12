@@ -17,20 +17,24 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['es2015', 'stage-1', 'react']
-        }
+        },
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader!autoprefixer-loader'
       },
       // {
       //   test: /\.scss$/,
       //   loaders: ["style", "css", "sass"]
       // },
-      // {
-      //   test: /\.jpg$/,
-      //   loader: 'file-loader'
-      // },
-      // {
-      //   test:/\.(png|jpg)$/,
-      //   loader: 'url?limit=25000'
-      // }
+      {
+        test: /\.jpg$/,
+        loader: 'file-loader'
+      },
+      {
+        test:/\.(png|jpg)$/,
+        loader: 'url?limit=25000'
+      }
     ]
   },
   resolve: {
@@ -41,3 +45,11 @@ module.exports = {
     contentBase: './src/'
   }
 };
+
+/*
+loaders:[
+{
+  test: /\.css$/,
+  loader: 'style-loader!css-loader!autoprefixer-loader'
+},
+]*/
