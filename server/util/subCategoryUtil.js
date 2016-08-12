@@ -10,11 +10,16 @@ function initialSubCatTableFill() {
   });
 }
 
+function updateSubCatEss(subCat,essState) {
+  return subCategoryController.updateSubCategoryEss(subCat,essState)
+}
+
 function checkInitialSubCatTableFill() {
   return subCategoryController.checkSubCategoryTable()
 }
 
 module.exports = {
   initialSubCatTableFill: initialSubCatTableFill,
-  checkInitialSubCatTableFill: checkInitialSubCatTableFill
+  checkInitialSubCatTableFill: checkInitialSubCatTableFill,
+  updateSubCatEss: updateSubCatEsss
 }
