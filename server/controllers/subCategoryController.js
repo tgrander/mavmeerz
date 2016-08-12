@@ -1,12 +1,12 @@
 "use strict"
-const Category = require('../models/category.js');
+const subCategory = require('../models/subcategory.js');
 
-exports.addCategory = (cat) => {
-  new Category({category: cat}).save();
+exports.addSubCategory = (sCat) => {
+  new subCategory({sub_category: sCat}).save();
 };
 
-exports.checkCategoryTable = () => {
+exports.checkSubCategoryTable = () => {
   return new Promise((resolve,reject) => {
-      new Category().fetch().then((data) => resolve(data));
+      new subCategory().fetch().then((data) => resolve(data));
   });
 }
