@@ -63,6 +63,7 @@ exports.getAllExpenses = () => {
   // return new Expense().fetchAll();
 };
 
+// TODO fix this function to update the sub_category column
 exports.updateExpenseCategory = (expenseId, category, callback) => {
   // new Expense({id: expenseId}).save({category: category}).then(() => {
   //   callback('success');

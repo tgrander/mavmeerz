@@ -5,9 +5,13 @@ const catData = require('../categoriesData.js');
 function initialSubCatTableFill() {
   catData.forEach((catObj) => {
     for(var mainCat in catObj){
-      catObj[mainCat].forEach((subCat) => subCategoryController.addSubCategory(subCat))
+      catObj[mainCat].forEach((subCat) => subCategoryController.addSubCategory(subCat,0))
     }
   });
+}
+
+function updateSubCatEss(subCat,essState) {
+  return subCategoryController.updateSubCategoryEss(subCat,essState)
 }
 
 function checkInitialSubCatTableFill() {
@@ -16,5 +20,6 @@ function checkInitialSubCatTableFill() {
 
 module.exports = {
   initialSubCatTableFill: initialSubCatTableFill,
-  checkInitialSubCatTableFill: checkInitialSubCatTableFill
+  checkInitialSubCatTableFill: checkInitialSubCatTableFill,
+  updateSubCatEss: updateSubCatEsss
 }
