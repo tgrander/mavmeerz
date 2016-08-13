@@ -1,7 +1,5 @@
 import Axios from 'axios'
 
-import expensesUtil from '../utils/expensesUtils'
-
 export const REQUEST_EXPENSES = 'REQUEST_EXPENSES';
 export const RECEIVE_EXPENSES = 'RECEIVE_EXPENSES';
 export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
