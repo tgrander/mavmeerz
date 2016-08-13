@@ -3,11 +3,6 @@ import '../css/datepicker.css'
 // import 'react-date-picker/index.css'
 import { MultiMonthView } from 'react-date-picker'
 
-// class DatePicker extends React.Component {
-//   constructor(props) {
-//   super(props)
-// }
-
 const DatePicker = () => {
   console.log('DatePicker!');
   const now = Date.now()
@@ -25,15 +20,3 @@ const DatePicker = () => {
 }
 
 export default DatePicker
-
-// const onChange = (dateString, { dateMoment, timestamp }) => {
-//   console.log(dateString)
-// }
-//
-// let date = '2017-04-24'
-//
-// <Calendar
-//   dateFormat="YYYY-MM-DD"
-//   date={date}
-//   onChange={onChange}
-// />
