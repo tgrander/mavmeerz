@@ -6,7 +6,8 @@ export const UPLOAD_REQUEST = 'UPLOAD_REQUEST';
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
 export const PARSING_CSV = 'PARSING_CSV';
 export const GET_TOTAL = 'GET_TOTAL';
-export const ADD_CATEGORY = 'ADD_CATEGORY'
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const ADD_ACCOUNT = 'ADD_ACCOUNT';
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 export function requestExpenses(){
@@ -73,6 +74,15 @@ function addCategory(expenses){
   }
 }
 
+//ACCOUNTS ACTION CREATORS
+function addAccount(expenses, account) {
+  return {
+    type: ADD_ACCOUNT,
+    expenses: expenses,
+    account: account
+  };
+}
+
 /*
 ~~~~~~~ ASYNC ACTION CREATORS ~~~~~~~~
 */
@@ -112,12 +122,20 @@ export function uploadCSV(csv){
 export function updateCategories(expenses, category){
   return dispatch => {
     return Axios.put('/v1/api/expenses/', {
+      token: window.localStorage.getItem('zenmoToken'),
       expenses: expenses,
       category: category
     })
     .then(expenses => {
+      console.log('EXPENSES/after category update', expenses.data);
       dispatch(addCategory(expenses))
     })
     .catch(err => console.error(err))
   }
+}
+
+export function updateAccounts(expenses, account) {
+  return dispatch => {
+    dispatch(addAccount(expenses, account));
+  };
 }

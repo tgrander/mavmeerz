@@ -18,12 +18,12 @@ import Chart from '../components/Chart.js'
 
 import '../css/expensesApp.css'
 
-import { fetchExpenses, updateCategories } from '../actions/expensesActions.js'
+import { fetchExpenses, updateCategories, updateAccounts } from '../actions/expensesActions.js'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    console.log('this.props.expenses in constructor in ExpensesApp', this.props.expenses);
+    console.log('this.props in constructor in ExpensesApp', this.props);
     this.state = {total: 0}
   }
 
@@ -41,15 +41,17 @@ export default class ExpensesApp extends Component {
       }
     }
 
+    let dataSum = 0;
     let arrByCategory = this.props.expenses.filter(filterByCategory);
     let reduced = arrByCategory.reduce((p,c) => {
-     p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount
-      return p
+      p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount;
+      dataSum += c.amount;
+      return p;
     }, {});
 
     let result = [];
     for (let key in reduced) {
-      result.push({name: key, y: reduced[key]});
+      result.push({name: key, y: Math.round((reduced[key] / dataSum) * 100)});
     };
     return result;
   }
@@ -64,6 +66,7 @@ export default class ExpensesApp extends Component {
           <ExpenseList
             expenses={expenses}
             updateCategories={this.props.updateCategories.bind(this)}
+            updateAccounts={this.props.updateAccounts.bind(this)}
             total={this.props.total}
           />
         </div>
@@ -110,6 +113,7 @@ export default connect(
   mapStateToProps,
   {
     fetchExpenses: fetchExpenses,
-    updateCategories: updateCategories
+    updateCategories: updateCategories,
+    updateAccounts: updateAccounts
   }
 )(ExpensesApp)

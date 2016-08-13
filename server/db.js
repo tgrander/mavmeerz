@@ -13,6 +13,9 @@
      password : '',
      database : 'zenmoDB',
      charset  : 'utf8'
+   },
+   seeds: {
+     directory: './seeds.js'
    }
  });
 
@@ -45,17 +48,52 @@ knex.schema.hasTable('statements').then(function(exists) {
   }
 });
 
+knex.schema.hasTable('accounts').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('accounts', function(table) {
+      table.increments('id').primary();
+      table.string('name');
+      table.integer('userId').unsigned().references('id').inTable('users');
+      table.timestamps();
+      console.log('Created accounts table');
+    });
+  }
+});
+
 knex.schema.hasTable('categories').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('categories', function(table) {
       table.increments('id').primary();
-      table.string('other');
+      table.string('category');
       table.timestamps();
-      console.log(`Created categories table`);
+      console.log(`Created main categories table`);
     });
   }
 })
 
+knex.schema.hasTable('sub_categories').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('sub_categories', function(table) {
+      table.increments('id').primary();
+      table.string('sub_category');
+      table.timestamps();
+      console.log(`Created sub categories table`);
+    });
+  }
+})
+
+knex.schema.hasTable('join_categories').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('join_categories', function(table) {
+      table.integer('mainCatId').unsigned().references('id').inTable('categories');
+      table.integer('subCatId').unsigned().references('id').inTable('sub_categories');;
+      table.timestamps();
+      console.log(`Created join categories table`);
+    });
+  }
+})
+
+// TODO - remove category column, link categoryId to sub category table
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
@@ -63,8 +101,8 @@ knex.schema.hasTable('expenses').then(function(exists) {
       table.string('description');
       table.string('category');
       table.float('amount',6,2);
-      table.date('date')
-      table.integer('categoryId').unsigned().references('id').inTable('categories');
+      table.date('date');
+      table.integer('categoryId').unsigned().references('id').inTable('sub_categories');
       table.integer('statementId').unsigned().references('id').inTable('statements');
       table.integer('userId').unsigned().references('id').inTable('users');
       table.timestamps();
@@ -73,7 +111,9 @@ knex.schema.hasTable('expenses').then(function(exists) {
   }
 });
 
-
 const Bookshelf = require('bookshelf')(knex);
 
-module.exports = Bookshelf;
+module.exports = {
+  Bookshelf: Bookshelf,
+  knex: knex
+};
