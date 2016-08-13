@@ -1,5 +1,6 @@
 "use strict"
 const Expense = require('../models/expense.js')
+const subCategoryController = require('./subCategoryController.js')
 
 /**
   This function will add individual expenses.
@@ -63,10 +64,8 @@ exports.getAllExpenses = () => {
   // return new Expense().fetchAll();
 };
 
-// TODO fix this function to update the sub_category column
-exports.updateExpenseCategory = (expenseId, category, callback) => {
-  // new Expense({id: expenseId}).save({category: category}).then(() => {
-  //   callback('success');
-  // });
-  return new Expense({id: expenseId}).save({category: category});
+exports.updateExpenseCategory = (expenseId, category) => {
+  subCategoryController.getSubCategoryId(category).then((categoryId) => {
+    return new Expense({id: expenseId}).save({categoryId: categoryId});
+  });
 }
