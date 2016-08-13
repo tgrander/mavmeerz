@@ -8,6 +8,7 @@ export const PARSING_CSV = 'PARSING_CSV';
 export const GET_TOTAL = 'GET_TOTAL';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
+// export const TOGGLE_MODAL = 'TOGGLE_MODAL';
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 export function requestExpenses(){
@@ -48,12 +49,12 @@ export function parsingCSV() {
 
 
 
-//CALCULATE TOTAL ACTION CREATOR
+//TOTAL ACTION CREATOR
 export function getTotal(total) {
   return {
     type: GET_TOTAL,
     total: total
-  }
+  };
 }
 function computeTotal(expensesArr){
   let total = 0
@@ -71,7 +72,7 @@ function addCategory(expenses){
   return {
     type: ADD_CATEGORY,
     expenses: expenses
-  }
+  };
 }
 
 //ACCOUNTS ACTION CREATORS
@@ -83,6 +84,12 @@ function addAccount(expenses, account) {
   };
 }
 
+//DATE PICKER ACTION CREATOR
+// function toggleDatePickerModal() {
+//   return {
+//     type: TOGGLE_MODAL
+//   }
+// }
 /*
 ~~~~~~~ ASYNC ACTION CREATORS ~~~~~~~~
 */

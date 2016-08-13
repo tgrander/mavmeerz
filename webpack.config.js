@@ -17,7 +17,19 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: ['es2015', 'stage-1', 'react']
-        }
+        },
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.css$/,
+        exclude: /\.useable\.css$/, loader: "style!css"
+      },
+      {
+        test: /\.useable\.css$/,
+        loader: "style/useable!css"
       },
       // {
       //   test: /\.scss$/,
