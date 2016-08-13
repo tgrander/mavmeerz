@@ -29,7 +29,6 @@ router.post('/signup', (req, res) => {
   if (userInfo.email !== undefined && userInfo.password !== undefined) {
     util.addUserToDB(userInfo)
       .then((userData) => {
-        console.log('===================> returned user ', userData);
         goalUtil.initialGoalsTableFill(userData.id)
         createToken(req, res, userData.id)
         // below code not needed becasue createToken() handles response

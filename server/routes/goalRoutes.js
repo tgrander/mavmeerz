@@ -14,13 +14,13 @@ router.use((req, res, next) => {
 //get goals for specific user
 // router.get()
 
-//Post goals for specific user
-router.post('/', (req ,res, next) => {
+//Post upated goals for specific user
+router.post('/updateGoals', (req ,res, next) => {
 
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
 
   if(req.body.goals){
-    goalUtil.addUserGoalsToDB(req.body.goals,userID);
+    goalUtil.updateUserGoalsToDB(req.body.goals,userID);
   }
   res.status(201).send()
 });

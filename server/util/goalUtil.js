@@ -11,6 +11,12 @@ function addUserGoalsToDB(userGoals,userId) {
   });
 };
 
+function updateUserGoalsToDB(userGoals,userId) {
+  userGoals.forEach((goal) => {
+    goal.userId = userId;
+    goalController.updateGoal(goal);
+  });
+};
 
 function initialGoalsTableFill(userId) {
   catData.forEach((catObj) => {
@@ -29,5 +35,6 @@ function initialGoalsTableFill(userId) {
 
 module.exports = {
   addUserGoalsToDB: addUserGoalsToDB,
+  updateUserGoalsToDB: updateUserGoalsToDB,
   initialGoalsTableFill: initialGoalsTableFill
 }
