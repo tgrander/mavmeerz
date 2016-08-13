@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import '../css/datepicker.css'
-// import 'react-date-picker/index.css'
 import { MultiMonthView } from 'react-date-picker'
 
 const DatePicker = () => {
+
   console.log('DatePicker!');
   const now = Date.now()
 
@@ -18,5 +18,7 @@ const DatePicker = () => {
     </div>
   )
 }
+
+
 
 export default DatePicker

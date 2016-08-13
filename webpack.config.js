@@ -23,20 +23,26 @@ module.exports = {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
       },
-      { test: /\.css$/, exclude: /\.useable\.css$/, loader: "style!css" },
-      { test: /\.useable\.css$/, loader: "style/useable!css" }
+      {
+        test: /\.css$/,
+        exclude: /\.useable\.css$/, loader: "style!css"
+      },
+      {
+        test: /\.useable\.css$/,
+        loader: "style/useable!css"
+      },
       // {
       //   test: /\.scss$/,
       //   loaders: ["style", "css", "sass"]
       // },
-      {
-        test: /\.jpg$/,
-        loader: 'file-loader'
-      },
-      {
-        test:/\.(png|jpg)$/,
-        loader: 'url?limit=25000'
-      }
+      // {
+      //   test: /\.jpg$/,
+      //   loader: 'file-loader'
+      // },
+      // {
+      //   test:/\.(png|jpg)$/,
+      //   loader: 'url?limit=25000'
+      // }
     ]
   },
   resolve: {
@@ -47,11 +53,3 @@ module.exports = {
     contentBase: './src/'
   }
 };
-
-/*
-loaders:[
-{
-  test: /\.css$/,
-  loader: 'style-loader!css-loader!autoprefixer-loader'
-},
-]*/
