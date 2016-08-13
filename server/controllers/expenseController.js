@@ -14,7 +14,7 @@ exports.addExpense = (csvId, description, amount, category, callback) => {
 */
 
 //expense.Date needs to be formatted properly
-exports.addAllExpenses = (expenseDataArr,fileId,userId) => {
+exports.addAllExpenses = (accountId, expenseDataArr,fileId,userId) => {
   return new Promise((resolve, reject) => {
     console.log('expense data array lowercased ?', expenseDataArr[0]);
     expenseDataArr.forEach((expense) => {
@@ -25,7 +25,7 @@ exports.addAllExpenses = (expenseDataArr,fileId,userId) => {
         day: expense['date'].match(/\d+/g)[1]
       }
 
-      new Expense({description: expense.description, amount: expense.amount, category: expense.category, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save()
+      new Expense({accountId: accountId, description: expense.description, amount: expense.amount, category: expense.category, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save()
     });
     resolve('success');
   });
