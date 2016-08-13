@@ -14,9 +14,6 @@
      database : 'zenmoDB',
      charset  : 'utf8'
    },
-   seeds: {
-     directory: './seeds.js'
-   }
  });
 
 knex.schema.hasTable('users').then(function(exists) {

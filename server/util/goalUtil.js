@@ -1,11 +1,14 @@
 "use strict"
 const goalController = require('../controllers/goalController.js');
 
-function addUserGoalToDB(userGoal) {
-  return goalController.addGoal(userGoal)
-}
+function addUserGoalsToDB(userGoals,userId) {
+  userGoals.forEach((goal) => {
+    goal.userId = userId;
+    goalController.addGoal(goal)
+  });
+};
 
 
 module.exports = {
-  addUserGoalToDB: addUserGoalToDB
+  addUserGoalsToDB: addUserGoalsToDB
 }

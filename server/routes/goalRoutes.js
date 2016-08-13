@@ -20,13 +20,7 @@ router.post('/', (req ,res, next) => {
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
 
   if(req.body.goals){
-
-    let goalObj = {
-      userId: ,
-      subCatId: ,
-      amount:
-    }
-    goalUtil.addUserGoalToDB()
+    goalUtil.addUserGoalsToDB(req.body.goals,userID);
   }
 
 });
