@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BudgetTable from '../components/BudgetTable'
+import Total from '../components/Total'
+import '../css/BudgetTable.css'
 
 export default class BudgetApp extends Component {
 
@@ -27,8 +29,11 @@ export default class BudgetApp extends Component {
   render(){
     return (
       <div>
-        <BudgetTable
-            categoryTotals={this._categoryTotals(this.props.expenses)}
+        <div className='budget-table'>
+          <BudgetTable/>
+        </div>
+        <Total
+            total={this.props.total}
         />
       </div>
     )
@@ -38,9 +43,10 @@ export default class BudgetApp extends Component {
 
 export default connect(
   (state) => {
-    const { expenses } = state.expensesReducer
+    const { expenses, total } = state.expensesReducer
     return {
-      expenses: expenses
+      expenses: expenses,
+      total: total
     }
   }
 )(BudgetApp)
