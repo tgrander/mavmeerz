@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 });
 
 //get goals for specific user
-router.get()
+// router.get()
 
 //Post goals for specific user
 router.post('/', (req ,res, next) => {
@@ -22,5 +22,7 @@ router.post('/', (req ,res, next) => {
   if(req.body.goals){
     goalUtil.addUserGoalsToDB(req.body.goals,userID);
   }
-
+  res.status(201).send()
 });
+
+module.exports = router;
