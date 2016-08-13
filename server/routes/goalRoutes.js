@@ -12,7 +12,8 @@ router.use((req, res, next) => {
   next();
 });
 
-//get goals for specific user
+// TODO - choose correct endpoint name and structure response correctly
+//get sub category totals for specific userID
 router.get('/', (req,res,next) => {
   let result = [];
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
