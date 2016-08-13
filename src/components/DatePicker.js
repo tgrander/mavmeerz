@@ -9,8 +9,7 @@ export class DatePicker extends Component {
     super(props)
 
   }
-// const DatePicker = () => {
-
+  
   render() {
     console.log('DatePicker!');
     return (
@@ -21,7 +20,6 @@ export class DatePicker extends Component {
     )
   }
 }
-// }
 
 
 export default DatePicker

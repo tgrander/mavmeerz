@@ -64,5 +64,4 @@ export class DropDownApp extends Component {
 
 export default DropDownApp
 
-// <Modal show = {this.state.toggle} backdrop = 'true' onHide = {this.state.toggle}>
 // onClick={this.toggle}
