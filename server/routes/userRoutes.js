@@ -6,6 +6,7 @@ const createToken = require('../util/tokenUtil').createToken
 const catUtil = require('../util/categoryUtil.js')
 const subCatUtil = require('../util/subCategoryUtil.js')
 const joinCatUtil = require('../util/joinCategoryUtil.js')
+const goalUtil = require('../util/goalUtil.js')
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -27,8 +28,10 @@ router.post('/signup', (req, res) => {
 
   if (userInfo.email !== undefined && userInfo.password !== undefined) {
     util.addUserToDB(userInfo)
-      .then((results) => {
-        createToken(req, res, results.id)
+      .then((userData) => {
+        console.log('===================> returned user ', userData);
+        goalUtil.initialGoalsTableFill(userData.id)
+        createToken(req, res, userData.id)
         // below code not needed becasue createToken() handles response
         // res.status(201).send(results);
       })
