@@ -33,8 +33,13 @@ function initialGoalsTableFill(userId) {
   });
 };
 
+function getUserGoals(user) {
+  return goalController.getGoals(user)
+};
+
 module.exports = {
   addUserGoalsToDB: addUserGoalsToDB,
   updateUserGoalsToDB: updateUserGoalsToDB,
-  initialGoalsTableFill: initialGoalsTableFill
+  initialGoalsTableFill: initialGoalsTableFill,
+  getUserGoals: getUserGoals
 }

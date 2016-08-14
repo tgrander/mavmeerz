@@ -14,12 +14,12 @@ exports.getSubCategoryId = (cat) => {
 };
 
 //This function will return an array subCategory id
-exports.getAllSubCategoryId = () => {
+exports.getAllSubCategories = () => {
   return new Promise((resolve,reject) => {
     new subCategory().fetchAll().then((data) => {
       var idArray = []
       data.models.forEach((sCat)=>{
-        idArray.push(sCat.attributes.id)
+        idArray.push([sCat.attributes.id,sCat.attributes.sub_category])
       });
       resolve(idArray)
     })

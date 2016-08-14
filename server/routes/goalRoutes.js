@@ -19,21 +19,29 @@ router.get('/', (req,res,next) => {
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
 
   expenseUtil.getExpensesFromDB({id: userID}).then((expenses)=>{
+    goalUtil.getUserGoals({id: userID}).then((userGoals) => {
+      subCatUtil.getAllSubCats().then((sCats) => {
 
-    subCatUtil.getAllSubCatIds().then((sCatIds) => {
-      var catObj = {}
-      sCatIds.forEach((sCatId)=>{
-        var sum = 0;
-        expenses.forEach((expObj) => {
-          if(expObj.categoryId === sCatId){
-            sum += expObj.amount;
-          }
+        var catArr = []
+        sCats.forEach((sCat)=>{
+          var catObj = {}
+          var sum = 0;
+          expenses.forEach((expObj) => {
+            if(expObj.categoryId === sCat[0]){
+              sum += expObj.amount;
+            }
+          });
+
+          catObj['id'] = sCat[0];
+          catObj['category'] = sCat[1];
+          catObj['currAmount'] = sum;
+          catObj['goalAmount'] = userGoals[sCat[0]];
+          catArr.push(catObj);
         });
-        catObj[sCatId] = sum;
-      });
-      res.status(201).send(catObj)
-    });
+        res.status(201).send(catArr)
 
+      });
+    });
   });
 });
 

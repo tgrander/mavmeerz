@@ -15,3 +15,15 @@ exports.updateGoal = (userGoal) => {
     });
   });
 };
+
+exports.getGoals = (user) => {
+  return new Promise((resolve,reject) => {
+    new Goal().query("where", "userId", "=", user.id).fetchAll().then((data) => {
+      var goalsObj = {}
+      data.models.forEach((goal)=>{
+        goalsObj[goal.attributes.subCatId] = goal.attributes.amount
+      });
+      resolve(goalsObj)
+    });
+  });
+};
