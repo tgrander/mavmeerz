@@ -12,37 +12,13 @@ router.use((req, res, next) => {
   next();
 });
 
-// TODO - choose correct endpoint name and structure response correctly
 //get sub category totals for specific userID
-router.get('/', (req,res,next) => {
+router.get('/userBudgetData', (req,res,next) => {
   let result = [];
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
 
-  expenseUtil.getExpensesFromDB({id: userID}).then((expenses)=>{
-    goalUtil.getUserGoals({id: userID}).then((userGoals) => {
-      subCatUtil.getAllSubCats().then((sCats) => {
+  goalUtil.getUserBudgetData({id: userID}).then((budgetData) => res.status(201).send(budgetData));
 
-        var catArr = []
-        sCats.forEach((sCat)=>{
-          var catObj = {}
-          var sum = 0;
-          expenses.forEach((expObj) => {
-            if(expObj.categoryId === sCat[0]){
-              sum += expObj.amount;
-            }
-          });
-
-          catObj['id'] = sCat[0];
-          catObj['category'] = sCat[1];
-          catObj['currAmount'] = sum;
-          catObj['goalAmount'] = userGoals[sCat[0]];
-          catArr.push(catObj);
-        });
-        res.status(201).send(catArr)
-
-      });
-    });
-  });
 });
 
 //Post upated goals for specific user
