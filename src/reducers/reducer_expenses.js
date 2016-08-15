@@ -62,7 +62,6 @@ export default function expenses(state=INITIAL_STATE, action){
         /////// TEMP ///////
         //add to object for now until backend complete//
         let clonedState = _.cloneDeep(state);
-        console.log('=====> clonedState in reducer_expenses', clonedState);
         for (let i = 0; i < action.expenses.length; i++) {
           let expenseID = action.expenses[i];
           for (let j = 0; j < clonedState.expenses.length; j++) {
