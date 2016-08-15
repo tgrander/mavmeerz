@@ -8,23 +8,6 @@ export default class BudgetApp extends Component {
 
   constructor(props){
     super(props)
-<<<<<<< 74c805a690fb25602572628539fb41701214ceab
-    console.log('EXPENSES YAS:', this.props.expenses );
-  }
-
-  _categoryTotals(expenses){
-    return expenses.reduce((amountsBySubCategory, expense) => {
-      const category = expense.category,
-            amount = expense.amount
-
-      // let subCategoryAdded = amountsBySubCategory[category]
-
-      amountsBySubCategory[category] ?
-        amountsBySubCategory[category] += amount :
-        amountsBySubCategory[category] = amount;
-
-      return amountsBySubCategory
-    }, {})
   }
 
   componentWillMount(){
@@ -55,8 +38,6 @@ function getVisibleBudgetItems(budgetItems){
 function mapStateToProps(state){
   const { total } = state.expensesReducer
   const { budgetItems, fetchingBudget } = state.budget
-  console.log('BUDGET STATE: ', state);
-  console.log('BUDGET ITEMS: ', budgetItems);
   return {
     total: total,
     budgetItems: getVisibleBudgetItems(budgetItems),
