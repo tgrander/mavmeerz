@@ -32,6 +32,10 @@ export default class BudgetApp extends Component {
 
 }
 
+function getVisibleBudgetItems(budgetItems){
+  return budgetItems.filter(item => item.currAmount !== 0)
+}
+
 function mapStateToProps(state){
   const { total } = state.expensesReducer
   const { budgetItems, fetchingBudget } = state.budget
@@ -39,7 +43,7 @@ function mapStateToProps(state){
   console.log('BUDGET ITEMS: ', budgetItems);
   return {
     total: total,
-    budgetItems: budgetItems,
+    budgetItems: getVisibleBudgetItems(budgetItems),
     fetchingBudget: fetchingBudget
   }
 }
