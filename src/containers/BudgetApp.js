@@ -8,7 +8,6 @@ export default class BudgetApp extends Component {
 
   constructor(props){
     super(props)
-    console.log('EXPENSES YAS:', this.props.expenses );
   }
 
   render(){
@@ -20,7 +19,6 @@ export default class BudgetApp extends Component {
         <Total
             total={this.props.total}
         />
-
       </div>
     )
   }
@@ -29,9 +27,8 @@ export default class BudgetApp extends Component {
 
 export default connect(
   (state) => {
-    const { expenses, total } = state.expensesReducer
+    const { total } = state.expensesReducer
     return {
-      expenses: expenses,
       total: total
     }
   }

@@ -2,6 +2,7 @@
 const express     = require('express')
     , router      = express.Router()
     , expenseUtil = require('../util/expenseUtil.js')
+    , accountUtil = require('../util/accountUtil.js')
     , tokenUtil   = require('../util/tokenUtil.js');
 
 // middleware that is specific to this router
@@ -17,21 +18,32 @@ router.get('/', (req, res, next) => {
   expenseUtil.getExpensesFromDB({id: userID}).then(expenses => res.send(expenses));
 });
 
-// send expenses, currently expects 'text/csv'
+// send expenses
 router.post('/', (req, res, next) => {
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
+  // fix when adding userID with tokens for account
+  // let userID = req.body.userId;
     console.log(req.headers);
-    // check if proper request made
-    if (req.body.expenses) {
-      // add expenses to dB
-      expenseUtil.addExpensesToDB(req.body.expenses,userID)
-      // send back expenses array as default response
-      .then(success => expenseUtil.getExpensesFromDB({id: userID}))
-      .catch(err => console.log('error in addExpensesToDB:', err))
-      .then(expenses => res.status(201).send(expenses))
-      .catch(err => console.log('Error in getExpensesFromDB:', err));
-    } else {
-      res.send('request body needs expenses!');
+    // check if account info was sent as well
+    if (req.body.account) {
+      // retrieve accountId (creating a new account if necessary)
+      accountUtil.getAccountID(userID, req.body.account)
+        .then((accountId) => {
+          // check if proper request made
+          if (req.body.expenses) {
+            // add expenses to dB
+            expenseUtil.addExpensesToDB(accountId, req.body.expenses, userID)
+            // send back expenses array as default response
+            .then(success => expenseUtil.getExpensesFromDB({id: userID}))
+            .catch(err => console.log('error in addExpensesToDB:', err))
+            .then(expenses => res.status(201).send(expenses))
+            .catch(err => console.log('Error in getExpensesFromDB:', err));
+          } else {
+            res.send('request body needs expenses!');
+          }
+        });
+      } else {
+      res.send('request body needs account!');
     }
 });
 
