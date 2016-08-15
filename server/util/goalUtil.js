@@ -26,7 +26,8 @@ function initialGoalsTableFill(userId) {
         var initGoal = {
           userId: userId,
           subCat: subCat,
-          amount: 0
+          amount: 0,
+          // essential: 0c
         }
         goalController.addGoal(initGoal);
       });

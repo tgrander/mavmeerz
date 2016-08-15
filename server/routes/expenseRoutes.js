@@ -21,6 +21,7 @@ router.get('/', (req, res, next) => {
 // send expenses
 router.post('/', (req, res, next) => {
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
+<<<<<<< e36831b544f518c91c2716a72b9d708eb95d78ab
   // fix when adding userID with tokens for account
   // let userID = req.body.userId;
     console.log(req.headers);
@@ -44,6 +45,20 @@ router.post('/', (req, res, next) => {
         });
       } else {
       res.send('request body needs account!');
+=======
+    // console.log(req.headers);
+    // check if proper request made
+    if (req.body.expenses) {
+      // add expenses to dB
+      expenseUtil.addExpensesToDB(req.body.expenses,userID)
+      // send back expenses array as default response
+      .then(success => expenseUtil.getExpensesFromDB({id: userID}))
+      .catch(err => console.log('error in addExpensesToDB:', err))
+      .then(expenses => res.status(201).send(expenses))
+      .catch(err => console.log('Error in getExpensesFromDB:', err));
+    } else {
+      res.send('request body needs expenses!');
+>>>>>>> [refactor] Initial category assignment to expenses changed to other
     }
 });
 

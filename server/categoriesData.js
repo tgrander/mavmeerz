@@ -86,6 +86,11 @@ const allCategories = [
       'Rental Car',
       'Vacation'
     ]
+  },
+  {
+    'Other': [
+      'Other'
+    ]
   }
 ]
 
