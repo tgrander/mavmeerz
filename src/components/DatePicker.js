@@ -1,3 +1,27 @@
+import React, { Component } from 'react';
+import { DateRange } from 'react-date-range';
+
+class DatePicker extends Component {
+    handleSelect(range){
+        console.log(range);
+        // An object with two keys,
+        // 'startDate' and 'endDate' which are Momentjs objects.
+    }
+
+    render(){
+        return (
+            <div>
+                <DateRange
+                    onInit={this.handleSelect}
+                    onChange={this.handleSelect}
+                />
+            </div>
+        )
+    }
+}
+
+export default DatePicker
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 import React, {Component} from 'react'
 import '../css/datepicker.css'
 import { MultiMonthView } from 'react-date-picker'
@@ -9,7 +33,7 @@ export class DatePicker extends Component {
     super(props)
 
   }
-  
+
   render() {
     console.log('DatePicker!');
     return (
@@ -21,8 +45,8 @@ export class DatePicker extends Component {
   }
 }
 
-
 export default DatePicker
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 // const now = Date.now()
 //
