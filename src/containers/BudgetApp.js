@@ -10,11 +10,17 @@ export default class BudgetApp extends Component {
     super(props)
   }
 
+  componentWillMount(){
+    this.props.fetchBudgetItems()
+  }
+
   render(){
     return (
       <div>
         <div className='budget-table'>
-          <BudgetTable/>
+          <BudgetTable
+            budgetItems={this.props.budgetItems}
+          />
         </div>
         <Total
             total={this.props.total}
@@ -25,11 +31,20 @@ export default class BudgetApp extends Component {
 
 }
 
+function mapStateToProps(state){
+  const { total } = state.expensesReducer
+  const { budgetItems, fetchingBudget } = state.budget
+  console.log('BUDGET ITEMS: ', budgetItems);
+  return {
+    total: total,
+    budgetItems: budgetItems,
+    fetchingBudget: fetchingBudget
+  }
+}
+
 export default connect(
-  (state) => {
-    const { total } = state.expensesReducer
-    return {
-      total: total
-    }
+  mapStateToProps,
+  {
+    fetchBudgetItems: fetchBudgetItems
   }
 )(BudgetApp)
