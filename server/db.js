@@ -98,7 +98,7 @@ knex.schema.hasTable('goals').then(function(exists) {
       table.integer('userId').unsigned().references('id').inTable('users');
       table.integer('subCatId').unsigned().references('id').inTable('sub_categories');
       table.float('amount',6,2);
-      // table.boolean('essential');
+      table.boolean('essential');
       table.timestamps();
       console.log(`Created goals table`);
     });

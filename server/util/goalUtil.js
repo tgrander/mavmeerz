@@ -27,7 +27,7 @@ function initialGoalsTableFill(userId) {
           userId: userId,
           subCat: subCat,
           amount: 0,
-          // essential: 0c
+          essential: 0
         }
         goalController.addGoal(initGoal);
       });
@@ -60,7 +60,8 @@ function getUserBudgetData(user){
             catObj['id'] = sCat[0];
             catObj['category'] = sCat[1];
             catObj['currAmount'] = sum;
-            catObj['goalAmount'] = userGoals[sCat[0]];
+            catObj['goalAmount'] = userGoals[sCat[0]][0];
+            catObj['essential'] = userGoals[sCat[0]][1];
             catArr.push(catObj);
 
           });

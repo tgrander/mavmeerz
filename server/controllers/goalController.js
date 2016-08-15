@@ -4,7 +4,7 @@ const subCatController = require('./subCategoryController.js')
 
 exports.addGoal = (userGoal) => {
   subCatController.getSubCategoryId(userGoal.subCat).then((subCatId) => {
-    new Goal({userId: userGoal.userId, subCatId: subCatId, amount: userGoal.amount}).save();
+    new Goal({userId: userGoal.userId, subCatId: subCatId, amount: userGoal.amount, essential: userGoal.essential}).save();
   });
 };
 
@@ -21,7 +21,7 @@ exports.getGoals = (user) => {
     new Goal().query("where", "userId", "=", user.id).fetchAll().then((data) => {
       var goalsObj = {}
       data.models.forEach((goal)=>{
-        goalsObj[goal.attributes.subCatId] = goal.attributes.amount
+        goalsObj[goal.attributes.subCatId] = [goal.attributes.amount,goal.attributes.essential]
       });
       resolve(goalsObj)
     });
