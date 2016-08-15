@@ -32,7 +32,8 @@ export default class UploadApp extends Component {
       that.props.parsingCSV()
        parseCSV(file)
        .then(function(result) {
-         that.props.uploadCSV(result)
+
+         that.props.uploadCSV(that.state.account, result)
        })
        .catch(function(error) {
          console.error(error);
