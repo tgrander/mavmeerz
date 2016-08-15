@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BudgetTable from '../components/BudgetTable'
 import Total from '../components/Total'
-import '../css/BudgetTable.css'
+import { fetchBudgetItems } from '../actions/budgetActions'
 
 export default class BudgetApp extends Component {
 
   constructor(props){
     super(props)
+<<<<<<< 74c805a690fb25602572628539fb41701214ceab
     console.log('EXPENSES YAS:', this.props.expenses );
   }
 
@@ -50,6 +51,7 @@ export default class BudgetApp extends Component {
 function mapStateToProps(state){
   const { total } = state.expensesReducer
   const { budgetItems, fetchingBudget } = state.budget
+  console.log('BUDGET STATE: ', state);
   console.log('BUDGET ITEMS: ', budgetItems);
   return {
     total: total,
