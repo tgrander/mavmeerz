@@ -16,7 +16,14 @@ export default class UploadApp extends Component {
 
   constructor(props){
     super(props)
-    this.onDrop = this.onDrop.bind(this)
+    this.state = {account: null};
+    console.log('=====> state in constructor of uploadApp', this.state);
+    this.onDrop = this.onDrop.bind(this);
+    this.addAccountToState = this.addAccountToState.bind(this);
+  }
+
+  addAccountToState(event) {
+    this.setState({account: event.target.value});
   }
 
   onDrop(files){
@@ -25,7 +32,7 @@ export default class UploadApp extends Component {
       that.props.parsingCSV()
        parseCSV(file)
        .then(function(result) {
-         that.props.uploadCSV(result)
+         that.props.uploadCSV(that.state.account, result)
          console.log('file sent through onDrop', result);
        })
        .catch(function(error) {
@@ -38,6 +45,14 @@ export default class UploadApp extends Component {
   render () {
     return (
       <div>
+        <div>
+          <input
+            type="text"
+            placeholder="Account Name"
+            value={this.state.account}
+            onChange={this.addAccountToState}
+          />
+        </div>
         <Dropzone className="dropzone" onDrop={this.onDrop}>
           <div> Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>

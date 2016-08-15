@@ -116,6 +116,7 @@ knex.schema.hasTable('expenses').then(function(exists) {
       table.integer('categoryId').unsigned().references('id').inTable('sub_categories');
       table.integer('statementId').unsigned().references('id').inTable('statements');
       table.integer('userId').unsigned().references('id').inTable('users');
+      table.integer('accountId').unsigned().references('id').inTable('accounts');
       table.timestamps();
       console.log(`Created expenses table`);
     });

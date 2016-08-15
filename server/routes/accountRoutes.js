@@ -11,7 +11,9 @@ router.use((req, res, next) => {
 
 // send accounts for expenses
 router.post('/', (req, res) => {
-  res.send('post at /accounts received! yayayyayayayy');
+  accountUtil.addAccountToDB(req.body.account, req.body.userId).then(() => {
+    res.send('account successfully added');
+  });
 });
 
 module.exports = router;

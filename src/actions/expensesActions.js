@@ -108,14 +108,14 @@ export function fetchExpenses(){
 }
 
 //Async Action for sending a post request to upload CSV
-export function uploadCSV(csv){
+export function uploadCSV(account, csv){
   return dispatch => {
       dispatch(uploadRequest())
       return Axios({
         method: 'POST',
         url: '/v1/api/expenses',
         headers: {'x-access-token': window.localStorage.getItem('zenmoToken')},
-        data: {expenses: csv}
+        data: {account: account, expenses: csv}
       })
     .then(res =>  {
       dispatch(uploadSuccess(res.data))

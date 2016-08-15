@@ -7,7 +7,7 @@ const CSVController     = require('../controllers/csvFileController.js');
 // const categoryController = require('../controllers/categoryController.js');
 
 
-function addExpensesToDB(expenses, userId) {
+function addExpensesToDB(accountId, expenses, userId) {
     // CSVController.addFile is here because it is required to
     // link a foreign id to the expense table. The CSV table will
     // eventually be replaced by a user table
@@ -17,7 +17,7 @@ function addExpensesToDB(expenses, userId) {
     console.log('expenses after processExpenses', expenses);
     CSVController.addFile('expenses',userId)
       .then((fileId) => {
-        return expenseController.addAllExpenses(expenses,fileId,userId);
+        return expenseController.addAllExpenses(accountId, expenses, fileId, userId);
       })
       .then(() => {
         resolve('success');
