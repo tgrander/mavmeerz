@@ -3,6 +3,8 @@
 Stay in Budget, and have fun in the mean-time! A Mavmeerz production: [Ridwan](https://github.com/ridwankazi), [Jear](https://github.com/Jearxj),
 [Trey](https://github.com/tgrander), and [Deniz](https://github.com/deniztetik).
 
+Deployed beta: http://ec2-52-24-194-77.us-west-2.compute.amazonaws.com/
+
 ## Installation
 
 ##Heroku:
