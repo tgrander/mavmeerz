@@ -16,7 +16,13 @@ export default class UploadApp extends Component {
 
   constructor(props){
     super(props)
-    this.onDrop = this.onDrop.bind(this)
+    this.state = {account: null};
+    this.onDrop = this.onDrop.bind(this);
+    this.addAccountToState = this.addAccountToState.bind(this);
+  }
+
+  addAccountToState(event) {
+    this.setState({account: event.target.value});
   }
 
   onDrop(files){
@@ -25,11 +31,11 @@ export default class UploadApp extends Component {
       that.props.parsingCSV()
        parseCSV(file)
        .then(function(result) {
-         that.props.uploadCSV(result)
-         console.log('file sent through onDrop', result);
+
+         that.props.uploadCSV(that.state.account, result)
        })
        .catch(function(error) {
-         console.log(error);
+         console.error(error);
        })
 
     });
@@ -38,6 +44,14 @@ export default class UploadApp extends Component {
   render () {
     return (
       <div>
+        <div>
+          <input
+            type="text"
+            placeholder="Account Name"
+            value={this.state.account}
+            onChange={this.addAccountToState}
+          />
+        </div>
         <Dropzone className="dropzone" onDrop={this.onDrop}>
           <div> Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>
@@ -56,11 +70,7 @@ function parseCSV(file) {
       header: true,
       download: true,
       complete: function(results) {
-        console.log('results from complete', results);
         if (results.data.length !== 0) {
-          //---------
-          console.log('papa results', results.data)
-          //----------
           resolve(results.data);
         } else {
           reject('nothing was parsed!');
@@ -72,9 +82,7 @@ function parseCSV(file) {
 
 export default connect(
   (state) => {
-    console.log('UploadApp [state] is', state);
     const { expenses, isFetching } = state.expensesReducer
-    console.log('mapStateToProps expenses are: ', expenses);
     return {
       expenses: expenses,
       isFetching: isFetching

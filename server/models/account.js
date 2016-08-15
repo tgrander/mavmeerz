@@ -2,7 +2,7 @@
 const db = require('../db.js')
 
 let Account = db.Bookshelf.Model.extend({
-  tableName: 'account',
+  tableName: 'accounts',
   hasTimestamps:true
 });
 

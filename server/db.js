@@ -14,9 +14,6 @@
      database : 'zenmoDB',
      charset  : 'utf8'
    },
-   seeds: {
-     directory: './seeds.js'
-   }
  });
 
 knex.schema.hasTable('users').then(function(exists) {
@@ -71,11 +68,13 @@ knex.schema.hasTable('categories').then(function(exists) {
   }
 })
 
+// TODO - remove 'essential' column from this table and also from all of the functions that use it
 knex.schema.hasTable('sub_categories').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('sub_categories', function(table) {
       table.increments('id').primary();
       table.string('sub_category');
+      table.boolean('essential');
       table.timestamps();
       console.log(`Created sub categories table`);
     });
@@ -93,18 +92,31 @@ knex.schema.hasTable('join_categories').then(function(exists) {
   }
 })
 
-// TODO - remove category column, link categoryId to sub category table
+knex.schema.hasTable('goals').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('goals', function(table) {
+      table.increments('id').primary();
+      table.integer('userId').unsigned().references('id').inTable('users');
+      table.integer('subCatId').unsigned().references('id').inTable('sub_categories');
+      table.float('amount',6,2);
+      table.boolean('essential');
+      table.timestamps();
+      console.log(`Created goals table`);
+    });
+  }
+});
+
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
       table.increments('id').primary();
       table.string('description');
-      table.string('category');
       table.float('amount',6,2);
       table.date('date');
       table.integer('categoryId').unsigned().references('id').inTable('sub_categories');
       table.integer('statementId').unsigned().references('id').inTable('statements');
       table.integer('userId').unsigned().references('id').inTable('users');
+      table.integer('accountId').unsigned().references('id').inTable('accounts');
       table.timestamps();
       console.log(`Created expenses table`);
     });

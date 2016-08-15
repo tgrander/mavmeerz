@@ -14,8 +14,7 @@ class BudgetTable extends Component {
     return (
       <div>
         <BootstrapTable
-              data={ [{id: 1, essential: "N", category: 'Groceries', currentAmount: 90, goalAmount: 70},
-              {id: 2, essential: 'N', category: 'Coffee Shops', currentAmount: 30, goalAmount: 15}] }
+              data={ this.props.budgetItems }
               striped={ true }
               hover={ true }
               ref='table'
@@ -24,7 +23,7 @@ class BudgetTable extends Component {
           <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='essential' editable={ {type: 'checkbox', options: {values: 'Y:N'}}}>Essential</TableHeaderColumn>
           <TableHeaderColumn dataField='category' editable={ { false } }>Category</TableHeaderColumn>
-          <TableHeaderColumn dataField='currentAmount' editable={ false }>Current Amount</TableHeaderColumn>
+          <TableHeaderColumn dataField='currAmount' editable={ false }>Current Amount</TableHeaderColumn>
           <TableHeaderColumn dataField='goalAmount' editable={ { type: 'textarea' } }>Goal Amount</TableHeaderColumn>
 
         </BootstrapTable>

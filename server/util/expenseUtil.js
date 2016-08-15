@@ -5,19 +5,20 @@ const testCSV = __dirname + '/../test.csv';
 const expenseController = require('../controllers/expenseController.js');
 const CSVController     = require('../controllers/csvFileController.js');
 // const categoryController = require('../controllers/categoryController.js');
+const subCategoryUtil      = require('./subCategoryUtil.js');
+const         _            = require('lodash');
 
 
-function addExpensesToDB(expenses, userId) {
+function addExpensesToDB(accountId, expenses, userId) {
     // CSVController.addFile is here because it is required to
     // link a foreign id to the expense table. The CSV table will
     // eventually be replaced by a user table
 
   return new Promise((resolve, reject) => {
     expenses = processExpenses(expenses);
-    console.log('expenses after processExpenses', expenses);
     CSVController.addFile('expenses',userId)
       .then((fileId) => {
-        return expenseController.addAllExpenses(expenses,fileId,userId);
+        return expenseController.addAllExpenses(accountId, expenses, fileId, userId);
       })
       .then(() => {
         resolve('success');
@@ -27,7 +28,7 @@ function addExpensesToDB(expenses, userId) {
 }
 
 // takes expenses from MySQL db, puts them into an array of objects,
-// and then sends it into a callback
+// and adds category name instead of category id
 function getExpensesFromDB(user) {
   return new Promise((resolve, reject) => {
     let results = [];
@@ -36,7 +37,14 @@ function getExpensesFromDB(user) {
         expenses.forEach((expense) => {
           results.push(expense.attributes);
         });
-        resolve(results);
+        return results;
+      })
+      .then((results) => {
+        return subCategoryUtil.replaceSubCategoryIDWithName(results)
+      })
+      .then((expenses) => {
+        // sort expenses by ID
+        resolve(_.sortBy(expenses, expense => expense.id));
       });
   });
 }
@@ -44,7 +52,7 @@ function getExpensesFromDB(user) {
 // takes an expenseId and a category,
 // updates the database entry with the category,
 // and sends it into a callback if successful
-function updateExpenseCategoryinDB(expenseId, category, callback) {
+function updateExpenseCategoryinDB(expenseId, category) {
   // expenseController.updateExpenseCategory(expenseId, category, (success) => {
   //   if (success) callback(success);
   // });
@@ -80,9 +88,7 @@ function processExpenses(expenses) {
 
 function filterOutDeposits(expenses) {
   let results = expenses.filter(expense => Number(expense.amount) > 0);
-  console.log('results', results);
   expenses = results;
-  console.log('expenses', expenses);
   return results;
 }
 

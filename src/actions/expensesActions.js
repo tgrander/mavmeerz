@@ -48,12 +48,12 @@ export function parsingCSV() {
 
 
 
-//CALCULATE TOTAL ACTION CREATOR
+//TOTAL ACTION CREATORS
 export function getTotal(total) {
   return {
     type: GET_TOTAL,
     total: total
-  }
+  };
 }
 function computeTotal(expensesArr){
   let total = 0
@@ -66,15 +66,15 @@ function computeTotal(expensesArr){
   return total;
 }
 
-//CATEGORIES ACTION CREATORS
+//CATEGORIES ACTION CREATOR
 function addCategory(expenses){
   return {
     type: ADD_CATEGORY,
     expenses: expenses
-  }
+  };
 }
 
-//ACCOUNTS ACTION CREATORS
+//ACCOUNTS ACTION CREATOR
 function addAccount(expenses, account) {
   return {
     type: ADD_ACCOUNT,
@@ -101,14 +101,14 @@ export function fetchExpenses(){
 }
 
 //Async Action for sending a post request to upload CSV
-export function uploadCSV(csv){
+export function uploadCSV(account, csv){
   return dispatch => {
       dispatch(uploadRequest())
       return Axios({
         method: 'POST',
         url: '/v1/api/expenses',
         headers: {'x-access-token': window.localStorage.getItem('zenmoToken')},
-        data: {expenses: csv}
+        data: {account: account, expenses: csv}
       })
     .then(res =>  {
       dispatch(uploadSuccess(res.data))
@@ -127,7 +127,6 @@ export function updateCategories(expenses, category){
       category: category
     })
     .then(expenses => {
-      console.log('EXPENSES/after category update', expenses.data);
       dispatch(addCategory(expenses))
     })
     .catch(err => console.error(err))
