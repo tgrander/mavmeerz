@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import '../css/dropdown.css'
-import '../css/datepicker.css'
 import Categories from './DropdownCategory'
 import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
