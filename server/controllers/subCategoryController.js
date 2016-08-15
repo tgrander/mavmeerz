@@ -13,6 +13,14 @@ exports.getSubCategoryId = (cat) => {
   });
 };
 
+exports.getSubCategoryNameFromId = (id) => {
+  return new Promise((resolve, reject) => {
+    new subCategory({id: id}).fetch().then((data) => {
+      resolve(data.attributes.sub_category);
+    });
+  });
+}
+
 //This function will return an array subCategory id
 exports.getAllSubCategories = () => {
   return new Promise((resolve,reject) => {
