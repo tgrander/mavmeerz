@@ -11,7 +11,7 @@ exports.addGoal = (userGoal) => {
 exports.updateGoal = (userGoal) => {
   subCatController.getSubCategoryId(userGoal.subCat).then((subCatId) => {
     new Goal().where({userId: userGoal.userId, subCatId: subCatId}).fetch().then((goalData) => {
-      new Goal({id: goalData.attributes.id}).save({amount: userGoal.amount})
+      new Goal({id: goalData.attributes.id}).save({amount: userGoal.amount, essential: userGoal.essential})
     });
   });
 };
