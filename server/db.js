@@ -104,13 +104,11 @@ knex.schema.hasTable('goals').then(function(exists) {
   }
 });
 
-// TODO - remove category column
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
       table.increments('id').primary();
       table.string('description');
-      table.string('category');
       table.float('amount',6,2);
       table.date('date');
       table.integer('categoryId').unsigned().references('id').inTable('sub_categories');

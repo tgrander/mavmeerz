@@ -26,7 +26,10 @@ exports.addAllExpenses = (accountId, expenseDataArr,fileId,userId) => {
         day: expense['date'].match(/\d+/g)[1]
       }
 
-      new Expense({accountId: accountId, description: expense.description, amount: expense.amount, category: expense.category, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save()
+      //Currently random assigning categories to each expense
+      expense.categoryId = Math.floor(Math.random()*46)
+
+      new Expense({accountId: accountId, description: expense.description, amount: expense.amount, categoryId: expense.categoryId, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save()
     });
     resolve('success');
   });

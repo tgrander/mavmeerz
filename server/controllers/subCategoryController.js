@@ -13,6 +13,19 @@ exports.getSubCategoryId = (cat) => {
   });
 };
 
+//This function will return an array subCategory id
+exports.getAllSubCategoryId = () => {
+  return new Promise((resolve,reject) => {
+    new subCategory().fetchAll().then((data) => {
+      var idArray = []
+      data.models.forEach((sCat)=>{
+        idArray.push(sCat.attributes.id)
+      });
+      resolve(idArray)
+    })
+  });
+};
+
 exports.updateSubCategoryEss = (sCat,essState) => {
   exports.getSubCategoryId(sCat).then((id) => {
     new subCategory({id: id}).save({essential: essState});
