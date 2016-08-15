@@ -68,6 +68,7 @@ knex.schema.hasTable('categories').then(function(exists) {
   }
 })
 
+// TODO - remove 'essential' column from this table and also from all of the functions that use it
 knex.schema.hasTable('sub_categories').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('sub_categories', function(table) {
