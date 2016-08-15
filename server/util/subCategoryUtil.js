@@ -22,9 +22,27 @@ function getAllSubCats() {
   return subCategoryController.getAllSubCategories()
 }
 
+function replaceSubCategoryIDWithName(expenses) {
+  return new Promise((resolve, reject) => {
+    let results = [];
+    let promises = [];
+
+    for (let i = 0; i < expenses.length; i++) {
+      promises.push(subCategoryController.getSubCategoryNameFromId(expenses[i].categoryId)
+        .then((subCategory) => {
+          expenses[i].category = subCategory;
+          results.push(expenses[i]);
+        }));
+    }
+
+    Promise.all(promises).then(() => resolve(results));
+    });
+}
+
 module.exports = {
   initialSubCatTableFill: initialSubCatTableFill,
   checkInitialSubCatTableFill: checkInitialSubCatTableFill,
+  replaceSubCategoryIDWithName: replaceSubCategoryIDWithName,
   getAllSubCats:  getAllSubCats,
   updateSubCatEss: updateSubCatEss
 }
