@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { d3 } from 'd3'
+import { select } from 'd3'
 
 export default class KarmoMeter extends Component {
 
   constructor(props){
     super(props)
+    console.log('++++++++++++++> d3: ', d3);
 
     this.config = liquidFillGaugeDefaultSettings();
     this.config.circleColor = "#FF7777";
@@ -16,6 +17,8 @@ export default class KarmoMeter extends Component {
     this.config.waveAnimateTime = 1000;
 
     this.gauge = loadLiquidFillGauge("fillgauge", 28, this.config);
+
+    console.log('+++++++++++++> this.config: ', this.config);
   }
 
   NewValue(){
@@ -61,7 +64,6 @@ function liquidFillGaugeDefaultSettings(){
 
 function loadLiquidFillGauge(elementId, value, config) {
     if(config == null) config = liquidFillGaugeDefaultSettings();
-
     var gauge = d3.select("#" + elementId);
     var radius = Math.min(parseInt(gauge.style("width")), parseInt(gauge.style("height")))/2;
     var locationX = parseInt(gauge.style("width"))/2 - radius;
