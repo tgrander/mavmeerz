@@ -18,8 +18,13 @@ function checkInitialSubCatTableFill() {
   return subCategoryController.checkSubCategoryTable()
 }
 
+function getAllSubCats() {
+  return subCategoryController.getAllSubCategories()
+}
+
 module.exports = {
   initialSubCatTableFill: initialSubCatTableFill,
   checkInitialSubCatTableFill: checkInitialSubCatTableFill,
+  getAllSubCats:  getAllSubCats,
   updateSubCatEss: updateSubCatEss
 }

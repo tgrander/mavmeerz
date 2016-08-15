@@ -4,6 +4,7 @@ const express     = require('express')
     , expenseUtil = require('../util/expenseUtil.js')
     , tokenUtil   = require('../util/tokenUtil.js')
     , goalUtil    = require('../util/goalUtil.js')
+    , subCatUtil  = require('../util/subCategoryUtil.js')
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -11,16 +12,22 @@ router.use((req, res, next) => {
   next();
 });
 
-//get goals for specific user
-// router.get()
+//get sub category totals for specific userID
+router.get('/userBudgetData', (req,res,next) => {
+  let result = [];
+  let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
 
-//Post goals for specific user
-router.post('/', (req ,res, next) => {
+  goalUtil.getUserBudgetData({id: userID}).then((budgetData) => res.status(201).send(budgetData));
+
+});
+
+//Post upated goals for specific user
+router.post('/updateGoals', (req ,res, next) => {
 
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
 
   if(req.body.goals){
-    goalUtil.addUserGoalsToDB(req.body.goals,userID);
+    goalUtil.updateUserGoalsToDB(req.body.goals,userID);
   }
   res.status(201).send()
 });

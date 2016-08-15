@@ -1,5 +1,6 @@
 "use strict"
 const Expense = require('../models/expense.js')
+const subCategoryController = require('./subCategoryController.js')
 
 /**
   This function will add individual expenses.
@@ -16,18 +17,24 @@ exports.addExpense = (csvId, description, amount, category, callback) => {
 //expense.Date needs to be formatted properly
 exports.addAllExpenses = (accountId, expenseDataArr,fileId,userId) => {
   return new Promise((resolve, reject) => {
-    console.log('expense data array lowercased ?', expenseDataArr[0]);
-    expenseDataArr.forEach((expense) => {
+    // console.log('expense data array lowercased ?', expenseDataArr[0]);
 
-      let inDate = {
-        year: expense['date'].match(/\d+/g)[2],
-        month: expense['date'].match(/\d+/g)[0],
-        day: expense['date'].match(/\d+/g)[1]
-      }
+    subCategoryController.getSubCategoryId('Other').then((id) => {
+      expenseDataArr.forEach((expense) => {
 
-      new Expense({accountId: accountId, description: expense.description, amount: expense.amount, category: expense.category, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save()
+        let inDate = {
+          year: expense['date'].match(/\d+/g)[2],
+          month: expense['date'].match(/\d+/g)[0],
+          day: expense['date'].match(/\d+/g)[1]
+        }
+
+        //Currently random assigning categories to each expense
+        // expense.categoryId = Math.floor(Math.random()*46)
+        // expense.categoryId=1
+        new Expense({accountId: accountId, description: expense.description, amount: expense.amount, categoryId: id, statementId: fileId, userId: userId, date: `${inDate.year}-${inDate.month}-${inDate.day}`}).save();
+      });
+      resolve('success');
     });
-    resolve('success');
   });
 };
 
@@ -63,10 +70,8 @@ exports.getAllExpenses = () => {
   // return new Expense().fetchAll();
 };
 
-// TODO fix this function to update the sub_category column
-exports.updateExpenseCategory = (expenseId, category, callback) => {
-  // new Expense({id: expenseId}).save({category: category}).then(() => {
-  //   callback('success');
-  // });
-  return new Expense({id: expenseId}).save({category: category});
+exports.updateExpenseCategory = (expenseId, category) => {
+  subCategoryController.getSubCategoryId(category).then((categoryId) => {
+    return new Expense({id: expenseId}).save({categoryId: categoryId});
+  });
 }

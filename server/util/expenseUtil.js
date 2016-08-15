@@ -44,7 +44,7 @@ function getExpensesFromDB(user) {
 // takes an expenseId and a category,
 // updates the database entry with the category,
 // and sends it into a callback if successful
-function updateExpenseCategoryinDB(expenseId, category, callback) {
+function updateExpenseCategoryinDB(expenseId, category) {
   // expenseController.updateExpenseCategory(expenseId, category, (success) => {
   //   if (success) callback(success);
   // });

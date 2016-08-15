@@ -68,6 +68,7 @@ knex.schema.hasTable('categories').then(function(exists) {
   }
 })
 
+// TODO - remove 'essential' column from this table and also from all of the functions that use it
 knex.schema.hasTable('sub_categories').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('sub_categories', function(table) {
@@ -98,19 +99,18 @@ knex.schema.hasTable('goals').then(function(exists) {
       table.integer('userId').unsigned().references('id').inTable('users');
       table.integer('subCatId').unsigned().references('id').inTable('sub_categories');
       table.float('amount',6,2);
+      table.boolean('essential');
       table.timestamps();
       console.log(`Created goals table`);
     });
   }
 });
 
-// TODO - remove category column
 knex.schema.hasTable('expenses').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('expenses', function(table) {
       table.increments('id').primary();
       table.string('description');
-      table.string('category');
       table.float('amount',6,2);
       table.date('date');
       table.integer('categoryId').unsigned().references('id').inTable('sub_categories');
