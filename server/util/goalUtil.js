@@ -13,10 +13,13 @@ function addUserGoalsToDB(userGoals,userId) {
 };
 
 function updateUserGoalsToDB(userGoals,userId) {
-  userGoals.forEach((goal) => {
-    goal.userId = userId;
-    goalController.updateGoal(goal);
-  });
+  return new Promise((resolve, reject) => {
+    userGoals.forEach((goal) => {
+      goal.userId = userId;
+      goalController.updateGoal(goal);
+    })
+    resolve('Success updating expenses!')
+  })
 };
 
 function initialGoalsTableFill(userId) {
