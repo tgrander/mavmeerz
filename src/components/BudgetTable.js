@@ -22,7 +22,7 @@ class BudgetTable extends Component {
         >
           <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
           <TableHeaderColumn dataField='essential' editable={ {type: 'checkbox', options: {values: 'Y:N'}}}>Essential</TableHeaderColumn>
-          <TableHeaderColumn dataField='category' editable={ { false } }>Category</TableHeaderColumn>
+          <TableHeaderColumn dataField='category' editable={ false }>Category</TableHeaderColumn>
           <TableHeaderColumn dataField='currAmount' editable={ false }>Current Amount</TableHeaderColumn>
           <TableHeaderColumn dataField='goalAmount' editable={ { type: 'textarea' } }>Goal Amount</TableHeaderColumn>
 
