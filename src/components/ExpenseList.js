@@ -8,6 +8,8 @@ import ExpensesApp from '../containers/ExpensesApp.js'
 class ExpenseList extends Component {
   constructor(props) {
     super(props);
+
+  console.log('ExpenseList props are: ', props);
   }
 
   _categorize(category) {
@@ -26,6 +28,7 @@ class ExpenseList extends Component {
   }
 
   render() {
+    console.log('ExpenseList this.props is: ', this.props);
     if (this.props.expenses.length > 0) {
       return (
         <div>
@@ -34,6 +37,8 @@ class ExpenseList extends Component {
             <Dropdown
                 categorize={this._categorize.bind(this)}
                 selectAccount={this._selectAccount.bind(this)}
+                receiveExpenses={this.props.receiveExpenses}
+                allExpenses={this.props.allExpenses}
             />
 
             <BootstrapTable
