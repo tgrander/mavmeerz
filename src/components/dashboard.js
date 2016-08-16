@@ -21,9 +21,9 @@ class Dashboard extends Component {
     }
 
   }
-  componentDidMount(){
-    document.body.style.backgroundColor = 'white'
-  }
+  // componentDidMount(){
+  //   document.body.style.backgroundColor = 'white'
+  // }
 
   render() {
     return (
