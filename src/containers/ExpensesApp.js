@@ -23,12 +23,10 @@ import { fetchExpenses, updateCategories, updateAccounts } from '../actions/expe
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    console.log('this.props in constructor in ExpensesApp', this.props);
     this.state = {total: 0}
   }
 
   componentWillMount(){
-    console.log('this.props.expenses in componentWillMount in ExpensesApp', this.props.expenses);
     this.props.fetchExpenses()
   }
 
@@ -100,7 +98,6 @@ props you want to pass to a child presentational component you are wrapping
 */
 function mapStateToProps(state){
   const { expenses, isFetching, total } = state.expensesReducer
-  console.log('EXPENSES: ', expenses);
   return {
     expenses: expenses,
     isFetching: isFetching,
