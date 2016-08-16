@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BudgetTable from '../components/BudgetTable'
 import Total from '../components/Total'
-import { fetchBudgetItems } from '../actions/budgetActions'
+import { fetchBudgetItems, updateBudgetItems } from '../actions/budgetActions'
 
 export default class BudgetApp extends Component {
 
@@ -14,12 +14,17 @@ export default class BudgetApp extends Component {
     this.props.fetchBudgetItems()
   }
 
+  _updateBudget(items){
+    this.props.updateBudgetItems(items)
+  }
+
   render(){
     return (
       <div>
         <div className='budget-table'>
           <BudgetTable
             budgetItems={this.props.budgetItems}
+            updateBudgetItems={this._updateBudget.bind(this)}
           />
         </div>
         <Total
@@ -31,16 +36,13 @@ export default class BudgetApp extends Component {
 
 }
 
-function getVisibleBudgetItems(budgetItems){
-  return budgetItems.filter(item => item.currAmount !== 0)
-}
-
 function mapStateToProps(state){
   const { total } = state.expensesReducer
   const { budgetItems, fetchingBudget } = state.budget
+  console.log('state from budget app: ', state);
   return {
     total: total,
-    budgetItems: getVisibleBudgetItems(budgetItems),
+    budgetItems: budgetItems,
     fetchingBudget: fetchingBudget
   }
 }
@@ -48,6 +50,7 @@ function mapStateToProps(state){
 export default connect(
   mapStateToProps,
   {
-    fetchBudgetItems: fetchBudgetItems
+    fetchBudgetItems: fetchBudgetItems,
+    updateBudgetItems: updateBudgetItems
   }
 )(BudgetApp)

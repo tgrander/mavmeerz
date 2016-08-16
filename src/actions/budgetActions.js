@@ -2,6 +2,7 @@ import Axios from 'axios'
 
 export const REQUEST_BUDGET = 'REQUEST_BUDGET'
 export const RECEIVE_BUDGET = 'RECEIVE_BUDGET'
+export const UPDATE_BUDGET = 'UPDATE_BUDGET'
 // export const
 // export const
 
@@ -18,6 +19,12 @@ function receiveBudgetItems(budgetItems){
     budgetItems
   }
 }
+function receiveUpdatedBudgetItems(updatedBudgetItems){
+  return {
+    type: UPDATE_BUDGET,
+    updatedBudgetItems
+  }
+}
 
 export function fetchBudgetItems(){
   return dispatch => {
@@ -32,6 +39,22 @@ export function fetchBudgetItems(){
       console.log(res);
       //deliver payload from server GET request
       dispatch(receiveBudgetItems(res.data))
+    })
+    .catch(err => console.error(err))
+  }
+}
+
+export function updateBudgetItems(budgetItems){
+  return dispatch => {
+    //send POST req to server with updated budgetItems data
+    return Axios.post('/v1/api/goals/updateGoals', {
+      token: window.localStorage.getItem('zenmoToken'),
+      goals: budgetItems
+    })
+    //dispatch response from server to reducer
+    .then(res => {
+      console.log('RESPONSE: ', res.data);
+      dispatch(receiveUpdatedBudgetItems(res.data))
     })
     .catch(err => console.error(err))
   }

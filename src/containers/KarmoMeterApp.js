@@ -10,7 +10,6 @@ export default class KarmoMeter extends Component {
   }
 
   componentDidMount(){
-    // document.body.style.backgroundColor = 'rgba(0,0,0,0)'
     d3.select("#fillgauge").call(liquidfillgauge, 55);
   }
 
