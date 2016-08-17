@@ -8,6 +8,7 @@ export const PARSING_CSV = 'PARSING_CSV';
 export const GET_TOTAL = 'GET_TOTAL';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
+export const FILTER_DATE = 'FILTER_DATE';
 
 //ACTION CREATORS FOR FETCHING AND RECEIVING EXPENSES FROM SERVER
 export function requestExpenses(){
@@ -19,8 +20,8 @@ export function requestExpenses(){
 export function receiveExpenses(expenses){
   return {
     type: RECEIVE_EXPENSES,
-    isFetching: false,
-    expenses: expenses
+    expenses: expenses,
+    isFetching: false
   };
 }
 
@@ -45,8 +46,6 @@ export function parsingCSV() {
     // expenses: response
   };
 }
-
-
 
 //TOTAL ACTION CREATORS
 export function getTotal(total) {
@@ -83,6 +82,17 @@ function addAccount(expenses, account) {
   };
 }
 
+//FILTER DATE ACTION CREATOR
+export function filterDate(endDate, startDate) {
+  console.log('filterDate endDate: ', endDate)
+  console.log('filterDate startDate: ', startDate)
+  debugger;
+  return {
+    type: FILTER_DATE,
+    endDate: endDate,
+    startDate: startDate
+  };
+}
 /*
 ~~~~~~~ ASYNC ACTION CREATORS ~~~~~~~~
 */
@@ -137,4 +147,13 @@ export function updateAccounts(expenses, account) {
   return dispatch => {
     dispatch(addAccount(expenses, account));
   };
+}
+
+export function updateDates(endDate, startDate) {
+  console.log('updateDates endDate:', endDate)
+  console.log('updateDates startDate: ', startDate)
+  // return dispatch => {
+  //   dispatch(filterDate(endDate, startDate))
+  // }
+  return filterDate(endDate, startDate)
 }

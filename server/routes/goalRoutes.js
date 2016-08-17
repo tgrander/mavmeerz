@@ -17,19 +17,34 @@ router.get('/userBudgetData', (req,res,next) => {
   let result = [];
   let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
 
-  goalUtil.getUserBudgetData({id: userID}).then((budgetData) => res.status(201).send(budgetData));
+  goalUtil.getUserBudgetData({id: userID}).then((budgetData) => res.status(200).send(budgetData));
 
 });
 
-//Post upated goals for specific user
+/*
+Post upated goals for specific user
+in req.body, pass in the following
+"goals": [
+  {
+     subCat: subcategory
+     amount: amount that user wants to set as a goal
+     essential: 1/0
+  }
+]
+*/
 router.post('/updateGoals', (req ,res, next) => {
 
-  let userID = tokenUtil.getUserIDFromToken(req.headers['x-access-token']);
+  let userID = tokenUtil.getUserIDFromToken(req.body.token);
 
-  if(req.body.goals){
-    goalUtil.updateUserGoalsToDB(req.body.goals,userID);
+  const goals = req.body.goals
+
+  if(goals){
+    goalUtil.updateUserGoalsToDB(goals, userID)
+    .then(success => goalUtil.getUserBudgetData({id: userID}))
+    .then(budgetData => res.status(201).send(budgetData))
+  } else {
+    res.send('request body needs expenses!!');
   }
-  res.status(201).send()
 });
 
 module.exports = router;

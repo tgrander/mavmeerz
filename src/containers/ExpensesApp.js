@@ -15,22 +15,33 @@ import { connect } from 'react-redux'
 import ExpenseList from '../components/ExpenseList.js'
 import Total from '../components/Total.js'
 import Chart from '../components/Chart.js'
+import Spin from '../components/Spin'
+import DatePicker from '../components/DatePicker'
 
 import '../css/expensesApp.css'
 
-import { fetchExpenses, updateCategories, updateAccounts } from '../actions/expensesActions.js'
+import { fetchExpenses, updateCategories, updateAccounts, updateDates, receiveExpenses } from '../actions/expensesActions'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
     console.log('this.props in constructor in ExpensesApp', this.props);
-    this.state = {total: 0}
+    console.log('this.state in constructor in ExpensesApp', this.state);
+
+    this.state = {
+      total: 0,
+    }
   }
 
   componentWillMount(){
-    console.log('this.props.expenses in componentWillMount in ExpensesApp', this.props.expenses);
     this.props.fetchExpenses()
+    // this.props.receiveExpenses()
   }
+
+  // componentDidMount() {
+  //   console.log('ExpensesApp componentWillReceiveProps: ', this.props.startDate)
+  //   this.props.startDate.setData(this.props.startDate);
+  // }
 
   parseCategoriesForChart() {
     function filterByCategory(obj) {
@@ -44,44 +55,52 @@ export default class ExpensesApp extends Component {
     let dataSum = 0;
     let arrByCategory = this.props.expenses.filter(filterByCategory);
     let reduced = arrByCategory.reduce((p,c) => {
-      p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount;
-      dataSum += c.amount;
+      if (c.category != 'Other') {
+        p[c.category] ? p[c.category] += c.amount : p[c.category] = c.amount;
+        dataSum += c.amount;
+      }
       return p;
     }, {});
 
     let result = [];
     for (let key in reduced) {
-      result.push({name: key, y: Math.round((reduced[key] / dataSum) * 100)});
+      if (key != 'Other') {
+        result.push({name: key, y: Math.round((reduced[key] / dataSum) * 100)});
+      }
     };
     return result;
   }
 
   render(){
     var expenses = this.props.expenses;
-    return (
-      <div className="expenseApp-container">
-
-        <div className="expense-list-container">
-
-          <ExpenseList
-            expenses={expenses}
-            updateCategories={this.props.updateCategories.bind(this)}
-            updateAccounts={this.props.updateAccounts.bind(this)}
-            total={this.props.total}
-          />
-        </div>
-
-        <div className="chart-container">
-          <Total
+    if (!expenses.length > 0) {
+      return (
+        <Spin/>
+      )
+    } else {
+      return (
+        <div className="expenseApp-container">
+          <div className="expense-list-container">
+            <ExpenseList
+              expenses={expenses}
+              updateCategories={this.props.updateCategories.bind(this)}
+              updateAccounts={this.props.updateAccounts.bind(this)}
               total={this.props.total}
-          />
-          <Chart
-            data={this.parseCategoriesForChart()}
-          />
-        </div>
+            />
+          </div>
 
-      </div>
-    )
+          <div className="chart-container">
+            <Total
+                total={this.props.total}
+            />
+            <Chart
+              data={this.parseCategoriesForChart()}
+            />
+          </div>
+
+        </div>
+      )
+    }
   }
 }
 
@@ -89,7 +108,9 @@ ExpensesApp.PropTypes = {
   // Injected by Redux
   expenses: PropTypes.array.isRequired,
   total: PropTypes.number.isRequired,
-  fetchExpenses: PropTypes.func.isRequired
+  fetchExpenses: PropTypes.func.isRequired,
+  allExpenses: PropTypes.array.isRequired,
+  receiveExpenses: PropTypes.func.isRequired
 }
 
 /*
@@ -99,12 +120,19 @@ props you want to pass to a child presentational component you are wrapping
   @return = object of transformed store state
 */
 function mapStateToProps(state){
-  const { expenses, isFetching, total } = state.expensesReducer
-  console.log('EXPENSES: ', expenses);
+  console.log('ExpensesApp in mapStateToProps state is: ', state)
+  const { expenses, isFetching, total, startDate, endDate, allExpenses } = state.expensesReducer
+  console.log('Expenses in mapStateToProps in ExpensesApp: ', expenses );
+  console.log('ExpensesApp mapStateToProps startDate is: ', startDate);
+  console.log('ExpensesApp mapStateToProps endDate is: ', endDate);
+
   return {
     expenses: expenses,
+    allExpenses: allExpenses,
     isFetching: isFetching,
-    total: total
+    total: total,
+    startDate: startDate,
+    endDate: endDate,
   }
 }
 
@@ -114,6 +142,8 @@ export default connect(
   {
     fetchExpenses: fetchExpenses,
     updateCategories: updateCategories,
-    updateAccounts: updateAccounts
+    updateAccounts: updateAccounts,
+    updateDates: updateDates,
+    receiveExpenses: receiveExpenses
   }
 )(ExpensesApp)

@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table'
 
-class BudgetTable extends Component {
+export default class BudgetTable extends Component {
   constructor(props){
     super(props)
   }
 
   _onCellEdit(row, cellName, cellValue){
-    console.log('Row: ', row, 'cellName: ', cellName, 'cellValue: ', cellValue);
+    var essential;
+    row.essential === 'LUXURY' ? essential = 0 : essential = 1;
+
+    var goalUpdates = [
+      {
+        subCat: row.category,
+        amount: +cellValue,
+        essential: essential
+      }
+    ]
+
+    console.log('GOAL UPDATES: ', goalUpdates);
+    this.props.updateBudget(goalUpdates)
   }
 
   render(){
@@ -21,8 +33,8 @@ class BudgetTable extends Component {
               cellEdit={{mode: 'click', blueToSave: true, afterSaveCell: this._onCellEdit.bind(this)}}
         >
           <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
-          <TableHeaderColumn dataField='essential' editable={ {type: 'checkbox', options: {values: 'Y:N'}}}>Essential</TableHeaderColumn>
-          <TableHeaderColumn dataField='category' editable={ { false } }>Category</TableHeaderColumn>
+          <TableHeaderColumn dataField='essential' editable={ {type: 'checkbox', options: {values: 'ESSENTIAL:LUXURY'}}}>Essential or Luxury</TableHeaderColumn>
+          <TableHeaderColumn dataField='category' editable={ false }>Category</TableHeaderColumn>
           <TableHeaderColumn dataField='currAmount' editable={ false }>Current Amount</TableHeaderColumn>
           <TableHeaderColumn dataField='goalAmount' editable={ { type: 'textarea' } }>Goal Amount</TableHeaderColumn>
 
@@ -31,5 +43,3 @@ class BudgetTable extends Component {
     )
   }
 }
-
-export default BudgetTable

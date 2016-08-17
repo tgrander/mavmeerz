@@ -8,6 +8,8 @@ import ExpensesApp from '../containers/ExpensesApp.js'
 class ExpenseList extends Component {
   constructor(props) {
     super(props);
+
+  console.log('ExpenseList props are: ', props);
   }
 
   _categorize(category) {
@@ -20,15 +22,13 @@ class ExpenseList extends Component {
 
   _selectAccount(account) {
     const selected = this.refs.table.state.selectedRowKeys;
-    console.log('===========> account from _selectAccount function: ', account);
-    console.log('===========> selected from _selectAccount function: ', selected);
     if (selected.length > 0) {
       this.props.updateAccounts(selected, account);
     }
   }
 
   render() {
-    console.log('======> this.props.expenses in expenseList: ', this.props.expenses);
+    console.log('ExpenseList this.props is: ', this.props);
     if (this.props.expenses.length > 0) {
       return (
         <div>
@@ -37,6 +37,8 @@ class ExpenseList extends Component {
             <Dropdown
                 categorize={this._categorize.bind(this)}
                 selectAccount={this._selectAccount.bind(this)}
+                receiveExpenses={this.props.receiveExpenses}
+                allExpenses={this.props.allExpenses}
             />
 
             <BootstrapTable
@@ -51,7 +53,7 @@ class ExpenseList extends Component {
               <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
               <TableHeaderColumn dataField='category' editable={ { type: 'dropdown'} }>Category</TableHeaderColumn>
               <TableHeaderColumn dataField='amount' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
-              <TableHeaderColumn dataField='accountId' editable={ {type: 'dropdown'} }>Account</TableHeaderColumn>
+              <TableHeaderColumn dataField='account' editable={ {type: 'dropdown'} }>Account</TableHeaderColumn>
 
             </BootstrapTable>
           </div>
