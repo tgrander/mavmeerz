@@ -12,6 +12,7 @@ export default class BudgetApp extends Component {
   }
 
   componentWillMount(){
+    
     this.props.fetchBudgetItems()
   }
 
@@ -46,7 +47,6 @@ function getVisibleBudgetItems(budgetItems){
     return item.currAmount !== 0
   })
 }
-
 function computeGoalTotal(budgetItems){
   let total = 0
   budgetItems.forEach(item => total += item.goalAmount)
@@ -66,12 +66,12 @@ function computeGoalTotal(budgetItems){
 }
 
 function mapStateToProps(state){
-  const { total } = state.expensesReducer
-  const { budgetItems, fetchingBudget } = state.budget
+  var { total } = state.expensesReducer
+  var { budgetItems, isFetching } = state.budget
   return {
     total: total,
     budgetItems: getVisibleBudgetItems(budgetItems),
-    fetchingBudget: fetchingBudget,
+    isFetching: isFetching,
     goalTotal: computeGoalTotal(budgetItems)
   }
 }
