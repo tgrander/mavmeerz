@@ -52,7 +52,7 @@ class ExpenseList extends Component {
           , day = cell.slice(8,10)
           , year = cell.slice(0,4)
 
-      return `${numberToMonths[month]} ${day}`
+      return `${numberToMonths[month]} ${day}, ${year}`
     }
 
     if (this.props.expenses.length > 0) {
