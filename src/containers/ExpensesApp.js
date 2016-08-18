@@ -101,7 +101,6 @@ export default class ExpensesApp extends Component {
               data={this.parseCategoriesForChart()}
             />
           </div>
-          </div>
         </div>
       )
     }
