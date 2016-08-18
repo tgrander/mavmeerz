@@ -17,6 +17,7 @@ export default (
       <Route path='/login' component={LoginForm}/>
       <Route path='/dashboard' component={Dashboard}>
           <IndexRoute component={ExpensesApp}/>
+          <Route path='/transactions' component={ExpensesApp}/>
           <Route path='/budget' component={BudgetApp}/>
       </Route>
   </Route>
