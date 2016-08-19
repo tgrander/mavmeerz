@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { DateRange } from 'react-date-range';
+import { Button } from 'react-bootstrap';
+import '../css/datepicker.css'
 import Dropdown from './Dropdown'
 import moment from 'moment';
 import ExpensesApp from '../containers/ExpensesApp'
@@ -24,7 +26,7 @@ class DatePicker extends Component {
   handleSelect(range){
     this.setState({
       startDate: moment(range.startDate._d).format(),
-      endDate: moment(range.endDate._d).format()
+      endDate: moment(range.endDate._d).format(),
     });
 
       // An object with two keys,
@@ -47,11 +49,18 @@ class DatePicker extends Component {
         <DateRange
            onInit={this.handleSelect}
            onChange={this.handleSelect}
+           theme={{
+             MonthAndYear   : {
+               background   : '#C8C8C8',
+               color        : '#2A2B2A'
+             },
+             Calendar : { width: 295 },
+             PredefinedRanges : { marginLeft: 10, marginTop: 10},
+            }}
          />
-        <button id="apply-dates" onClick={this.handleClick} >
-          <i className="fa fa-check-circle"></i>
-          OK
-        </button>
+        <div className="apply-dates">
+          <Button className="datesbutton" bsSize="xsmall" onClick={this.handleClick}>Apply Dates</Button>
+        </div>
       </div>
     )
   }
@@ -75,3 +84,7 @@ export default connect(
     setVisibilityFilter: setVisibilityFilter
   }
 )(DatePicker)
+// <button id="apply-dates" onClick={this.handleClick} >
+//   <i className="fa fa-check-circle"></i>
+//   OK
+// </button>
