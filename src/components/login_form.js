@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import {reduxForm} from 'redux-form'
 
-import {Link} from 'react-router'
+import { Link } from 'react-router'
 import { login } from '../actions/authActions'
 
 import Nav_Auth from './Nav_Auth'
