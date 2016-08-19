@@ -16,10 +16,34 @@
 }
 
 .auth-view-logo {
-  position: absolute;
-  top: 5%;
+  top: 12px;
   left: 0;
   width: 100%;
+}
+
+.logo {
+  display: block;
+  font-size: 152px;
+}
+
+.slogan {
+  font-size: 30px;
+}
+
+.auth-nav {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  height: 8px;
+  border-bottom: solid 1px;
+}
+
+.auth-nav-list {
+  padding: 4px 4px 4px 4px;
+  list-style: none;
+  float: left;
+  font-size: 10px;
+  color: black;
 }
 
 /*html {
@@ -48,15 +72,6 @@
   left: 0;
   width: 100%;
   color: black;
-}
-
-.logo {
-  display: block;
-  font-size: 152px;
-}
-
-.slogan {
-  font-size: 30px;
 }
 
 .signup, .login {
