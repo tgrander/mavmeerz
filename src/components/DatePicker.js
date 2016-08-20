@@ -4,9 +4,9 @@ import { DateRange } from 'react-date-range';
 import { Button } from 'react-bootstrap';
 import '../css/datepicker.css'
 import Dropdown from './Dropdown'
-import moment from 'moment';
 import ExpensesApp from '../containers/ExpensesApp'
 import { setVisibilityFilter } from '../actions/expensesActions'
+import moment from 'moment'
 
 class DatePicker extends Component {
   constructor(props) {

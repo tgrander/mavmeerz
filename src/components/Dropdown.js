@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import '../css/dropdown.css'
+import '../css/uploadcsv.css'
 import Categories from './DropdownCategory'
 import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
@@ -76,8 +77,15 @@ export class DropDownApp extends Component {
         <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >
           <DatePicker hideModal = {this.hideDateModal}/>
         </Modal>
-        <Modal {...this.props} show={this.state.showDropzone} onHide={this.hideDropzone} >
-          <Upload />
+        <Modal show={this.state.showDropzone} onHide={this.hideDropzone} bsSize="m"
+           aria-labelledby="contained-modal-title-m"
+        >
+          <Modal.Header className="upload-header">
+            <Modal.Title id="contained-modal-title-m"> Upload Your CSV </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="upload-body">
+            <Upload {...this.props}/>
+          </Modal.Body>
         </Modal>
       </div>
     )
@@ -100,3 +108,6 @@ export default connect(
     setVisibilityFilter: setVisibilityFilter
   }
 )(DropDownApp)
+// <Modal {...this.props} show={this.state.showDropzone} onHide={this.hideDropzone} >
+//   <Upload />
+// </Modal>
