@@ -27,15 +27,7 @@ class AuthView extends Component {
         return (
           <div className="auth-view" id="particles-js">
 
-            <div class="auth-nav">
-              <ul className="auth-nav-list">
-                <li><Link to="">ZENMO</Link></li>
-              </ul>
-            </div>
-
             <h1 className="logo auth-view-logo" id='title'>ZENMO</h1>
-
-            <p className="slogan">Financial Nirvana</p>
 
             <div className='auth-meter'>
                 <KarmoMeter />
