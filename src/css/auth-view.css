@@ -1,13 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Antic|Syncopate);
 
-/*html {
-  background: url(../assets/folio-wallmartpay-bg.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}*/
-
 .auth-view {
   font-family: 'Syncopate', sans-serif;
   color: white;
@@ -16,7 +8,7 @@
 }
 
 .auth-view-logo {
-  top: 12px;
+  top: 8px;
   left: 0;
   width: 100%;
 }
@@ -45,13 +37,6 @@
   font-size: 10px;
   color: black;
 }
-
-/*html {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow-x: hidden;
-}*/
 
 #title {
   /*font-family: "arial", sans-serif;*/
