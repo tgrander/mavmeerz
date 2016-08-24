@@ -3,6 +3,7 @@ import {reduxForm} from 'redux-form'
 
 import { Link } from 'react-router'
 import { login } from '../actions/authActions'
+import Nav_Auth from './Nav_Auth'
 
 import * as util from '../util/style_functions'
 
@@ -21,7 +22,7 @@ class LoginForm extends Component {
   componentDidMount(){
     document.body.style.background = "url(../assets/login.jpg) no-repeat center center fixed";
     util.styleLogo("#FFFFFF")
-    // util.particles()
+    util.particles()
   }
 
   onSubmit(loginData){
@@ -37,31 +38,31 @@ class LoginForm extends Component {
     const {fields:{email, password}, handleSubmit} = this.props;
     return (
 
-      <div className="login-page">
-
-        <div id="login-form">
-          <p className="heading" id="title">LOGIN</p>
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-              <div>
-                <input type="text" {...email} placeholder='username' className="biginput"/>
-                <div className="err-msg">{email.touched ? email.error : ''}</div>
+        <div className="login-page" id="particles-js">
+          <Nav_Auth />
+          <div id="login-form">
+            <p className="heading" id="title">LOGIN</p>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <div>
+                  <input type="text" {...email} placeholder='username' className="biginput"/>
+                  <div className="err-msg">{email.touched ? email.error : ''}</div>
+                </div>
+                <div className="login-pass">
+                  <input type="password" {...password} placeholder='password' className="biginput"/>
+                  <div className="err-msg">{password.touched ? password.error : ''}</div>
+                </div>
+              <div className="btn-group">
+                <button type="submit" className="submit">SUBMIT</button>
               </div>
-              <div className="login-pass">
-                <input type="password" {...password} placeholder='password' className="biginput"/>
-                <div className="err-msg">{password.touched ? password.error : ''}</div>
-              </div>
-            <div className="btn-group">
-              <button type="submit" className="submit">SUBMIT</button>
-            </div>
-          </form>
-        </div>
+            </form>
+          </div>
 
-        <div className="auth-redirect">
-          <p>Already have an account?</p>
-          <Link to="/signup" className="redirect-link">SIGNUP</Link>
-        </div>
+          <div className="auth-redirect">
+            <p>Need to create an account?</p>
+            <Link to="/signup" className="redirect-link">SIGNUP</Link>
+          </div>
 
-      </div>
+        </div>
 
     )
   }

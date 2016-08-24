@@ -3,8 +3,8 @@ import { Link, IndexLink } from 'react-router'
 import '../css/navbar.css'
 
 const Nav_Auth = () => (
-  <nav class='fixed-nav-bar'>
-    <ul className="nav">
+  <nav class='fixed-navy-bar'>
+    <ul className="navy">
       <li><IndexLink to="/">ZENMO</IndexLink></li>
     </ul>
   </nav>

@@ -3,12 +3,20 @@ import {reduxForm} from 'redux-form'
 
 import {Link} from 'react-router'
 import {signup} from '../actions/authActions'
-
 import Nav_Auth from './Nav_Auth'
+
+import * as util from '../util/style_functions'
+
+import '../css/login.css'
 
 class SignupForm extends Component {
   constructor(props){
     super(props)
+  }
+
+  componentDidMount(){
+    util.styleLogo("#FFFFFF")
+    util.particles()
   }
 
   static contextTypes = {
@@ -25,29 +33,37 @@ class SignupForm extends Component {
   render() {
     const {fields:{name, email, password}, handleSubmit} = this.props
     return (
-      <div>
+      <div className="signup-page" id="particles-js">
         <Nav_Auth/>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <p className="heading">Signup</p>
-          <div>
-            <input type="text" {...name} placeholder='name' className="biginput"/>
-            <div className="err-msg">{name.touched ? name.error : ''}</div>
-          </div>
+        <div id="login-form">
+            <p className="heading" id="title">SIGNUP</p>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+              <div>
+                <input type="text" {...name} placeholder='name' className="biginput"/>
+                <div className="err-msg">{name.touched ? name.error : ''}</div>
+              </div>
 
-          <div>
-            <input type="text" {...email} placeholder='email' className="biginput"/>
-            <div className="err-msg">{email.touched ? email.error : ''}</div>
-          </div>
+              <div>
+                <input type="text" {...email} placeholder='email' className="biginput"/>
+                <div className="err-msg">{email.touched ? email.error : ''}</div>
+              </div>
 
-          <div>
-            <input type="password" {...password} placeholder='password' className="biginput"/>
-            <div className="err-msg">{password.touched ? password.error : ''}</div>
-          </div>
-          <div className="btn-group">
-            <button type="submit" className="btn hvr-bounce-to-left">Submit</button>
-          </div>
-        </form><br/>
-        <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link><br/>
+              <div>
+                <input type="password" {...password} placeholder='password' className="biginput"/>
+                <div className="err-msg">{password.touched ? password.error : ''}</div>
+              </div>
+              <div className="btn-group">
+                <button type="submit" className="btn hvr-bounce-to-left">Submit</button>
+              </div>
+            </form><br/>
+        </div>
+
+        <div className="auth-redirect">
+          <p>Already have an account?</p>
+          
+          <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link><br/>
+        </div>
+
       </div>
 
     )

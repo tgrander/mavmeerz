@@ -91,7 +91,6 @@ class ExpenseList extends Component {
         <div className='no-expenses'>
           <p>You have no expenses yet! Upload files below to get started.</p><br/>
           <Upload/><br/>
-          <p>Or add your expenses manually.</p>
         </div>
       )
     }

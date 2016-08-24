@@ -16,14 +16,14 @@ class AuthView extends Component {
   }
 
   componentWillMount() {
-        if(this.props.isAuth && window.localStorage.get('zenmoToken')){
+        if(this.props.isAuth && window.localStorage.getItem('zenmoToken')){
           this.context.router.push('/dashboard')
         }
   }
 
   componentDidMount(){
     util.styleLogo("#1C1B1B")
-    // util.particles()
+    util.particles()
   }
 
   render() {
