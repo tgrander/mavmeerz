@@ -7,6 +7,7 @@ import {Link} from 'react-router'
 import * as util from '../util/style_functions'
 
 import '../css/auth-view.css'
+// import '../css/particles.css'
 
 class AuthView extends Component {
 
@@ -21,8 +22,8 @@ class AuthView extends Component {
   }
 
   componentDidMount(){
-    util.styleLogo()
-    util.particles()
+    util.styleLogo("#1C1B1B")
+    // util.particles()
   }
 
   render() {

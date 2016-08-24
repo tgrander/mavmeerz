@@ -7,7 +7,6 @@ import { login } from '../actions/authActions'
 import * as util from '../util/style_functions'
 
 import '../css/login.css'
-import '../css/particles.css'
 
 
 class LoginForm extends Component {
@@ -20,8 +19,9 @@ class LoginForm extends Component {
   }
 
   componentDidMount(){
-    styleLogo()
-    particles()
+    document.body.style.background = "url(../assets/login.jpg) no-repeat center center fixed";
+    util.styleLogo("#FFFFFF")
+    // util.particles()
   }
 
   onSubmit(loginData){
@@ -46,7 +46,7 @@ class LoginForm extends Component {
                 <input type="text" {...email} placeholder='username' className="biginput"/>
                 <div className="err-msg">{email.touched ? email.error : ''}</div>
               </div>
-              <div>
+              <div className="login-pass">
                 <input type="password" {...password} placeholder='password' className="biginput"/>
                 <div className="err-msg">{password.touched ? password.error : ''}</div>
               </div>
@@ -58,14 +58,7 @@ class LoginForm extends Component {
 
         <div className="auth-redirect">
           <p>Already have an account?</p>
-
-          <div class="btn">
-            <svg>
-              <rect x="0" y="0" fill="none" width="166" height="45" />
-            </svg>
-            <Link to="/signup" className="redirect-link">SIGNUP</Link>
-          </div>
-
+          <Link to="/signup" className="redirect-link">SIGNUP</Link>
         </div>
 
       </div>
