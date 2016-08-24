@@ -4,8 +4,11 @@ import {reduxForm} from 'redux-form'
 import { Link } from 'react-router'
 import { login } from '../actions/authActions'
 
+import * as util from '../util/style_functions'
+
 import '../css/login.css'
 import '../css/particles.css'
+
 
 class LoginForm extends Component {
   static contextTypes = {
@@ -14,6 +17,11 @@ class LoginForm extends Component {
 
   componentWillMount(){
     window.localStorage.removeItem('zenmoToken');
+  }
+
+  componentDidMount(){
+    styleLogo()
+    particles()
   }
 
   onSubmit(loginData){
@@ -32,8 +40,8 @@ class LoginForm extends Component {
       <div className="login-page">
 
         <div id="login-form">
+          <p className="heading" id="title">LOGIN</p>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <p className="heading">LOGIN</p>
               <div>
                 <input type="text" {...email} placeholder='username' className="biginput"/>
                 <div className="err-msg">{email.touched ? email.error : ''}</div>
@@ -50,7 +58,14 @@ class LoginForm extends Component {
 
         <div className="auth-redirect">
           <p>Already have an account?</p>
-          <Link to="/signup" className="redirect-link">SIGNUP</Link>
+
+          <div class="btn">
+            <svg>
+              <rect x="0" y="0" fill="none" width="166" height="45" />
+            </svg>
+            <Link to="/signup" className="redirect-link">SIGNUP</Link>
+          </div>
+
         </div>
 
       </div>
