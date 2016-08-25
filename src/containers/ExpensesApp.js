@@ -17,7 +17,7 @@ import {
 } from '../actions/expensesActions'
 
 
-class ExpenseTableApp extends Component {
+class ExpensesApp extends Component {
 
       componentWillMount(){
         if (!this.props.initialFetchOccurred) {
@@ -29,7 +29,7 @@ class ExpenseTableApp extends Component {
       render(){
         const expenses      = this.props.expenses
             , uploadSuccess = this.props.uploadSuccess;
-            
+
         return (
           if (this.props.isFetching) {
             return (
@@ -84,4 +84,4 @@ export default connect(
     toggleFetched: toggleFetched,
     setVisibilityFilter: setVisibilityFilter
   }
-)(ExpenseTableApp)
+)(ExpenseApp)
