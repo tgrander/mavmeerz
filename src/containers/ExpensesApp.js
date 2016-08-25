@@ -31,8 +31,6 @@ import {
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
-    console.log('::::::> ExpensesApp this.props', this.props);
-    console.log('::::::> ExpensesApp this.state', this.state);
 
     this.state = {
       total: 0,
