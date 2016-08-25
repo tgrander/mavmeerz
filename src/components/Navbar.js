@@ -9,6 +9,8 @@ class Navbar extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
+  //comment
+
   static contextTypes = {
     router: PropTypes.object
   }
