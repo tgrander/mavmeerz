@@ -8,12 +8,13 @@ import DatePicker from '../components/DatePicker'
 import ExpenseList from '../components/ExpenseList.js'
 import Spin from '../components/Spin'
 
-import { setVisibilityFilter } from '../actions/expensesActions'
+import { getVisibleExpenses } from '../util/ExpenseTableApp'
 
 import {
   fetchExpenses,
   toggleFetched,
-  setVisibilityFilter
+  setVisibilityFilter,
+  updateCategories
 } from '../actions/expensesActions'
 
 
@@ -27,10 +28,9 @@ class ExpensesApp extends Component {
       }
 
       render(){
-        const expenses      = this.props.expenses
-            , uploadSuccess = this.props.uploadSuccess;
+          const expenses      = this.props.expenses
+              , uploadSuccess = this.props.uploadSuccess;
 
-        return (
           if (this.props.isFetching) {
             return (
               <Spin/>
@@ -52,7 +52,6 @@ class ExpensesApp extends Component {
                 </div>
             )
           }
-
       }
 }
 
@@ -68,7 +67,7 @@ function mapStateToProps(state){
   } = state.expensesReducer
 
   return {
-    expenses: util.getVisibleExpenses(expenses, visibilityFilter, startDate, endDate),
+    expenses: getVisibleExpenses(expenses, visibilityFilter, startDate, endDate),
     uploadSuccess: uploadSuccess,
     isFetching: isFetching,
     startDate: startDate,
@@ -82,6 +81,7 @@ export default connect(
   {
     fetchExpenses: fetchExpenses,
     toggleFetched: toggleFetched,
-    setVisibilityFilter: setVisibilityFilter
+    setVisibilityFilter: setVisibilityFilter,
+    updateCategories: updateCategories
   }
-)(ExpenseApp)
+)(ExpensesApp)

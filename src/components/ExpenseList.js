@@ -47,7 +47,7 @@ class ExpenseList extends Component {
                     ref='table'
             >
               <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>
-              <TableHeaderColumn dataField='date' dataFormat={ dateFormatter }>Date</TableHeaderColumn>
+              <TableHeaderColumn dataField='date' dataFormat={ util.dateFormatter }>Date</TableHeaderColumn>
               <TableHeaderColumn dataField='description' editable={ { type: 'textarea' } }>Description</TableHeaderColumn>
               <TableHeaderColumn dataField='category' editable={ { type: 'dropdown'} }>Category</TableHeaderColumn>
               <TableHeaderColumn dataField='amount' editable={ { type: 'integer', options: { values: 'Y:N' } } }>Amount</TableHeaderColumn>
