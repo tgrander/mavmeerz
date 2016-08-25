@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import '../css/dropdown.css'
 import '../css/uploadcsv.css'
 import Categories from './DropdownCategory'
-import Accounts from './DropdownAccount'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
 import { Modal } from 'react-bootstrap';
@@ -14,8 +13,6 @@ import { setVisibilityFilter } from '../actions/expensesActions'
 export class DropDownApp extends Component {
   constructor(props) {
     super(props);
-
-    console.log('>>>>> Dropdown props are: ', props)
 
     this.state = {showDatePicker: false, showDropzone: false};
     this.showDateModal   = this.showDateModal.bind(this);
@@ -48,7 +45,6 @@ export class DropDownApp extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log('got herrrrrr w props: ', props);
     if (props.uploadSuccess) {
       this.setState({showDropzone: false});
     }
@@ -67,11 +63,6 @@ export class DropDownApp extends Component {
             <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
             <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
             <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
-            <li><a href='#'>Select Account</a>
-              <Accounts
-                selectAccount={this.props.selectAccount}
-              />
-            </li>
           </ul>
         </nav>
         <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >
