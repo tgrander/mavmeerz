@@ -8,8 +8,6 @@ import DatePicker from '../components/DatePicker'
 import ExpenseList from '../components/ExpenseList.js'
 import Spin from '../components/Spin'
 
-
-
 import { setVisibilityFilter } from '../actions/expensesActions'
 
 import {
@@ -29,6 +27,9 @@ class ExpenseTableApp extends Component {
       }
 
       render(){
+        const expenses      = this.props.expenses
+            , uploadSuccess = this.props.uploadSuccess;
+            
         return (
           if (this.props.isFetching) {
             return (
@@ -47,7 +48,6 @@ class ExpenseTableApp extends Component {
                     }
                     expenses={expenses}
                     updateCategories={this.props.updateCategories.bind(this)}
-                    updateAccounts={this.props.updateAccounts.bind(this)}
                   />
                 </div>
             )

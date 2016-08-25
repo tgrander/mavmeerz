@@ -9,8 +9,6 @@ import '../css/dashboard.css';
 
 import { logout } from '../actions/authActions';
 
-// import UploadApp from '../containers/UploadApp'
-
 class Dashboard extends Component {
 
   static contextTypes = {
@@ -24,9 +22,6 @@ class Dashboard extends Component {
       this.context.router.push('/transactions');
     }
   }
-  // componentDidMount(){
-  //   document.body.style.backgroundColor = 'white'
-  // }
 
   render() {
     return (

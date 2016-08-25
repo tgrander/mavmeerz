@@ -6,19 +6,13 @@ import Total from '../components/Total.js'
 import GoalTotal from '../components/GoalTotal'
 import Chart from '../components/Chart.js'
 import KarmoMeter from './KarmoMeterApp'
+
 import '../css/expensesApp.css'
 
 import { updateCategories } from '../actions/expensesActions'
 
 export default class ExpensesApp extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      total: 0
-    }
-  }
-
-  //explain purpose of this function
+  
   parseCategoriesForChart() {
     let arrByCategory = _.reject(this.props.expenses, expense => {
                           return expense.category == 'Uncategorized';
@@ -45,14 +39,12 @@ export default class ExpensesApp extends Component {
   }
 
   render(){
-    const expenses      = this.props.expenses
-        , uploadSuccess = this.props.uploadSuccess;
-
     return (
         <div className="rightSection-container">
 
             <div className="totals">
                 <Total/>
+                <GoalTotal/>
             </div>
 
             <div className="chart-container">
@@ -70,13 +62,6 @@ export default class ExpensesApp extends Component {
   }
 
 }
-
-// ExpensesApp.PropTypes = {
-//   // Injected by Redux
-//   expenses: PropTypes.array.isRequired,
-//   total: PropTypes.number.isRequired,
-//   fetchExpenses: PropTypes.func.isRequired
-// }
 
 function mapStateToProps(state){
   const { total } = state.expensesReducer
