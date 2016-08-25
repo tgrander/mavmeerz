@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BudgetTable from '../components/BudgetTable'
-import Total from '../components/Total'
-import GoalTotal from '../components/GoalTotal'
+
 import { fetchBudgetItems, updateBudgetItems } from '../actions/budgetActions'
 
 export default class BudgetApp extends Component {
@@ -12,7 +11,7 @@ export default class BudgetApp extends Component {
   }
 
   componentWillMount(){
-    
+
     this.props.fetchBudgetItems()
   }
 
@@ -29,12 +28,6 @@ export default class BudgetApp extends Component {
             updateBudget={this.updateBudget.bind(this)}
           />
         </div>
-        <Total
-            total={this.props.total}
-        />
-        <GoalTotal
-            total={this.props.goalTotal}
-        />
       </div>
     )
   }
@@ -47,18 +40,6 @@ function getVisibleBudgetItems(budgetItems){
     return item.currAmount !== 0
   })
 }
-function computeGoalTotal(budgetItems){
-  let total = 0
-  budgetItems.forEach(item => total += item.goalAmount)
-  return total
-}
-
-function computeGoalTotal(budgetItems){
-  let total = 0
-  budgetItems.forEach(item => total += item.goalAmount)
-  return total
-}
-
 function computeGoalTotal(budgetItems){
   let total = 0
   budgetItems.forEach(item => total += item.goalAmount)
