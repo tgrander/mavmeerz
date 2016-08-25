@@ -10,7 +10,7 @@ export default class KarmoMeter extends Component {
   }
 
   componentDidMount(){
-    d3.select("#fillgauge").call(liquidfillgauge, 55);
+    d3.select("#fillgauge").call(liquidfillgauge, 100);
   }
 
   render(){
@@ -18,12 +18,11 @@ export default class KarmoMeter extends Component {
       <div className = 'karmometer'>
         <svg
             id="fillgauge"
-            width="19%"
-            height="200">
+            width="37%"
+            height="420">
         </svg>
       </div>
-
-    )
+    );
   }
 
 }

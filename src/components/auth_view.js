@@ -4,48 +4,57 @@ import KarmoMeter from '../containers/KarmoMeterApp'
 
 import {Link} from 'react-router'
 
+import * as util from '../util/style_functions'
+
 import '../css/auth-view.css'
+// import '../css/particles.css'
 
 class AuthView extends Component {
 
   static contextTypes = {
-    router: PropTypes.object
+        router: PropTypes.object
   }
 
   componentWillMount() {
-    if(this.props.isAuth){
-      this.context.router.push('/dashboard')
-    }
+        if(this.props.isAuth && window.localStorage.getItem('zenmoToken')){
+          this.context.router.push('/dashboard')
+        }
+  }
+
+  componentDidMount(){
+    util.styleLogo("#1C1B1B")
+    util.particles()
   }
 
   render() {
-    return (
-      <div className="auth-view">
+        return (
+          <div className="auth-view" id="particles-js">
 
-        <KarmoMeter />
+            <h1 className="logo auth-view-logo" id='title'>ZENMO</h1>
 
-        <div className="auth-view-logo">
-          <h1 className="logo">ZENMO</h1>
-          <p className="slogan">Financial Nirvana</p>
-        </div>
+            <div className='auth-meter'>
+                <KarmoMeter />
+            </div>
 
-        <div className='signup'>
-          <p className="text">Begin Your Journey <br/> to Mindful Budgeting</p>
-          <Link to="/signup" className="btn hvr-bounce-to-left text">SIGNUP</Link>
-        </div>
+            <p className="question">What's your financial karma?</p>
 
-        <div className='login'>
-          <p className="text">Or Continue To Collect <br/> Budget Karma</p>
-          <Link to="/login" className="btn hvr-bounce-to-left text">LOGIN</Link>
-        </div>
+            <div className='signup'>
+                <p className="text">Begin Your Journey <br/> to Mindful Budgeting</p>
+                <Link to="/signup" className="btn hvr-bounce-to-left text">SIGNUP</Link>
+            </div>
 
-      </div>
-    )
-  }
+            <div className='login'>
+                <p className="text">Or Continue To Collect <br/> Budget Karma</p>
+                <Link to="/login" className="btn hvr-bounce-to-left text">LOGIN</Link>
+            </div>
+
+          </div>
+        )
+      }
 }
 
 const propTypes = {
-  isAuth: PropTypes.bool.isRequired
+      isAuth: PropTypes.bool.isRequired
 }
 
 export default connect(
