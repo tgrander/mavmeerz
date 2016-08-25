@@ -1,78 +1,87 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component} from 'react'
 import { connect } from 'react-redux'
-import * as _ from 'lodash';
+import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
-import Total from '../components/Total.js'
-import GoalTotal from '../components/GoalTotal'
-import Chart from '../components/Chart.js'
-import KarmoMeter from './KarmoMeterApp'
+import Upload from '../containers/UploadApp'
+import Dropdown from '../components/Dropdown'
+import DatePicker from '../components/DatePicker'
+import ExpenseList from '../components/ExpenseList.js'
+import Spin from '../components/Spin'
 
-import '../css/expensesApp.css'
+import { setVisibilityFilter } from '../actions/expensesActions'
 
-import { updateCategories } from '../actions/expensesActions'
+import {
+  fetchExpenses,
+  toggleFetched,
+  setVisibilityFilter
+} from '../actions/expensesActions'
 
-export default class ExpensesApp extends Component {
-  
-  parseCategoriesForChart() {
-    let arrByCategory = _.reject(this.props.expenses, expense => {
-                          return expense.category == 'Uncategorized';
-                        });
 
-    let categorizedTotal = _.sumBy(arrByCategory, expense => expense.amount);
+class ExpenseTableApp extends Component {
 
-    return  _.chain(arrByCategory)
-             .reduce((prev, expense) => {
-               if (prev[expense.category]) {
-                 prev[expense.category] += expense.amount;
-               } else {
-                 prev[expense.category]  = expense.amount;
-               }
-               return prev;
-             }, {})
-             .map((categoryTotal, category) => {
-               return {
-                 name: category,
-                 y: Math.round((categoryTotal / categorizedTotal) * 100)
-               };
-             })
-             .value();
-  }
+      componentWillMount(){
+        if (!this.props.initialFetchOccurred) {
+          this.props.fetchExpenses()
+          this.props.toggleFetched()
+        }
+      }
 
-  render(){
-    return (
-        <div className="rightSection-container">
+      render(){
+        const expenses      = this.props.expenses
+            , uploadSuccess = this.props.uploadSuccess;
+            
+        return (
+          if (this.props.isFetching) {
+            return (
+              <Spin/>
+            )
+          } else {
+            return (
+                <div className="expense-list-container">
+                  <ExpenseList
+                    uploadSuccess={uploadSuccess}
+                    dates={
+                      {
+                        startDate:this.props.startDate,
+                        endDate: this.props.endDate
+                      }
+                    }
+                    expenses={expenses}
+                    updateCategories={this.props.updateCategories.bind(this)}
+                  />
+                </div>
+            )
+          }
 
-            <div className="totals">
-                <Total/>
-                <GoalTotal/>
-            </div>
-
-            <div className="chart-container">
-                <Chart
-                  data={this.parseCategoriesForChart()}
-                />
-            </div><br/>
-
-            <div className="karmometer-container">
-                <KarmoMeter/>
-            </div>
-
-        </div>
-    )
-  }
-
+      }
 }
 
 function mapStateToProps(state){
-  const { total } = state.expensesReducer
+  const {
+    expenses,
+    uploadSuccess,
+    isFetching,
+    startDate,
+    endDate,
+    initialFetchOccurred,
+    visibilityFilter
+  } = state.expensesReducer
+
   return {
-    total: total
+    expenses: util.getVisibleExpenses(expenses, visibilityFilter, startDate, endDate),
+    uploadSuccess: uploadSuccess,
+    isFetching: isFetching,
+    startDate: startDate,
+    endDate: endDate,
+    initialFetchOccurred: initialFetchOccurred
   }
 }
 
 export default connect(
   mapStateToProps,
   {
-    updateCategories: updateCategories
+    fetchExpenses: fetchExpenses,
+    toggleFetched: toggleFetched,
+    setVisibilityFilter: setVisibilityFilter
   }
-)(ExpensesApp)
+)(ExpenseTableApp)
