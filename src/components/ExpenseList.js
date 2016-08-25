@@ -6,12 +6,9 @@ import Dropdown from '../components/Dropdown'
 import ExpensesApp from '../containers/ExpensesApp.js'
 import { setVisibilityFilter } from '../actions/expensesActions'
 
-class ExpenseList extends Component {
-  constructor(props) {
-    console.log('props in expenselist wooooooh: ', props);
-    super(props);
+import * as util from '../util/ExpenseTableApp'
 
-  }
+class ExpenseList extends Component {
 
   _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys;
@@ -21,39 +18,15 @@ class ExpenseList extends Component {
     }
   }
 
-  _selectAccount(account) {
-    const selected = this.refs.table.state.selectedRowKeys;
-    if (selected.length > 0) {
-      this.props.updateAccounts(selected, account)
-        .then(() => this.refs.table.cleanSelected());
-    }
-  }
+  // _selectAccount(account) {
+  //   const selected = this.refs.table.state.selectedRowKeys;
+  //   if (selected.length > 0) {
+  //     this.props.updateAccounts(selected, account)
+  //       .then(() => this.refs.table.cleanSelected());
+  //   }
+  // }
 
   render() {
-    console.log('ExpenseList this.props is: ', this.props);
-
-    function dateFormatter(cell, row){
-      const numberToMonths = {
-        '01': 'Jan',
-        '02': 'Feb',
-        '03': 'Mar',
-        '04': 'Apr',
-        '05': 'May',
-        '06': 'Jun',
-        '07': 'Jul',
-        '08': 'Aug',
-        '09': 'Sep',
-        '10': 'Oct',
-        '11': 'Nov',
-        '12': 'Dec'
-      }
-
-      const month = cell.slice(5,7)
-          , day = cell.slice(8,10)
-          , year = cell.slice(0,4)
-
-      return `${numberToMonths[month]} ${day}, ${year}`
-    }
 
     if (this.props.expenses.length > 0) {
       return (
@@ -63,7 +36,6 @@ class ExpenseList extends Component {
             <Dropdown
                 uploadSuccess={this.props.uploadSuccess}
                 categorize={this._categorize.bind(this)}
-                selectAccount={this._selectAccount.bind(this)}
                 setVisibilityFilter={this.props.setVisibilityFilter}
             />
 

@@ -1,3 +1,16 @@
+export function getVisibleExpenses(expenses, visibilityFilter, startDate, endDate) {
+  switch (visibilityFilter) {
+    case 'SHOW_ALL':
+      return expenses
+    case 'SHOW_FILTERED_DATE':
+      return expenses.filter((expense) => {
+        if (endDate && startDate) {
+          return expense.date.slice(0,10) >= startDate.slice(0,10) && expense.date.slice(0,10) <= endDate.slice(0,10)
+        }
+      })
+  }
+}
+
 export function dateFormatter(cell, row){
   const numberToMonths = {
     '01': 'Jan',

@@ -5,38 +5,16 @@ import * as _ from 'lodash';
 import Total from '../components/Total.js'
 import GoalTotal from '../components/GoalTotal'
 import Chart from '../components/Chart.js'
-import Spin from '../components/Spin'
 import KarmoMeter from './KarmoMeterApp'
 import '../css/expensesApp.css'
 
-//MOVE TO EXPENSE LIST
-import DatePicker from '../components/DatePicker'
-import ExpenseList from '../components/ExpenseList.js'
-
-
-//MOVE TO EXPENSE LIST
-//move fetchExpenses, toggleFetched, setVisibilityFilter to expense list
-import {
-  fetchExpenses,
-  updateCategories,
-  updateAccounts,
-  toggleFetched,
-  setVisibilityFilter
-} from '../actions/expensesActions'
+import { updateCategories } from '../actions/expensesActions'
 
 export default class ExpensesApp extends Component {
   constructor(props){
     super(props)
     this.state = {
       total: 0
-    }
-  }
-
-  //MOVE TO EXPENSE LIST
-  componentWillMount(){
-    if (!this.props.initialFetchOccurred) {
-      this.props.fetchExpenses()
-      this.props.toggleFetched()
     }
   }
 
@@ -70,109 +48,46 @@ export default class ExpensesApp extends Component {
     const expenses      = this.props.expenses
         , uploadSuccess = this.props.uploadSuccess;
 
-    //MOVE TO EXPENSE LIST
-    if (this.props.isFetching) {
-      return (
-        <Spin/>
-      )
-    } else {
-      return (
-        <div className="expenseApp-container">
+    return (
+        <div className="rightSection-container">
 
-          <div className="expense-list-container">
-            <ExpenseList
-              uploadSuccess={uploadSuccess}
-              dates={
-                {
-                  startDate:this.props.startDate,
-                  endDate: this.props.endDate
-                }
-              }
-              expenses={expenses}
-              updateCategories={this.props.updateCategories.bind(this)}
-              updateAccounts={this.props.updateAccounts.bind(this)}
-            />
-          </div>
+            <div className="totals">
+                <Total/>
+            </div>
 
-          <div className="rightSection-container">
             <div className="chart-container">
-              <Total
-                  total={this.props.total}
-              />
-              <Chart
-                data={this.parseCategoriesForChart()}
-              />
-            </div>
-            <br />
+                <Chart
+                  data={this.parseCategoriesForChart()}
+                />
+            </div><br/>
+
             <div className="karmometer-container">
-              <KarmoMeter
-              />
+                <KarmoMeter/>
             </div>
-          </div>
 
         </div>
-      )
-    }
+    )
   }
+
 }
 
-ExpensesApp.PropTypes = {
-  // Injected by Redux
-  expenses: PropTypes.array.isRequired,
-  total: PropTypes.number.isRequired,
-  fetchExpenses: PropTypes.func.isRequired
-}
+// ExpensesApp.PropTypes = {
+//   // Injected by Redux
+//   expenses: PropTypes.array.isRequired,
+//   total: PropTypes.number.isRequired,
+//   fetchExpenses: PropTypes.func.isRequired
+// }
 
-function getVisibleExpenses(expenses, visibilityFilter, startDate, endDate) {
-  switch (visibilityFilter) {
-    case 'SHOW_ALL':
-      return expenses
-    case 'SHOW_FILTERED_DATE':
-      return expenses.filter((expense) => {
-        if (endDate && startDate) {
-          return expense.date.slice(0,10) >= startDate.slice(0,10) && expense.date.slice(0,10) <= endDate.slice(0,10)
-        }
-      })
-  }
-}
-
-/*
-function that describes how to transform the current Redux store state into the
-props you want to pass to a child presentational component you are wrapping
-  @param = state object
-  @return = object of transformed store state
-*/
 function mapStateToProps(state){
-  const {
-    expenses,
-    uploadSuccess,
-    isFetching,
-    total,
-    startDate,
-    endDate,
-    initialFetchOccurred,
-    visibilityFilter
-  } = state.expensesReducer
-
+  const { total } = state.expensesReducer
   return {
-    expenses: getVisibleExpenses(expenses, visibilityFilter, startDate, endDate),
-    uploadSuccess: uploadSuccess,
-    isFetching: isFetching,
-    total: total,
-    startDate: startDate,
-    endDate: endDate,
-    initialFetchOccurred: initialFetchOccurred
+    total: total
   }
 }
 
-//function that connects React component to Redux store
 export default connect(
   mapStateToProps,
   {
-    fetchExpenses: fetchExpenses,
-    updateCategories: updateCategories,
-    updateAccounts: updateAccounts,
-    toggleFetched: toggleFetched,
-    setVisibilityFilter: setVisibilityFilter
+    updateCategories: updateCategories
   }
 )(ExpensesApp)
