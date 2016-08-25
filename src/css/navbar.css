@@ -5,7 +5,7 @@
   right: 0;
   width: 100%;
   height: 20%;
-  background: rgba(0,0,0,0);
+  background: #000000;
 }
 
 .nav {
@@ -16,14 +16,18 @@
   color: white;
 }
 
-.nav-logo {
-  position: absolute;
+.item {
+  display: inline;
   top: 75%;
-  left: 10%;
-  font-size: 35px;
   color: #FFFFFF;
+}
+
+.nav-logo {
+  float: left;
+  font-size: 35px;
 }
 
 .nav-item {
   float: right;
+  font-size: 20px;
 }
