@@ -2,7 +2,7 @@ import React from 'react'
 import { TableHeaderColumn } from 'react-bootstrap-table';
 import moment from 'moment'
 
-let Expense = ({exp, handleCategorySubmit}) => {
+const Expense = ({exp, handleCategorySubmit}) => {
   //component that returns a single expense item
   //each expense item contains a date, description text, amount, and a category
   let amount;
