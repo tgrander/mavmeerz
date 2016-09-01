@@ -1,18 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BudgetTable from '../components/BudgetTable'
-import Total from '../components/Total'
-import GoalTotal from '../components/GoalTotal'
+
 import { fetchBudgetItems, updateBudgetItems } from '../actions/budgetActions'
 
 export default class BudgetApp extends Component {
 
-  constructor(props){
-    super(props)
-  }
-
   componentWillMount(){
-    
     this.props.fetchBudgetItems()
   }
 
@@ -29,50 +23,24 @@ export default class BudgetApp extends Component {
             updateBudget={this.updateBudget.bind(this)}
           />
         </div>
-        <Total
-            total={this.props.total}
-        />
-        <GoalTotal
-            total={this.props.goalTotal}
-        />
       </div>
     )
   }
 
 }
 
-function getVisibleBudgetItems(budgetItems){
+export function getVisibleBudgetItems(budgetItems){
   return budgetItems.filter(item => {
     item.essential === 0 ? item.essential = 'LUXURY' : item.essential = 'ESSENTIAL';
     return item.currAmount !== 0
   })
 }
-function computeGoalTotal(budgetItems){
-  let total = 0
-  budgetItems.forEach(item => total += item.goalAmount)
-  return total
-}
-
-function computeGoalTotal(budgetItems){
-  let total = 0
-  budgetItems.forEach(item => total += item.goalAmount)
-  return total
-}
-
-function computeGoalTotal(budgetItems){
-  let total = 0
-  budgetItems.forEach(item => total += item.goalAmount)
-  return total
-}
 
 function mapStateToProps(state){
-  var { total } = state.expensesReducer
   var { budgetItems, isFetching } = state.budget
   return {
-    total: total,
     budgetItems: getVisibleBudgetItems(budgetItems),
-    isFetching: isFetching,
-    goalTotal: computeGoalTotal(budgetItems)
+    isFetching: isFetching
   }
 }
 
