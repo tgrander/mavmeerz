@@ -44,7 +44,7 @@ class LoginForm extends Component {
             <p className="heading" id="title">LOGIN</p>
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div>
-                  <input type="text" {...email} placeholder='username' className="biginput"/>
+                  <input type="text" placeholder='username' className="biginput"/>
                   <div className="err-msg">{email.touched ? email.error : ''}</div>
                 </div>
                 <div className="login-pass">
