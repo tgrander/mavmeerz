@@ -32,11 +32,7 @@ class AuthView extends Component {
 
             <h1 className="logo auth-view-logo" id='title'>ZENMO</h1>
 
-            <div className='auth-meter'>
-                <KarmoMeter />
-            </div>
-
-            <p className="question">What's your financial karma?</p>
+            <p className="question">Find Your Path To Financial Nirvana</p>
 
             <div className='signup'>
                 <p className="text">Begin Your Journey <br/> to Mindful Budgeting</p>
