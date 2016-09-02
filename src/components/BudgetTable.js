@@ -21,7 +21,7 @@ export default class BudgetTable extends Component {
 
   render(){
     return (
-      <div>
+      <div expenses-container>
         <BootstrapTable
               data={ this.props.budgetItems }
               striped={ true }

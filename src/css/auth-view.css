@@ -16,14 +16,16 @@
 }
 
 .auth-view-logo {
-  top: 12px;
+  position: absolute;
+  top: 8px;
   left: 0;
   width: 100%;
 }
 
 .logo {
   display: block;
-  font-size: 152px;
+  font-size: 100px;
+  color: #FFFFFF;
 }
 
 .slogan {
@@ -66,9 +68,9 @@
 
 .question {
   font-weight: bold;
-  font-size: 30px;
+  font-size: 18px;
   position: absolute;
-  top: 27%;
+  top: 22%;
   left: 0;
   width: 100%;
   color: black;
@@ -76,17 +78,17 @@
 
 .signup, .login {
   position: absolute;
-  top: 65%;
+  top: 30%;
   padding: 40px;
   border: solid 4px;
 }
 
 .signup {
-  left: 10%;
+  left: 30%;
 }
 
 .login {
-  right: 10%;
+  right: 30%;
 }
 
 .btn {
@@ -100,14 +102,14 @@
 }
 
 .text {
-  font-size: 29px;
+  font-size: 15px;
 }
 
 .auth-meter {
   position: absolute;
   top: 23%;
   left: 0;
-  width: 100%;
+  /*width: 100%;*/
 }
 
 html{
