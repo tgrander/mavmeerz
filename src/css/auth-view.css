@@ -26,7 +26,7 @@
 
 .logo {
   display: block;
-  font-size: 100px;
+  font-size: 70px;
   color: #FFFFFF;
 }
 
@@ -72,7 +72,7 @@
   text-align: center;
   margin: 0 auto;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   position: absolute;
   top: 15%;
   left: 0;
@@ -88,11 +88,11 @@
 }
 
 .signup {
-  left: 30%;
+  left: 20%;
 }
 
 .login {
-  right: 30%;
+  right: 20%;
 }
 
 .btn {
@@ -106,7 +106,7 @@
 }
 
 .text {
-  font-size: 15px;
+  font-size: 11px;
 }
 
 .auth-meter {
