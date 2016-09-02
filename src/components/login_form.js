@@ -48,7 +48,7 @@ class LoginForm extends Component {
                   <div className="err-msg">{email.touched ? email.error : ''}</div>
                 </div>
                 <div className="login-pass">
-                  <input type="password" {...password} placeholder='password' className="biginput"/>
+                  <input type="password" placeholder='password' className="biginput"/>
                   <div className="err-msg">{password.touched ? password.error : ''}</div>
                 </div>
               <div className="btn-group">

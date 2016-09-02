@@ -39,17 +39,17 @@ class SignupForm extends Component {
             <p className="heading" id="title">SIGNUP</p>
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
               <div>
-                <input type="text" {...name} placeholder='name' className="biginput"/>
+                <input type="text" placeholder='name' className="biginput"/>
                 <div className="err-msg">{name.touched ? name.error : ''}</div>
               </div>
 
               <div>
-                <input type="text" {...email} placeholder='email' className="biginput"/>
+                <input type="text" placeholder='email' className="biginput"/>
                 <div className="err-msg">{email.touched ? email.error : ''}</div>
               </div>
 
               <div>
-                <input type="password" {...password} placeholder='password' className="biginput"/>
+                <input type="password" placeholder='password' className="biginput"/>
                 <div className="err-msg">{password.touched ? password.error : ''}</div>
               </div>
               <div className="btn-group">
@@ -60,7 +60,7 @@ class SignupForm extends Component {
 
         <div className="auth-redirect">
           <p>Already have an account?</p>
-          
+
           <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link><br/>
         </div>
 
