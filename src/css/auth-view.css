@@ -84,15 +84,15 @@
   position: absolute;
   top: 30%;
   padding: 25px;
-  border: solid 4px;
+  border: solid 2px;
 }
 
 .signup {
-  left: 20%;
+  left: 25%;
 }
 
 .login {
-  right: 20%;
+  right: 25%;
 }
 
 .btn {
