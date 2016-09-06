@@ -7,13 +7,13 @@
  const knex = require('knex')({
    client: 'mysql',
    connection: {
-     host     : '127.0.0.1',
+     host     : 'mysqlcluster7.registeredsite.com',
      port     : '3306',
-     user     : 'root',
-     password : '',
+     user     : 'treyadmin',
+     password : '!Qaz2wsx3edc',
      database : 'zenmoDB',
      charset  : 'utf8'
-   },
+   }
  });
 
 knex.schema.hasTable('users').then(function(exists) {
