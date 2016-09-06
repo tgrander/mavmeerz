@@ -28,6 +28,7 @@ class SignupForm extends Component {
     .then(() => {
       this.context.router.push('/dashboard')
     })
+    .catch(err => console.error(err))
   }
 
   render() {
