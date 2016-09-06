@@ -59,6 +59,9 @@
     "redux-thunk": "^2.1.0",
     "sqlite3": "^3.1.4"
   },
+  "engines": {
+    "node": "6.2.2"
+  },
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive & node_modules/.bin/mocha -u exports test/server/**/*",
     "test:watch": "npm test -- --watch",
