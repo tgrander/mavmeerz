@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react'
-import {reduxForm} from 'redux-form'
+import { reduxForm } from 'redux-form'
 
 import {Link} from 'react-router'
 import {signup} from '../actions/authActions'
@@ -12,6 +12,7 @@ import '../css/login.css'
 class SignupForm extends Component {
   constructor(props){
     super(props)
+    console.log('Signup function: ', this.props.signup);
   }
 
   componentDidMount(){
@@ -62,7 +63,6 @@ class SignupForm extends Component {
 
         <div className="auth-redirect">
           <p>Already have an account?</p>
-
           <Link to="/login" className="btn hvr-bounce-to-left">LOGIN</Link><br/>
         </div>
 
