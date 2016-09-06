@@ -44,11 +44,11 @@ class LoginForm extends Component {
             <p className="heading" id="title">LOGIN</p>
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <div>
-                  <input type="text" placeholder='username' className="biginput"/>
+                  <input type="text" {...name} placeholder='username' className="biginput"/>
                   <div className="err-msg">{email.touched ? email.error : ''}</div>
                 </div>
                 <div className="login-pass">
-                  <input type="password" placeholder='password' className="biginput"/>
+                  <input type="password" {...password} placeholder='password' className="biginput"/>
                   <div className="err-msg">{password.touched ? password.error : ''}</div>
                 </div>
               <div className="btn-group">
