@@ -24,6 +24,7 @@ class SignupForm extends Component {
   }
 
   onSubmit(signupData){
+    console.log('SIGNUP SUBMITTED');
     this.props.signup(signupData)
     .then(() => {
       this.context.router.push('/dashboard')
