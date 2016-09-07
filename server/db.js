@@ -7,11 +7,11 @@
  const knex = require('knex')({
    client: 'mysql',
    connection: {
-     host     : '127.0.0.1',
-     port     : '3306',
-     user     : 'root',
-     password : '',
-     database : 'zenmoDB',
+     host     : 'us-cdbr-iron-east-04.cleardb.net',
+    //  port     : '8080',
+     user     : 'b54fca61493351',
+     password : '95b13c3b',
+     database : 'heroku_80053029a9135e3',
      charset  : 'utf8'
    },
  });
