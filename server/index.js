@@ -54,4 +54,5 @@ app.listen(port);
 
 console.log('Zenmo is now listening on port ' + port);
 
-module.exports = port
+module.exports = app;
+module.exports = port;
