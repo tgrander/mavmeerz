@@ -12,7 +12,6 @@ import '../css/login.css'
 class SignupForm extends Component {
   constructor(props){
     super(props)
-    console.log('Signup function: ', this.props.signup);
   }
 
   componentDidMount(){
@@ -25,7 +24,7 @@ class SignupForm extends Component {
   }
 
   onSubmit(signupData){
-    console.log('SIGNUP SUBMITTED');
+    console.log('Signup Data: ', signupData);
     this.props.signup(signupData)
     .then(() => {
       this.context.router.push('/dashboard')

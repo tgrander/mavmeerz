@@ -1,6 +1,6 @@
 const express    = require('express')
     , app        = express()
-    , port       = process.env.PORT || 8080
+    , port       = process.env.PORT || 3000
     , bodyParser = require('body-parser')
     , expressCSV = require('express-csv-middleware');
 
@@ -55,3 +55,4 @@ app.listen(port);
 console.log('Zenmo is now listening on port ' + port);
 
 module.exports = app;
+module.exports = port;

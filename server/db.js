@@ -4,6 +4,23 @@
  *   one to store csv file names and one to store the expense data.
  */
 
+ const currentPort = require ('./index.js').port
+ console.log('CURRENT PORT: ', currentPort);
+
+ var user, password, host, database
+ if (currentPort === 3000) {
+   user = 'root'
+   password = ''
+   host = ''
+   database = 'zenmoDB'
+ } else {
+   user = 'b54fca61493351'
+   password = '95b13c3b'
+   host = 'us-cdbr-iron-east-04.cleardb.net'
+   database = 'heroku_80053029a9135e3'
+ }
+
+
  const knex = require('knex')({
    client: 'mysql',
    connection: {
