@@ -24,7 +24,6 @@ class SignupForm extends Component {
   }
 
   onSubmit(signupData){
-    console.log('Signup Data: ', signupData);
     this.props.signup(signupData)
     .then(() => {
       this.context.router.push('/dashboard')
@@ -33,7 +32,7 @@ class SignupForm extends Component {
   }
 
   render() {
-    const {fields:{name, email, password}, handleSubmit} = this.props
+    const {fields:{name, password}, handleSubmit} = this.props
     return (
       <div className="signup-page" id="particles-js">
         <Nav_Auth/>
@@ -43,11 +42,6 @@ class SignupForm extends Component {
               <div>
                 <input type="text" {...name} placeholder='name' className="biginput"/>
                 <div className="err-msg">{name.touched ? name.error : ''}</div>
-              </div>
-
-              <div>
-                <input type="text" {...email} placeholder='email' className="biginput"/>
-                <div className="err-msg">{email.touched ? email.error : ''}</div>
               </div>
 
               <div>
@@ -74,13 +68,13 @@ class SignupForm extends Component {
 function validate(values) {
   const errors = {}
   if(!values.name) errors.name = 'Please enter your name'
-  if(!values.email) errors.email = 'Please enter a valid email'
+  // if(!values.email) errors.email = 'Please enter a valid email'
   if(!values.password) errors.password = 'Please enter a password'
   return errors
 }
 
 export default reduxForm({
   form: "SignupForm",
-  fields: ['name', 'email', 'password'],
+  fields: ['name', 'password'],
   validate
 }, null, {signup} )(SignupForm)

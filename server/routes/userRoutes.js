@@ -26,7 +26,7 @@ router.post('/signup', (req, res) => {
     }
   });
 
-  if (userInfo.email !== undefined && userInfo.password !== undefined) {
+  if (userInfo.name !== undefined && userInfo.password !== undefined) {
     util.addUserToDB(userInfo)
       .then((userData) => {
         goalUtil.initialGoalsTableFill(userData.id)
@@ -43,7 +43,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
   let userInfo = req.body;
-  if (userInfo.email !== undefined && userInfo.password !== undefined) {
+  if (userInfo.name !== undefined && userInfo.password !== undefined) {
 
     util.attemptLogin(userInfo)
       .then((results) => {

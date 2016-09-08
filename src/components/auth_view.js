@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux'
-import KarmoMeter from '../containers/KarmoMeterApp'
 
 import {Link} from 'react-router'
 
 import * as util from '../util/style_functions'
 
 import '../css/auth-view.css'
-// import '../css/particles.css'
+
+import { signup } from '../actions/authActions'
 
 class AuthView extends Component {
 
@@ -24,6 +24,23 @@ class AuthView extends Component {
   componentDidMount(){
     util.styleLogo("#1C1B1B")
     util.particles()
+  }
+
+  _onGuestUserClick(e){
+    e.preventDefault()
+    const guestUserData = {
+      name: 'Guest User',
+      email: 'guest@guest.com',
+      password: 'guest'
+    }
+    //signup using guest data
+    this.props.signup(guestUserData)
+    .then(() => {
+      this.context.router.push('/dashboard')
+    })
+    //automatically upload guestUserTransactions
+    .then()
+    .catch(err => console.error(err))
   }
 
   render() {
@@ -44,18 +61,26 @@ class AuthView extends Component {
                 <Link to="/login" className="btn hvr-bounce-to-left text">LOGIN</Link>
             </div>
 
+            <div>
+              <a
+                className="btn guest-user-link"
+                onClick={e => this._onGuestUserClick(e)}
+              >Continue As Guest</a>
+
+            </div>
+
           </div>
         )
       }
 }
 
-const propTypes = {
-      isAuth: PropTypes.bool.isRequired
+function mapStateToProps(state){
+  return {
+    isAuth: state.isAuth
+  }
 }
 
 export default connect(
-  (state)=>{
-    return {
-      isAuth: state.isAuth
-    }
-  })(AuthView)
+  mapStateToProps,
+  {signup: signup}
+)(AuthView)
