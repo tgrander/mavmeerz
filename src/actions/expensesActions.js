@@ -62,6 +62,22 @@ export function parsingCSV() {
     // isFetching: true
   };
 }
+//Async Action for sending a post request to upload CSV
+export function uploadCSV(account, csv){
+  return dispatch => {
+      dispatch(uploadRequest())
+      return Axios({
+        method: 'POST',
+        url: '/v1/api/expenses',
+        headers: {'x-access-token': window.localStorage.getItem('zenmoToken')},
+        data: {account: account, expenses: csv}
+      })
+    .then(res =>  {
+      dispatch(uploadSuccess(res.data))
+      dispatch(getTotal(computeTotal(res.data)))
+    });
+  }
+}
 //-----------------------------
 
 //TOTAL ACTION CREATORS
@@ -137,23 +153,6 @@ export function fetchExpenses(){
         dispatch(getTotal(computeTotal(res.data)))
       })
       .catch(err => console.error(err))
-  }
-}
-
-//Async Action for sending a post request to upload CSV
-export function uploadCSV(account, csv){
-  return dispatch => {
-      dispatch(uploadRequest())
-      return Axios({
-        method: 'POST',
-        url: '/v1/api/expenses',
-        headers: {'x-access-token': window.localStorage.getItem('zenmoToken')},
-        data: {account: account, expenses: csv}
-      })
-    .then(res =>  {
-      dispatch(uploadSuccess(res.data))
-      dispatch(getTotal(computeTotal(res.data)))
-    });
   }
 }
 

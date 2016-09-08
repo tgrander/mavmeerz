@@ -109,11 +109,8 @@
   font-size: 11px;
 }
 
-.auth-meter {
-  position: absolute;
-  top: 23%;
-  left: 0;
-  /*width: 100%;*/
+.guest-user-link {
+  
 }
 
 html{

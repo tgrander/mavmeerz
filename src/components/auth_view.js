@@ -11,11 +11,6 @@ import { signup } from '../actions/authActions'
 
 class AuthView extends Component {
 
-  constructor(props){
-    super(props)
-    console.log('signup function: ', this.props.signup);
-  }
-
   static contextTypes = {
         router: PropTypes.object
   }
@@ -43,7 +38,7 @@ class AuthView extends Component {
       this.context.router.push('/dashboard')
     })
     //automatically upload guestUserTransactions
-    .then()
+
     .catch(err => console.error(err))
   }
 

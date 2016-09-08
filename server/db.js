@@ -4,33 +4,26 @@
  *   one to store csv file names and one to store the expense data.
  */
 
- const currentPort = require ('./index.js').port
- console.log('CURRENT PORT: ', currentPort);
-
- var user, password, host, database
- if (currentPort === 3000) {
-   user = 'root'
-   password = ''
-   host = ''
-   database = 'zenmoDB'
- } else {
-   user = 'b54fca61493351'
-   password = '95b13c3b'
-   host = 'us-cdbr-iron-east-04.cleardb.net'
-   database = 'heroku_80053029a9135e3'
+ const localConnection = {
+   host     : '127.0.0.1',
+   port     : '3306',
+   user     : 'root',
+   password : '',
+   database : 'zenmoDB',
+   charset  : 'utf8'
  }
-
+const deployedConnection = {
+  host     : 'us-cdbr-iron-east-04.cleardb.net',
+ //  port     : '8080',
+  user     : 'b54fca61493351',
+  password : '95b13c3b',
+  database : 'heroku_80053029a9135e3',
+  charset  : 'utf8'
+}
 
  const knex = require('knex')({
    client: 'mysql',
-   connection: {
-     host     : 'us-cdbr-iron-east-04.cleardb.net',
-    //  port     : '8080',
-     user     : 'b54fca61493351',
-     password : '95b13c3b',
-     database : 'heroku_80053029a9135e3',
-     charset  : 'utf8'
-   },
+   connection: localConnection
  });
 
 knex.schema.hasTable('users').then(function(exists) {

@@ -30,7 +30,8 @@ router.post('/signup', (req, res) => {
     util.addUserToDB(userInfo)
       .then((userData) => {
         goalUtil.initialGoalsTableFill(userData.id)
-        createToken(req, res, userData.id)
+        console.log('user data: ', userData);
+        createToken(req, res, userData.id, userInfo.name)
         // below code not needed becasue createToken() handles response
         // res.status(201).send(results);
       })
