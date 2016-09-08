@@ -11,6 +11,11 @@ import { signup } from '../actions/authActions'
 
 class AuthView extends Component {
 
+  constructor(props){
+    super(props)
+    console.log('signup function: ', this.props.signup);
+  }
+
   static contextTypes = {
         router: PropTypes.object
   }
@@ -30,7 +35,6 @@ class AuthView extends Component {
     e.preventDefault()
     const guestUserData = {
       name: 'Guest User',
-      email: 'guest@guest.com',
       password: 'guest'
     }
     //signup using guest data
