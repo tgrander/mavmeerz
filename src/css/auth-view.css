@@ -1,98 +1,36 @@
 @import url(https://fonts.googleapis.com/css?family=Antic|Syncopate);
 
-/*html {
-  background: url(../assets/folio-wallmartpay-bg.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}*/
-
 .auth-view {
   font-family: 'Syncopate', sans-serif;
-  color: white;
   margin: 0 auto;
-  text-align: center;;
+  text-align: center;
 }
 
-.auth-view-logo {
-  text-align: center;
-  /*margin: 0 auto;*/
-  position: relative;
-  top: 15%;
-  /*left: 0;*/
+.logo-and-phrase {
+  position: absolute;
+  top: 35%;
+  display: block;
   width: 100%;
+  height: 34px;
+  margin: 0 auto;
+  color: #000000;
 }
 
 .logo {
-  display: block;
-  font-size: 70px;
-  color: #FFFFFF;
+  font-size: 100px;
 }
 
-.slogan {
-  font-size: 30px;
+.phrase {
+  font-weight: bold;
+  font-size: 20px;
 }
-
-.auth-nav {
-  width: 100%;
-  position: fixed;
-  top: 0px;
-  height: 8px;
-  border-bottom: solid 1px;
-}
-
-.auth-nav-list {
-  padding: 4px 4px 4px 4px;
-  list-style: none;
-  float: left;
-  font-size: 10px;
-  color: black;
-}
-
-/*html {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow-x: hidden;
-}*/
 
 #title {
-  /*font-family: "arial", sans-serif;*/
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  /*font-size: 6em;*/
   font-weight: bold;
   text-align: center;
   text-shadow: 3px 3px #1C1B1B;
-  /*transform: translateY(50%);*/
-}
-
-.question {
-  text-align: center;
-  margin: 0 auto;
-  font-weight: bold;
-  font-size: 15px;
-  position: absolute;
-  top: 15%;
-  left: 0;
-  width: 100%;
-  color: black;
-}
-
-.signup, .login {
-  position: absolute;
-  top: 30%;
-  padding: 25px;
-  border: solid 2px;
-}
-
-.signup {
-  left: 30%;
-}
-
-.login {
-  right: 30%;
 }
 
 .btn {
@@ -109,14 +47,40 @@
   font-size: 11px;
 }
 
-.guest-user-link {
-  
+
+
+
+
+
+
+
+/*.signup, .login {
+  position: absolute;
+  top: 30%;
+  padding: 25px;
+  border: solid 2px;
+}*/
+/*
+.signup {
+  left: 30%;
 }
 
-html{
+.login {
+  right: 30%;
+}*/
+
+/*html{
   background: url(../assets/D.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
+}*/
+
+/*html {
+  background: url(../assets/folio-wallmartpay-bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/

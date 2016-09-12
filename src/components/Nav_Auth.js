@@ -4,7 +4,16 @@ import '../css/navbar.css'
 
 const Nav_Auth = () => (
   <div className='nav'>
-    <IndexLink to="/">ZENMO</IndexLink>
+
+    <IndexLink
+      to="/"
+      className="item nav-logo">
+      ZENMO
+    </IndexLink>
+
+    <Link to="/signup" className="signup item nav-item">Signup</Link>
+    <Link to="/signup" className="login item nav-item">Login</Link>
+
   </div>
 )
 

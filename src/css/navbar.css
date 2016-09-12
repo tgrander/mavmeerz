@@ -4,31 +4,33 @@
   left: 0;
   right: 0;
   width: 100%;
-  height: 20%;
-  background: #000000;
-  border-bottom: solid 2px #000000;
+  height: 80px;
+  background-color: #FFFFFF;
 }
 
 .nav {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  color: white;
 }
 
 .item {
-  display: inline;
-  top: 75%;
-  color: #FFFFFF;
+  position: absolute;
+  line-height: 80px;
+  color: #000000;
 }
 
 .nav-logo {
-  float: left;
+  left: 30px;
   font-size: 35px;
 }
 
 .nav-item {
-  float: right;
   font-size: 20px;
+}
+
+.signup {
+  right: 35px;
+}
+
+.login {
+  right: 150px;
 }
