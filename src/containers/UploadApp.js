@@ -34,15 +34,11 @@ export default class UploadApp extends Component {
     this.props.parsingCSV()
      parseCSV(files[0])
        .then(result => {
-
          if (that.state.account === null) {
            that.setState({account: 'Undefined Account'})
          }
          console.log('********Parsed CSV result: ', result);
          that.props.uploadCSV(that.state.account, result)
-         .catch(err => {
-           console.error(err);
-         });
        })
        .catch(error => console.error(error));
   }
@@ -56,7 +52,7 @@ export default class UploadApp extends Component {
   componentDidMount(){
     const username = window.localStorage.getItem('username')
     if (username === "Guest User") {
-      this.uploadGuestUserExpenses()
+      this.props.uploadCSV(this.state.account, guestExpenses)
     }
   }
 

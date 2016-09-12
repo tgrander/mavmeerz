@@ -84,7 +84,6 @@ export class DropDownApp extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('Dropwndown mapStateToProps state is: ', state);
   const { startDate, endDate } = state.expensesReducer
 
   return {
