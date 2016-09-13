@@ -47,9 +47,52 @@
   font-size: 11px;
 }
 
+/*-MAIN CONTENT CSS---------------------------------*/
 
+* {
+    box-sizing: border-box;
+}
 
+.main-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  padding-top: 80px;
 
+  top: 0;
+  position: absolute;
+  left: 0;
+}
+
+.main-content>.inner {
+    min-height: 100%;
+    padding-bottom: 505px;
+    margin-bottom: -505px;
+}
+
+.frontpage-head-wrapper {
+    position: relative;
+}
+
+.head-block {
+    position: relative;
+    overflow: hidden;
+}
+
+video {
+  /*object-fit: contain;*/
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+#frontpage-video {
+  width: auto;
+  height: 100%;
+  left: -243px;
+  top: 0px;
+}
 
 
 

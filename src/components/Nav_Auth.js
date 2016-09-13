@@ -3,7 +3,7 @@ import { Link, IndexLink } from 'react-router'
 import '../css/navbar.css'
 
 const Nav_Auth = () => (
-  <div className='nav'>
+  <header className='nav' role='banner'>
 
     <IndexLink
       to="/"
@@ -14,7 +14,7 @@ const Nav_Auth = () => (
     <Link to="/signup" className="signup item nav-item">Signup</Link>
     <Link to="/signup" className="login item nav-item">Login</Link>
 
-  </div>
+  </header>
 )
 
 export default Nav_Auth
