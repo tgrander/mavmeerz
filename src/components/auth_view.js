@@ -32,6 +32,10 @@ class AuthView extends Component {
         return (
           <div>
             <Nav_Auth/>
+            <video id="frontpage-video" autoPlay loop>
+              <source src="http://d27shkkua6xyjc.cloudfront.net/videos/maaemo-film-2.mp4?mtime=20141113185431" type="video/mp4"/>
+              <source src="http://d27shkkua6xyjc.cloudfront.net/videos/maaemo-film-2.ogv?mtime=20141113185421" type="video/ogg"/>
+            </video>
             {this.props.children}
           </div>
         )
