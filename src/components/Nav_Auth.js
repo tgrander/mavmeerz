@@ -6,7 +6,7 @@ const Nav_Auth = () => (
   <header className='nav' role='banner'>
 
     <IndexLink
-      to="/"
+      to="/main"
       className="item nav-logo">
       ZENMO
     </IndexLink>
@@ -23,6 +23,8 @@ const Nav_Auth = () => (
   </header>
 )
 
+export default Nav_Auth
+
 const onGuestUserClick = (e) => {
   e.preventDefault()
   const guestUserData = {
@@ -37,5 +39,3 @@ const onGuestUserClick = (e) => {
   //automatically upload guestUserTransactions
   .catch(err => console.error(err))
 }
-
-export default Nav_Auth

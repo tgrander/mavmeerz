@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import {connect} from 'react-redux'
 
 import Nav_Auth from './Nav_Auth'
+import MainContent from './MainContent'
 
 import * as util from '../util/style_functions'
 import { signup } from '../actions/authActions'
@@ -31,21 +32,7 @@ class AuthView extends Component {
         return (
           <div>
             <Nav_Auth/>
-            <main className="auth-view" role='main' class='main-content'>
-              <div className='inner above-fold'>
-
-                  <video id="frontpage-video" autoPlay loop>
-                    <source src="http://d27shkkua6xyjc.cloudfront.net/videos/maaemo-film-2.mp4?mtime=20141113185431" type="video/mp4"/>
-                    <source src="http://d27shkkua6xyjc.cloudfront.net/videos/maaemo-film-2.ogv?mtime=20141113185421" type="video/ogg"/>
-                  </video>
-
-                  <div className="logo-and-phrase">
-                    <h1 className="logo" id='title'>ZENMO</h1>
-                    <p className="phrase">Find Your Path To Financial Nirvana</p>
-                  </div>
-
-              </div>
-            </main>
+            {this.props.children}
           </div>
         )
       }

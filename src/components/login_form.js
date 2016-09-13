@@ -3,12 +3,10 @@ import { reduxForm} from 'redux-form'
 
 import { Link } from 'react-router'
 import { login } from '../actions/authActions'
-// import Nav_Auth from './Nav_Auth'
 
 import * as util from '../util/style_functions'
 
 import '../css/login.css'
-// import '../css/navbar.css'
 
 
 class LoginForm extends Component {
@@ -40,7 +38,6 @@ class LoginForm extends Component {
     return (
 
         <div className="login-page" id="particles-js">
-          <Nav_Auth />
           <div id="login-form">
             <p className="heading" id="title">LOGIN</p>
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
