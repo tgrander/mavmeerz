@@ -12,9 +12,11 @@ import BudgetApp from './containers/BudgetApp'
 export default (
   <Route path='/' component={App}>
       <IndexRoute component={AuthView}/>
-      <Route path='/' component={AuthView}/>
-      <Route path='/signup' component={SignupForm}/>
-      <Route path='/login' component={LoginForm}/>
+      <Route path='/' component={AuthView}>
+          <IndexRoute component={AuthView}/>
+          <Route path='/signup' component={SignupForm}/>
+          <Route path='/login' component={LoginForm}/>
+      </Route>
       <Route path='/dashboard' component={Dashboard}>
           <IndexRoute component={ExpensesApp}/>
           <Route path='/transactions' component={ExpensesApp}/>

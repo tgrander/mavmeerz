@@ -12,10 +12,10 @@ const Nav_Auth = () => (
     </IndexLink>
 
     <Link to="/signup" className="signup item nav-item">Signup</Link>
-    <Link to="/signup" className="login item nav-item">Login</Link>
+    <Link to="/login" className="login item nav-item">Login</Link>
     <a
       className="guest-user item nav-item"
-      onClick={e => _onGuestUserClick(e)}>
+      onClick={e => onGuestUserClick(e)}>
         Continue As Guest
     </a>
     <div className="guest-border"></div>
