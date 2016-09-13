@@ -24,23 +24,7 @@ class AuthView extends Component {
   }
 
   componentDidMount(){
-    util.styleLogo("rgba(255,255,255, 0.6)")
-  }
-
-  _onGuestUserClick(e){
-    e.preventDefault()
-    const guestUserData = {
-      name: 'Guest User',
-      password: 'guest'
-    }
-    //signup using guest data
-    this.props.signup(guestUserData)
-    .then(() => {
-      this.context.router.push('/dashboard')
-    })
-    //automatically upload guestUserTransactions
-
-    .catch(err => console.error(err))
+    util.styleLogo("rgba(255,255,255, 0.8)")
   }
 
   render() {
@@ -81,10 +65,7 @@ export default connect(
 
 
 // <div>
-//   <a
-//     className="btn guest-user-link"
-//     onClick={e => this._onGuestUserClick(e)}
-//   >Continue As Guest</a>
+
 // </div>
 
 // <div className='signup'>
