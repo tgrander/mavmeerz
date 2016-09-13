@@ -25,7 +25,7 @@ class AuthView extends Component {
   }
 
   componentDidMount(){
-    util.styleLogo("rgba(255,255,255, 0.8)")
+    this.context.router.push('/main');
   }
 
   render() {
