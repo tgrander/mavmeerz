@@ -21,7 +21,6 @@ class LoginForm extends Component {
   componentDidMount(){
     document.body.style.background = "url(../assets/login.jpg) no-repeat center center fixed";
     util.styleLogo("#FFFFFF")
-    util.particles()
   }
 
   onSubmit(loginData){

@@ -1,21 +1,17 @@
 import React, {Component, PropTypes} from 'react'
 import { reduxForm } from 'redux-form'
 
-import {Link} from 'react-router'
-import {signup} from '../actions/authActions'
+import { Link } from 'react-router'
+import { signup } from '../actions/authActions'
 
 import * as util from '../util/style_functions'
 
 import '../css/login.css'
 
 class SignupForm extends Component {
-  constructor(props){
-    super(props)
-  }
 
   componentDidMount(){
     util.styleLogo("#FFFFFF")
-    util.particles()
   }
 
   static contextTypes = {
