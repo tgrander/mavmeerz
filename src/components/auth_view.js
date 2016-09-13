@@ -24,8 +24,7 @@ class AuthView extends Component {
   }
 
   componentDidMount(){
-    util.styleLogo("#1C1B1B")
-    // util.particles()
+    util.styleLogo("rgba(255,255,255, 0.6)")
   }
 
   _onGuestUserClick(e){
