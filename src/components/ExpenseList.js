@@ -46,7 +46,7 @@ class ExpenseList extends Component {
                       mode: 'checkbox',
                       clickToSelect: true,
                       bgColor: 'yellow',
-                      onSelect:
+                      onSelect: this.onSelectRow
                     }}
                     ref='table'
             >
