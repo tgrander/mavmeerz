@@ -31,8 +31,6 @@ const INITIAL_STATE = {
   visibilityFilter: 'SHOW_ALL'
 }
 
-console.log(INITIAL_STATE.expenses);
-
 export default function expenses(state=INITIAL_STATE, action){
   switch (action.type) {
     case INITIAL_FETCH:
@@ -57,8 +55,6 @@ export default function expenses(state=INITIAL_STATE, action){
       })
       break;
     case UPLOAD_SUCCESS:
-    console.log('action in UPLOAD_SUCCESS: ', action);
-    console.log('upload success in expenses reducer', state.expenses, action.expenses)
       return Object.assign({}, state, {
         // isFetching: action.isFetching,
         uploadSuccess: action.uploadSuccess,
