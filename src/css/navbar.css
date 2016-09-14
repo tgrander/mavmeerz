@@ -12,19 +12,23 @@
   display: block;
 }
 
-.item {
-  position: inherit;
+.item, .item-nav, .item-dash {
   line-height: 80px;
   color: #000000;
+  font-size: 20px;
+}
+
+.item-nav {
+  position: absolute;
+}
+
+.item-dash {
+  position:inherit;
 }
 
 .nav-logo {
   left: 30px;
   font-size: 35px;
-}
-
-.nav-item {
-  font-size: 20px;
 }
 
 .signup, .logout {

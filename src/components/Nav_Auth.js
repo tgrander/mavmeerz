@@ -11,10 +11,10 @@ const Nav_Auth = () => (
       ZENMO
     </IndexLink>
 
-    <Link to="/signup" className="signup item nav-item">Signup</Link>
-    <Link to="/login" className="login item nav-item">Login</Link>
+    <Link to="/signup" className="signup item-nav">Signup</Link>
+    <Link to="/login" className="login item-nav">Login</Link>
     <a
-      className="guest-user item nav-item"
+      className="guest-user item-nav"
       onClick={e => onGuestUserClick(e)}>
         Continue As Guest
     </a>
