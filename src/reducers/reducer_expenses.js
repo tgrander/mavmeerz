@@ -20,7 +20,7 @@ import {
 } from '../actions/expensesActions.js';
 
 const INITIAL_STATE = {
-  expenses: guestExpenses,
+  expenses: [],
   total: 0,
   isFetching: false,
   startDate: null,
