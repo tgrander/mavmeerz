@@ -10,12 +10,19 @@ import * as util from '../util/ExpenseTableApp'
 
 class ExpenseList extends Component {
 
+
+
   _categorize(category) {
-    const selected = this.refs.table.state.selectedRowKeys;
+    const selected = this.refs.table.state.selectedRowKeys;Ω
     if (selected.length > 0) {
       this.props.updateCategories(selected, category)
         .then(() => this.refs.table.cleanSelected())
     }
+  }
+
+  onRowSelect(row){
+    console.log('selected row: ', row);
+    this.props.expenseSelected(row)
   }
 
   render() {
@@ -35,7 +42,12 @@ class ExpenseList extends Component {
                     data={ this.props.expenses }
                     striped={ true }
                     hover={ true }
-                    selectRow={{mode: 'checkbox', clickToSelect: true, bgColor: 'yellow'}}
+                    selectRow={{
+                      mode: 'checkbox',
+                      clickToSelect: true,
+                      bgColor: 'yellow',
+                      onSelect:
+                    }}
                     ref='table'
             >
               <TableHeaderColumn dataField='id' isKey={ true } hidden={ true }>ID</TableHeaderColumn>

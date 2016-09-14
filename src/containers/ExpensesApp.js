@@ -14,7 +14,8 @@ import {
   fetchExpenses,
   toggleFetched,
   setVisibilityFilter,
-  updateCategories
+  updateCategories,
+  expenseSelected
 } from '../actions/expensesActions'
 
 
@@ -49,6 +50,7 @@ class ExpensesApp extends Component {
                     }
                     expenses={expenses}
                     updateCategories={this.props.updateCategories.bind(this)}
+                    expenseSelected={expenseSelected}
                   />
                 </div>
             )
@@ -64,7 +66,8 @@ function mapStateToProps(state){
     startDate,
     endDate,
     initialFetchOccurred,
-    visibilityFilter
+    visibilityFilter,
+
   } = state.expensesReducer
 
   return {
@@ -83,6 +86,7 @@ export default connect(
     fetchExpenses: fetchExpenses,
     toggleFetched: toggleFetched,
     setVisibilityFilter: setVisibilityFilter,
-    updateCategories: updateCategories
+    updateCategories: updateCategories,
+    expenseSelected: expenseSelected
   }
 )(ExpensesApp)

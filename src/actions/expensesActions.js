@@ -156,7 +156,16 @@ export function fetchExpenses(){
   }
 }
 
-//
+//CATEGORIES
+export const SELECT_EXPENSE = 'SELECT_EXPENSE'
+
+export function expenseSelected(id){
+    return {
+      type: SELECT_EXPENSE,
+      id
+    }
+}
+
 export function updateCategories(expenses, category){
   return dispatch => {
     return Axios({
