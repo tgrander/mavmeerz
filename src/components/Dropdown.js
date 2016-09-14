@@ -60,9 +60,9 @@ export class DropDownApp extends Component {
                 categorize={this.props.categorize}
               />
             </li>
-            <li class="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
-            <li class="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
-            <li class="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
+            <li className="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
+            <li className="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
+            <li className="current-menu-item"><a href="#" onClick={this.showDateModal}>Filter By Date</a></li>
           </ul>
         </nav>
         <Modal {...this.props} show={this.state.showDatePicker} onHide={this.hideDateModal} >

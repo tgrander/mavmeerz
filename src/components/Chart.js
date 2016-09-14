@@ -34,8 +34,8 @@ export class Chart extends React.Component {
             series: [{
                 category: 'Category',
                 data: this.props.data,
-                size: '100%',
-                innerSize: '85%',
+                size: '94%',
+                innerSize: '80%',
                 showInLegend:true,
                 dataLabels: {
                     enabled: true
@@ -50,7 +50,7 @@ export class Chart extends React.Component {
 
   render() {
     return (
-      <div ref='chart'>
+      <div ref='chart' className='chart'>
       </div>
     );
   }

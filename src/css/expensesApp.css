@@ -1,5 +1,5 @@
 .expenseApp-container {
-  width: 95%;
+  width: 96%;
   margin: 0 auto;
 }
 
@@ -10,24 +10,34 @@
 
 .expense-list-container {
   position: absolute;
-  left: 5%;
+  left: 2%;
   width: 48%;
+  bottom: 4%;
 }
 
-/*.chart-container {
-  max-height: 40px;
-}*/
+.chart-container {
+  /*max-height: 40px;*/
+  margin: 0 auto;
+  width: 96%;
+}
+
+.chart {
+  margin: 0 auto;
+}
 
 .rightSection-container {
   position:fixed;
-  right: 5%;
+  right: 2%;
   width: 40%;
+  max-height: 100%;
+  bottom: 4%;
   margin: auto;
   display: block;
+  background: #F7F7F7;
 }
 
 .total {
-  font-size: 40px;
+  font-size: 20px;
   margin-bottom: 20px;
   text-align: center;
 }

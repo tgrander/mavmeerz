@@ -19,7 +19,7 @@ export default class KarmoMeter extends Component {
         <svg
             id="fillgauge"
             width="37%"
-            height="420">
+            height="37%">
         </svg>
       </div>
     );
