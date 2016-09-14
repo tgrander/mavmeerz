@@ -50,7 +50,8 @@ class ExpensesApp extends Component {
                     }
                     expenses={expenses}
                     updateCategories={this.props.updateCategories.bind(this)}
-                    expenseSelected={expenseSelected}
+                    expenseSelected={this.props.expenseSelected}
+                    selected={this.props.selected}
                   />
                 </div>
             )
@@ -67,7 +68,7 @@ function mapStateToProps(state){
     endDate,
     initialFetchOccurred,
     visibilityFilter,
-
+    selected
   } = state.expensesReducer
 
   return {
@@ -76,7 +77,8 @@ function mapStateToProps(state){
     isFetching: isFetching,
     startDate: startDate,
     endDate: endDate,
-    initialFetchOccurred: initialFetchOccurred
+    initialFetchOccurred: initialFetchOccurred,
+    selected: selected
   }
 }
 

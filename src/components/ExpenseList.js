@@ -9,9 +9,7 @@ import { setVisibilityFilter } from '../actions/expensesActions'
 import * as util from '../util/ExpenseTableApp'
 
 class ExpenseList extends Component {
-
-
-
+  
   _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys;Ω
     if (selected.length > 0) {
@@ -36,6 +34,7 @@ class ExpenseList extends Component {
                 uploadSuccess={this.props.uploadSuccess}
                 categorize={this._categorize.bind(this)}
                 setVisibilityFilter={this.props.setVisibilityFilter}
+                selected={this.props.selected}
             />
 
             <BootstrapTable

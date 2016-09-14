@@ -58,6 +58,7 @@ export class DropDownApp extends Component {
             <li><a href="#">Categorize</a>
               <Categories
                 categorize={this.props.categorize}
+                selected={this.props.selected}
               />
             </li>
             <li className="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
