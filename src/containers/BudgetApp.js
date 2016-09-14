@@ -17,7 +17,7 @@ export default class BudgetApp extends Component {
   render(){
     return (
       <div>
-        <div className='budget-table'>
+        <div className='budget-list-container'>
           <BudgetTable
             budgetItems={this.props.budgetItems}
             updateBudget={this.updateBudget.bind(this)}
