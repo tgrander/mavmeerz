@@ -9,8 +9,6 @@ class Navbar extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  //comment
-
   static contextTypes = {
     router: PropTypes.object
   }
@@ -22,13 +20,11 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav class='fixed-nav-bar'>
-        <ul className="nav">
-          <li className="item nav-logo"><Link to='' classname='nav-logo'>ZENMO</Link></li>
-          <li className="item nav-item"><a href='#' onClick={this.onClick}>Logout</a></li>
-        </ul>
-      </nav>
-    );
+      <header className='nav nav-dash'>
+        <a href='' className='item nav-logo'>ZENMO</a>
+        <a href='' className='logout item nav-item' onClick={this.onClick}>Logout</a>
+      </header>
+    )
   }
 }
 

@@ -52,7 +52,7 @@ export class DropDownApp extends Component {
 
   render() {
     return (
-      <div>
+      <div className='expense-actions-list'>
         <nav id="primary_nav_wrap">
           <ul>
             <li><a href="#">Categorize</a>

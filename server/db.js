@@ -23,7 +23,7 @@ const deployedConnection = {
 
  const knex = require('knex')({
    client: 'mysql',
-   connection: deployedConnection
+   connection: localConnection
  });
 
 knex.schema.hasTable('users').then(function(exists) {

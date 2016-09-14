@@ -25,13 +25,15 @@ class AuthView extends Component {
   }
 
   componentDidMount(){
-    this.context.router.push('/main');
+        this.context.router.push('/main');
   }
 
   render() {
         return (
           <div>
-            <Nav_Auth/>
+            <Nav_Auth
+
+            />
             <video id="frontpage-video" autoPlay loop>
               <source src="http://d27shkkua6xyjc.cloudfront.net/videos/maaemo-film-2.mp4?mtime=20141113185431" type="video/mp4"/>
               <source src="http://d27shkkua6xyjc.cloudfront.net/videos/maaemo-film-2.ogv?mtime=20141113185421" type="video/ogg"/>
@@ -52,19 +54,3 @@ export default connect(
   mapStateToProps,
   {signup: signup}
 )(AuthView)
-
-
-
-// <div>
-
-// </div>
-
-// <div className='signup'>
-//     <p className="text">Begin Your Journey <br/> to Mindful Budgeting</p>
-//     <Link to="/signup" className="btn hvr-bounce-to-left text">SIGNUP</Link>
-// </div>
-//
-// <div className='login'>
-//     <p className="text">Or Continue To Collect <br/> Budget Karma</p>
-//     <Link to="/login" className="btn hvr-bounce-to-left text">LOGIN</Link>
-// </div>

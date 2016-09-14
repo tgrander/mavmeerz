@@ -1,3 +1,10 @@
+.expense-actions-list {
+	position: fixed;
+	z-index: 7;
+	background: #FFFFFF;
+	display: block;
+}
+
 #primary_nav_wrap
 {
 	margin-top:15px
