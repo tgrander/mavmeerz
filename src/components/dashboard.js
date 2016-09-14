@@ -29,7 +29,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div classNam="dash">
+      <div className="dash">
 
         <div className="nav">
           <Navbar logout={this.props.logout.bind(this)} />

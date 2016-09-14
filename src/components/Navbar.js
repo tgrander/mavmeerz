@@ -22,7 +22,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav class='fixed-nav-bar'>
+      <nav className='fixed-nav-bar'>
         <ul className="nav">
           <li className="item nav-logo"><Link to='' classname='nav-logo'>ZENMO</Link></li>
           <li className="item nav-item"><a href='#' onClick={this.onClick}>Logout</a></li>
