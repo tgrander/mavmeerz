@@ -2,6 +2,8 @@
 import * as _ from 'lodash';
 import moment from 'moment';
 
+import guestExpenses from '../assets/parsedGuestExpenses'
+
 import {
   REQUEST_EXPENSES,
   RECEIVE_EXPENSES,
@@ -18,7 +20,7 @@ import {
 } from '../actions/expensesActions.js';
 
 const INITIAL_STATE = {
-  expenses: [],
+  expenses: guestExpenses,
   total: 0,
   isFetching: false,
   startDate: null,
@@ -28,6 +30,8 @@ const INITIAL_STATE = {
   initialFetchOccurred: false,
   visibilityFilter: 'SHOW_ALL'
 }
+
+console.log(INITIAL_STATE.expenses);
 
 export default function expenses(state=INITIAL_STATE, action){
   switch (action.type) {

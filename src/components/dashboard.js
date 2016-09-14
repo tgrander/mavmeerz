@@ -20,20 +20,17 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-    if(!this.props.isAuth){
-      this.context.router.push('/login');
-    } else {
+    // if(!this.props.isAuth){
+    //   this.context.router.push('/login');
+    // } else {
       this.context.router.push('/transactions');
-    }
+    // }
   }
 
   render() {
     return (
       <div className="dash">
-
-        <div className="nav">
-          <Navbar logout={this.props.logout.bind(this)} />
-        </div>
+        <Navbar logout={this.props.logout.bind(this)} />
 
         <div className="dash-nested-paths-nav">
           <ul className="dash-paths">
@@ -42,12 +39,14 @@ class Dashboard extends Component {
           </ul>
         </div>
 
-        <div className="sidebar">
-          <Sidebar/>
-        </div>
+        <div className="data">
+          <div className="sidebar">
+            <Sidebar/>
+          </div>
 
-        <div className="tables-container">
-          {this.props.children}
+          <div className="tables-container">
+            {this.props.children}
+          </div>
         </div>
 
       </div>

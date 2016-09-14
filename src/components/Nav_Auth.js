@@ -18,7 +18,6 @@ const Nav_Auth = () => (
       onClick={e => onGuestUserClick(e)}>
         Continue As Guest
     </a>
-    <div className="guest-border"></div>
 
   </header>
 )
