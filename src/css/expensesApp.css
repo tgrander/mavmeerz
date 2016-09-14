@@ -4,11 +4,15 @@
 }
 
 .expense-list-container,
-.rightSection-container {
-  top: 15%
+.rightSection-container,
+.budget-list-container
+{
+  top: 15%;
 }
 
-.expense-list-container, .budget-list-container {
+.expense-list-container,
+.budget-list-container
+{
   position: absolute;
   left: 2%;
   width: 55%;
