@@ -6,6 +6,7 @@ import ReactAnimate from 'react-addons-css-transition-group';
 
 import ExpensesApp from '../containers/ExpensesApp.js';
 import BudgetApp from '../containers/BudgetApp';
+import Dropdown from './Dropdown'
 import Sidebar from '../containers/SidebarApp';
 import Navbar from './Navbar';
 
@@ -37,6 +38,7 @@ class Dashboard extends Component {
             <li className="dash-link"><Link to='/'>TRANSACTIONS</Link></li>
             <li className="dash-link"><Link to='/budget'>BUDGET</Link></li>
           </ul>
+          <Dropdown/>
         </div>
 
         <div className="data">

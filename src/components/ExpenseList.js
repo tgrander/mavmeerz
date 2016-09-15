@@ -2,14 +2,14 @@ import React, { Component} from 'react'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 // import Expense from './Expense.js'
 import Upload from '../containers/UploadApp'
-import Dropdown from '../components/Dropdown'
+
 import ExpensesApp from '../containers/ExpensesApp.js'
 import { setVisibilityFilter } from '../actions/expensesActions'
 
 import * as util from '../util/ExpenseTableApp'
 
 class ExpenseList extends Component {
-  
+
   _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys;Ω
     if (selected.length > 0) {
@@ -30,12 +30,7 @@ class ExpenseList extends Component {
         <div>
           <div className="transactions">
 
-            <Dropdown
-                uploadSuccess={this.props.uploadSuccess}
-                categorize={this._categorize.bind(this)}
-                setVisibilityFilter={this.props.setVisibilityFilter}
-                selected={this.props.selected}
-            />
+
 
             <BootstrapTable
                     data={ this.props.expenses }

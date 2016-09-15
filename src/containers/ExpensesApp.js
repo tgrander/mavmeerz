@@ -39,7 +39,6 @@ class ExpensesApp extends Component {
             return (
                 <div className="expense-list-container">
                   <ExpenseList
-                    uploadSuccess={uploadSuccess}
                     dates={
                       {
                         startDate:this.props.startDate,
@@ -48,8 +47,6 @@ class ExpensesApp extends Component {
                     }
                     expenses={expenses}
                     updateCategories={this.props.updateCategories.bind(this)}
-                    expenseSelected={this.props.expenseSelected}
-                    selected={this.props.selected}
                   />
                 </div>
             )
