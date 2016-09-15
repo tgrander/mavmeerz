@@ -1,13 +1,14 @@
 #primary_nav_wrap
 {
-	margin-top:15px;
+	/*margin-top:15px;*/
 	display:inline-block;
+	position:fixed;
 }
 
 #primary_nav_wrap ul
 {
 	list-style:none;
-	position:relative;
+	/*position:fixed;*/
 	float:left;
 	margin:0;
 	padding:0
