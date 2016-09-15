@@ -13,9 +13,7 @@ import { getVisibleExpenses } from '../util/ExpenseTableApp'
 import {
   fetchExpenses,
   toggleFetched,
-  setVisibilityFilter,
-  updateCategories,
-  expenseSelected
+  updateCategories
 } from '../actions/expensesActions'
 
 
@@ -62,23 +60,18 @@ class ExpensesApp extends Component {
 function mapStateToProps(state){
   const {
     expenses,
-    uploadSuccess,
     isFetching,
     startDate,
     endDate,
-    initialFetchOccurred,
-    visibilityFilter,
-    selected
+    initialFetchOccurred
   } = state.expensesReducer
 
   return {
     expenses: getVisibleExpenses(expenses, visibilityFilter, startDate, endDate),
-    uploadSuccess: uploadSuccess,
     isFetching: isFetching,
     startDate: startDate,
     endDate: endDate,
-    initialFetchOccurred: initialFetchOccurred,
-    selected: selected
+    initialFetchOccurred: initialFetchOccurred
   }
 }
 

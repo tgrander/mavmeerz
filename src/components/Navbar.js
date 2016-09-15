@@ -20,10 +20,10 @@ class Navbar extends Component {
 
   render() {
     return (
-      <header className='nav nav-dash'>
+      <div className='nav nav-dash'>
         <a href='' className='item-dash nav-logo'>ZENMO</a>
         <a href='' className='logout item-dash nav-item' onClick={this.onClick}>Logout</a>
-      </header>
+      </div>
     )
   }
 }
