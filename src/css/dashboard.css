@@ -9,6 +9,7 @@
 .dash-paths {
   list-style-type: none;
   display: inline-block;
+  z-index: 999;
   /*padding: 0;*/
   /*overflow: hidden;*/
   /*background-color: rgba(0,0,0,0);*/
@@ -23,10 +24,10 @@
   /*z-index: 8;*/
 }
 
-/*.expense-actions-list {*/
+.expense-actions-list {
   /*margin-top: 80px;*/
 	/*position: fixed;*/
 	/*z-index: 7;*/
 	/*background: #FFFFFF;*/
 	/*display: inline-block;*/
-/*}*/
+}
