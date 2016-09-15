@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import '../css/dropdown.css'
-import '../css/uploadcsv.css'
+import { Modal } from 'react-bootstrap';
+
 import Categories from './DropdownCategory'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
-import { Modal } from 'react-bootstrap';
 import Upload from '../containers/UploadApp'
 import ExpensesApp from '../containers/ExpensesApp'
+
 import { setVisibilityFilter } from '../actions/expensesActions'
+
+import '../css/dropdown.css'
+import '../css/uploadcsv.css'
 
 export class DropDownApp extends Component {
   constructor(props) {
@@ -54,7 +57,7 @@ export class DropDownApp extends Component {
     return (
       <div className='expense-actions-list'>
         <nav id="primary_nav_wrap">
-          <ul>
+          <ul className='expense-action-list'>
             <li><a href="#">Categorize</a>
               <Categories
                 categorize={this.props.categorize}
