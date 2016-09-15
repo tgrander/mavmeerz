@@ -37,7 +37,7 @@ export default class UploadApp extends Component {
          if (that.state.account === null) {
            that.setState({account: 'Undefined Account'})
          }
-         
+
          that.props.uploadCSV(that.state.account, result)
        })
        .catch(error => console.error(error));
@@ -59,16 +59,6 @@ export default class UploadApp extends Component {
   render () {
     return (
       <div className="uploadcsv">
-      <div className="bank"> Bank Account: </div>
-        <div className="upload-input-container">
-          <input
-            className="upload-input"
-            type="text"
-            placeholder="Account Name"
-            value={this.state.account}
-            onChange={this.addAccountToState}
-          />
-        </div>
         <Dropzone className="dropzone" onDrop={this.onDrop}>
           <div> Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>
@@ -110,3 +100,14 @@ export default connect(
     parsingCSV: parsingCSV
   }
 )(UploadApp)
+
+// <div className="bank"> Bank Account: </div>
+//   <div className="upload-input-container">
+//     <input
+//       className="upload-input"
+//       type="text"
+//       placeholder="Account Name"
+//       value={this.state.account}
+//       onChange={this.addAccountToState}
+//     />
+//   </div>
