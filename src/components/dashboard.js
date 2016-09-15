@@ -6,9 +6,9 @@ import ReactAnimate from 'react-addons-css-transition-group';
 
 import ExpensesApp from '../containers/ExpensesApp.js';
 import BudgetApp from '../containers/BudgetApp';
-import Dropdown from './Dropdown'
 import Sidebar from '../containers/SidebarApp';
 import Navbar from './Navbar';
+import DashLinks from './DashLinks'
 
 import '../css/dashboard.css';
 
@@ -33,13 +33,7 @@ class Dashboard extends Component {
       <div className="dash">
         <Navbar logout={this.props.logout.bind(this)} />
 
-        <div className="dash-nested-paths-nav">
-          <ul className="dash-paths">
-            <li className="dash-link"><Link to='/'>TRANSACTIONS</Link></li>
-            <li className="dash-link"><Link to='/budget'>BUDGET</Link></li>
-          </ul>
-          <Dropdown/>
-        </div>
+        <DashLinks/>
 
         <div className="data">
           <div className="sidebar">

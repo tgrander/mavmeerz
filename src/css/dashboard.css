@@ -10,6 +10,7 @@
 
 .dash-nested-paths-nav {
   position: fixed;
+  display: inline-block;
 }
 
 .dash-link {
