@@ -28,9 +28,6 @@ class ExpensesApp extends Component {
       }
 
       render(){
-          const expenses      = this.props.expenses
-              , uploadSuccess = this.props.uploadSuccess;
-
           if (this.props.isFetching) {
             return (
               <Spin/>
@@ -45,7 +42,7 @@ class ExpensesApp extends Component {
                         endDate: this.props.endDate
                       }
                     }
-                    expenses={expenses}
+                    expenses={this.props.expenses}
                     updateCategories={this.props.updateCategories.bind(this)}
                   />
                 </div>
@@ -56,6 +53,7 @@ class ExpensesApp extends Component {
 
 function mapStateToProps(state){
   const {
+    visibilityFilter,
     expenses,
     isFetching,
     startDate,
@@ -77,8 +75,6 @@ export default connect(
   {
     fetchExpenses: fetchExpenses,
     toggleFetched: toggleFetched,
-    setVisibilityFilter: setVisibilityFilter,
-    updateCategories: updateCategories,
-    expenseSelected: expenseSelected
+    updateCategories: updateCategories
   }
 )(ExpensesApp)
