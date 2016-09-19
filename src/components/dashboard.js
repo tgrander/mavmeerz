@@ -21,11 +21,11 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-    // if(!this.props.isAuth){
-    //   this.context.router.push('/login');
-    // } else {
+    if(!this.props.isAuth){
+      this.context.router.push('/login');
+    } else {
       this.context.router.push('/transactions');
-    // }
+    }
   }
 
   render() {

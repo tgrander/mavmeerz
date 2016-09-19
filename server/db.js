@@ -12,7 +12,7 @@
  //   database : 'zenmoDB',
  //   charset  : 'utf8'
  // }
-// const deployedConnection = {
+// const deployedHerokuConnection = {
 //   host     : 'us-cdbr-iron-east-04.cleardb.net',
 //  //  port     : '8080',
 //   user     : 'b54fca61493351',

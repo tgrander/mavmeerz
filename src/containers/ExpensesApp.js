@@ -22,8 +22,8 @@ class ExpensesApp extends Component {
       componentWillMount(){
         //FETCH EXPENSES
         if (!this.props.initialFetchOccurred) {
-          // this.props.fetchExpenses()
-          // this.props.toggleFetched()
+          this.props.fetchExpenses()
+          this.props.toggleFetched()
         }
       }
 
