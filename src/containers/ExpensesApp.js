@@ -6,7 +6,7 @@ import Upload from '../containers/UploadApp'
 import Dropdown from '../components/Dropdown'
 import DatePicker from '../components/DatePicker'
 import ExpenseList from '../components/ExpenseList.js'
-import Spin from '../components/Spin'
+// import Spin from '../components/Spin'
 
 import { getVisibleExpenses } from '../util/ExpenseTableApp'
 
@@ -29,9 +29,9 @@ class ExpensesApp extends Component {
 
       render(){
           if (this.props.isFetching) {
-            return (
-              <Spin/>
-            )
+            // return (
+            //   // <Spin/>
+            // )
           } else {
             return (
                 <div className="expense-list-container">

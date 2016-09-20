@@ -11,7 +11,7 @@ import * as util from '../util/ExpenseTableApp'
 class ExpenseList extends Component {
 
   _categorize(category) {
-    const selected = this.refs.table.state.selectedRowKeys;Ω
+    const selected = this.refs.table.state.selectedRowKeys;
     if (selected.length > 0) {
       this.props.updateCategories(selected, category)
         .then(() => this.refs.table.cleanSelected())
