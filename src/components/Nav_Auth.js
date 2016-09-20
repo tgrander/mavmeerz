@@ -13,11 +13,7 @@ const Nav_Auth = () => (
 
     <Link to="/signup" className="signup item-nav">Signup</Link>
     <Link to="/login" className="login item-nav">Login</Link>
-    <a
-      className="guest-user item-nav"
-      onClick={e => onGuestUserClick(e)}>
-        Continue As Guest
-    </a>
+
 
   </header>
 )
@@ -38,3 +34,9 @@ const onGuestUserClick = (e) => {
   //automatically upload guestUserTransactions
   .catch(err => console.error(err))
 }
+
+// <a
+//   className="guest-user item-nav"
+//   onClick={e => onGuestUserClick(e)}>
+//     Continue As Guest
+// </a>
