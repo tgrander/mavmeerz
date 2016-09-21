@@ -118,6 +118,7 @@ export default function expenses(state=INITIAL_STATE, action){
     case SELECT_EXPENSE:
       const selectedRowId = action.id
       const selected = state.selected
+      
       return Object.assign({}, state, {
         selected: [...selected, ...selectedRowId]
       });

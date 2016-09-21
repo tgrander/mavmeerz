@@ -12,7 +12,7 @@ const DashLinks = () => {
     <div className='dash-links-container'>
 
       <ul className="dash-paths">
-        <li className="dash-link"><Link to='/'>TRANSACTIONS</Link></li>
+        <li className="dash-link"><Link to='/transactions'>TRANSACTIONS</Link></li>
         <li className="dash-link"><Link to='/budget'>BUDGET</Link></li>
       </ul>
 

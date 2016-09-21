@@ -7,6 +7,7 @@ import { setVisibilityFilter, expenseSelected } from '../actions/expensesActions
 
 const mapStateToProps = (state) => {
   const { visibilityFilter, selected, uploadSuccess } = state.expensesReducer
+  console.log('Selected via DropDownApp', selected);
   return {
     uploadSuccess: uploadSuccess,
     selected: selected

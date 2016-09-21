@@ -156,7 +156,7 @@ export function fetchExpenses(){
   }
 }
 
-//CATEGORIES
+//UPDATING CATEGORIES / SELECTION OF EXPENSES
 export const SELECT_EXPENSE = 'SELECT_EXPENSE'
 
 export function expenseSelected(id){

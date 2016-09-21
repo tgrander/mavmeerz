@@ -13,7 +13,8 @@ import { getVisibleExpenses } from '../util/ExpenseTableApp'
 import {
   fetchExpenses,
   toggleFetched,
-  updateCategories
+  updateCategories,
+  expenseSelected
 } from '../actions/expensesActions'
 
 
@@ -21,10 +22,14 @@ class ExpensesApp extends Component {
 
       componentWillMount(){
         //FETCH EXPENSES
-        // if (!this.props.initialFetchOccurred) {
-        //   this.props.fetchExpenses()
-        //   this.props.toggleFetched()
-        // }
+        if (!this.props.initialFetchOccurred) {
+          this.props.fetchExpenses()
+          this.props.toggleFetched()
+        }
+      }
+
+      onRowSelect(rowId){
+        this.props.expenseSelected(rowId)
       }
 
       render(){
@@ -44,6 +49,7 @@ class ExpensesApp extends Component {
                     }
                     expenses={this.props.expenses}
                     updateCategories={this.props.updateCategories.bind(this)}
+                    onRowSelect={this.onRowSelect.bind(this)}
                   />
                 </div>
             )
@@ -75,6 +81,7 @@ export default connect(
   {
     fetchExpenses: fetchExpenses,
     toggleFetched: toggleFetched,
-    updateCategories: updateCategories
+    updateCategories: updateCategories,
+    expenseSelected: expenseSelected
   }
 )(ExpensesApp)
