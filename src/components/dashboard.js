@@ -20,13 +20,13 @@ class Dashboard extends Component {
     router: PropTypes.object
   }
 
-  componentWillMount() {
-    if(!this.props.isAuth){
-      this.context.router.push('/login');
-    } else {
-      this.context.router.push('/transactions');
-    }
-  }
+  // componentWillMount() {
+  //   if(!this.props.isAuth){
+  //     this.context.router.push('/login');
+  //   } else {
+  //     this.context.router.push('/transactions');
+  //   }
+  // }
 
   render() {
     return (
