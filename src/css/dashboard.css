@@ -4,6 +4,7 @@
   margin-top: 80px;
   font-size: 17px;
   z-index: 9999;
+  font-family: 'Syncopate', sans-serif;
 }
 
 .dash-paths {
@@ -25,6 +26,7 @@
 }
 
 .data {
+  font-family: 'Syncopate', sans-serif;
   z-index: 9;
 }
 
