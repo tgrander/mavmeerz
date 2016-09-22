@@ -7,7 +7,7 @@ export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS';
 export const UPLOAD_FAIL = 'UPLOAD_FAIL';
 export const PARSING_CSV = 'PARSING_CSV';
 export const GET_TOTAL = 'GET_TOTAL';
-export const ADD_CATEGORY = 'ADD_CATEGORY';
+
 export const ADD_ACCOUNT = 'ADD_ACCOUNT';
 export const INITIAL_FETCH = 'INITIAL_FETCH';
 export const SHOW_FILTERED_DATE = 'SHOW_FILTERED_DATE';
@@ -99,14 +99,6 @@ function computeTotal(expensesArr){
 }
 //-----------------------
 
-//CATEGORIES ACTION CREATOR
-function addCategory(expenses){
-  return {
-    type: ADD_CATEGORY,
-    expenses: expenses
-  };
-}
-
 //ACCOUNTS ACTION CREATOR
 function addAccount(expenses, account) {
   return {
@@ -158,12 +150,20 @@ export function fetchExpenses(){
 
 //UPDATING CATEGORIES / SELECTION OF EXPENSES
 export const SELECT_EXPENSE = 'SELECT_EXPENSE'
-
 export function expenseSelected(id){
     return {
       type: SELECT_EXPENSE,
       id
     }
+}
+
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+//CATEGORIES ACTION CREATOR
+function addCategory(expenses){
+  return {
+    type: ADD_CATEGORY,
+    expenses: expenses
+  };
 }
 
 export function updateCategories(expenses, category){

@@ -13,10 +13,10 @@ class ExpenseList extends Component {
   _categorize(category) {
     const selected = this.refs.table.state.selectedRowKeys;
     console.log('selected: ', selected);
-    // if (selected.length > 0) {
-    //   this.props.updateCategories(selected, category)
-    //     .then(() => this.refs.table.cleanSelected())
-    // }
+    if (selected.length > 0) {
+      this.props.updateCategories(selected, category)
+        .then(() => this.refs.table.cleanSelected())
+    }
   }
 
   onRowSelect(rowId){
@@ -36,7 +36,6 @@ class ExpenseList extends Component {
       return (
         <div>
           <div className="transactions">
-            <a onClick={this._categorize.bind(this)}>Test</a>
             <BootstrapTable
                     data={ this.props.expenses }
                     striped={ true }
