@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { Modal } from 'react-bootstrap';
 
-import Categories from './DropdownCategory'
+import DropdownCategory from './DropdownCategory'
 import FilterDate from './DropdownFilterDate'
 import DatePicker from './DatePicker'
 import Upload from '../containers/UploadApp'
@@ -48,9 +48,14 @@ export class DropDownApp extends Component {
   }
 
   componentWillReceiveProps(props) {
-    if (props.uploadSuccess) {
+    if (this.props.uploadSuccess) {
       this.setState({showDropzone: false});
     }
+  }
+
+  componentDidMount(){
+    console.log('selected via Dropdown: ', this.props.selected)
+    console.log('categorize function via Dropdown: ', this.props.categorize)
   }
 
   render() {
@@ -59,10 +64,9 @@ export class DropDownApp extends Component {
         <nav id="primary_nav_wrap">
           <ul className='expense-action-list'>
             <li><a href="#">Categorize</a>
-              <Categories
-                categorize={this.props.categorize}
-                selected={this.props.selected}
-              />
+
+              <DropdownCategory/>
+
             </li>
             <li className="current-menu-item"><a href="#" onClick={this.showDropzone}>Upload CSV</a></li>
             <li className="current-menu-item"><a href="#" onClick={this.showAllExpenses}>Show All Expenses</a></li>
@@ -88,11 +92,12 @@ export class DropDownApp extends Component {
 }
 
 function mapStateToProps(state) {
-  const { startDate, endDate } = state.expensesReducer
+  const { startDate, endDate, uploadSuccess } = state.expensesReducer
 
   return {
     startDate: startDate,
-    endDate: endDate
+    endDate: endDate,
+    uploadSuccess: uploadSuccess
   }
 }
 

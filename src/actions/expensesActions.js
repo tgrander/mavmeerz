@@ -150,10 +150,10 @@ export function fetchExpenses(){
 
 //UPDATING CATEGORIES / SELECTION OF EXPENSES
 export const SELECT_EXPENSE = 'SELECT_EXPENSE'
-export function expenseSelected(id){
+export function expenseSelected(arrayOfSelectedExpenses){
     return {
       type: SELECT_EXPENSE,
-      id
+      arrayOfSelectedExpenses
     }
 }
 

@@ -10,25 +10,25 @@ import * as util from '../util/ExpenseTableApp'
 
 class ExpenseList extends Component {
 
-  _categorize(category) {
-    const selected = this.refs.table.state.selectedRowKeys;
-    console.log('selected: ', selected);
-    if (selected.length > 0) {
-      this.props.updateCategories(selected, category)
-        .then(() => this.refs.table.cleanSelected())
-    }
-  }
+  // _categorize(category) {
+  //   const selected = this.refs.table.state.selectedRowKeys;
+  //   console.log('selected: ', selected);
+  //   if (selected.length > 0) {
+  //     this.props.updateCategories(selected, category)
+  //       .then(() => this.refs.table.cleanSelected())
+  //   }
+  // }
 
-  onRowSelect(rowId){
-    console.log('selected row: ', rowId);
+  onRowSelect(){
+    // console.log('selected row: ', rowId);
     console.log('selected expenses: ', this.refs.table.state.selectedRowKeys);
-    this.props.onRowSelect(rowId)
+    const selectedExpenses = this.refs.table.state.selectedRowKeys
+    this.props.updateRowsSelectedInState(selectedExpenses)
   }
 
-  getSelectedRowKeys() {
-    //Here is your answer
-    console.log(this.refs.table.state.selectedRowKeys)
-  }
+  // getSelectedRowKeys() {
+  //   console.log(this.refs.table.state.selectedRowKeys)
+  // }
 
   render() {
 
@@ -62,7 +62,7 @@ class ExpenseList extends Component {
     } else {
       return (
         <div className='no-expenses'>
-          <p>You have no expenses yet! Upload files below to get started.</p><br/>
+          <p>You have no expenses yet! Upload your credit card CSV file below to get started.</p><br/>
           <Upload/><br/>
         </div>
       )

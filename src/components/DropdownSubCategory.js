@@ -1,10 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const SubCategory = ({subCategory, categorize}) => {
+import { updateCategories } from '../actions/expensesActions'
+
+export let DropdownSubCategory = ({dispatch, subCategory, selected}) => {
+
+  console.log('SELECTED from dropdown: ', selected);
 
   const handleClick = (e) => {
     e.preventDefault()
-    categorize(subCategory)
+    dispatch(updateCategories(selected, subCategory))
   }
 
   return (
@@ -13,4 +18,15 @@ const SubCategory = ({subCategory, categorize}) => {
 
 }
 
-export default SubCategory
+const mapStateToProps = (state) => {
+  const { selected } = state.expensesReducer
+  return {
+    selected: selected
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(DropdownSubCategory)
+
+// export DropdownSubCategory

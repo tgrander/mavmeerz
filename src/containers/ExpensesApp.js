@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 
@@ -28,8 +28,8 @@ class ExpensesApp extends Component {
         }
       }
 
-      onRowSelect(rowId){
-        this.props.expenseSelected(rowId)
+      updateRowsSelectedInState(arrayOfSelectedExpenses){
+        this.props.expenseSelected(arrayOfSelectedExpenses)
       }
 
       render(){
@@ -49,8 +49,9 @@ class ExpensesApp extends Component {
                     }
                     expenses={this.props.expenses}
                     updateCategories={this.props.updateCategories.bind(this)}
-                    onRowSelect={this.onRowSelect.bind(this)}
+                    updateRowsSelectedInState={this.updateRowsSelectedInState.bind(this)}
                   />
+
                 </div>
             )
           }

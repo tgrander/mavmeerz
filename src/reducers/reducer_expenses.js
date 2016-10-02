@@ -1,6 +1,7 @@
 // const _ = require('lodash');
 import * as _ from 'lodash';
 import moment from 'moment';
+import update from 'react-addons-update'
 
 import guestExpenses from '../assets/parsedGuestExpenses'
 
@@ -116,12 +117,9 @@ export default function expenses(state=INITIAL_STATE, action){
       break;
 
     case SELECT_EXPENSE:
-      const selectedRowId = action.id
-      const selected = state.selected
-
-      return Object.assign({}, state, {
-        selected: [...selected, ...selectedRowId]
-      });
+      return update(state, {
+        selected: {$set: action.arrayOfSelectedExpenses}
+      })
       break;
 
     default:
