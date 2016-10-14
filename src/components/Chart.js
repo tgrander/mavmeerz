@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import Highcharts from 'highcharts'
 import ExpensesApp from '../containers/ExpensesApp'
 
+// import $ from 'jquery'
+
 export class Chart extends React.Component {
 	constructor(props) {
     super(props);

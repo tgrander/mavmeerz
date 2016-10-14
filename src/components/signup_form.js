@@ -5,8 +5,9 @@ import { Link } from 'react-router'
 import { signup } from '../actions/authActions'
 
 import * as util from '../util/style_functions'
-
-import * as $ from 'jquery'
+import $ from 'jquery'
+// var $ = require('jquery');
+// window.$ = $;
 
 import '../css/login.css'
 
@@ -56,7 +57,6 @@ class SignupForm extends Component {
         </div>
 
       </div>
-
     )
   }
 }

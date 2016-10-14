@@ -22,6 +22,8 @@ app.use(expressCSV());
 
 /// looks for 'index.html' in '/../build' by default ///
 app.use(express.static(__dirname + '/../build'));
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
+
 
 // ROUTES //
 const router = express.Router();
