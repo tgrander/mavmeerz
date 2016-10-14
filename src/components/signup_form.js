@@ -6,6 +6,8 @@ import { signup } from '../actions/authActions'
 
 import * as util from '../util/style_functions'
 
+import * as $ from 'jquery'
+
 import '../css/login.css'
 
 class SignupForm extends Component {
