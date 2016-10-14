@@ -22,7 +22,7 @@
    client: 'mysql',
    connection: {
        host     : 'us-cdbr-iron-east-04.cleardb.net',
-       port     : '8080',
+      //  port     : '8080',
        user     : 'b54fca61493351',
        password : '95b13c3b',
        database : 'heroku_80053029a9135e3',
